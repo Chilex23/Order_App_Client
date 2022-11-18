@@ -7,7 +7,7 @@ import AdminDashboard from "./pages/adminDashboad";
 
 function App() {
   return (
-    <div className="font-sans">
+    <>
       <Router>
         <Header />
         <NavBar />
@@ -18,7 +18,7 @@ function App() {
           </Routes>
         </AppLayout>
       </Router>
-    </div>
+    </>
   );
 }
 

@@ -2,7 +2,7 @@ import React from "react";
 
 const Orders = () => {
   return (
-    <div className="border-black border-2 p-3 rounded-md shadow-2xl">
+    <div className="border-gray-400 border-[1px] p-3 rounded-md shadow-2xl">
       <div className="text-lg font-bold">
         <span className="w-2 bg-red-500 mr-2">&nbsp;</span>
         <span>Orders</span>

@@ -1,6 +1,14 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-
+// AiFillCaretLeft
+// AiFillCaretDown
+// AiFillCaretRight
+// AiFillCaretUp
+// FaPizzaSlice
+// GiHamburger
+// import { IconName } from "react-icons/gi";
+// MdOutlineLocalDrink
+// import { IconName } from "react-icons/md";
 const SideBar = () => {
   const [dropDownHiddenState, setDropDownHiddenState] = useState(true);
   const toggleDropDown = () => {

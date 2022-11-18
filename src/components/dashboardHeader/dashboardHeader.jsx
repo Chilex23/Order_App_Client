@@ -1,13 +1,15 @@
 import React from "react";
+import { AiOutlineSearch } from "react-icons/ai";
 
 const DashboardHeader = () => {
   return (
     <div className="flex justify-between flex-col lg:flex-row gap-y-5 items-center border-b-2 border-black pb-5">
       <span className="text-xl font-semibold">Good Afternoon, Chilex23</span>
-      <span>
+      <span className="relative">
+        <AiOutlineSearch className="absolute top-3 left-1 text-2xl"/>
         <input
           type="search"
-          className="border-black border-2 sm2:w-[18rem] w-[24rem] h-12 px-2 rounded-md mr-4 focus:ring-indigo-500"
+          className="border-black border-[1px] sm2:w-[18rem] w-[24rem] h-12 pl-8 rounded-md mr-4 focus:ring-red-500"
           placeholder="Search for food items"
         />
       </span>

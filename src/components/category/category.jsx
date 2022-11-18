@@ -3,7 +3,7 @@ import foodPic from "../../assets/images/dronesnow.jpg";
 
 const Category = () => {
   return (
-    <div className="border-black border-2 p-3 rounded-md shadow-2xl">
+    <div className="border-gray-400 border-[1px] p-3 rounded-md shadow-2xl">
       <div className="flex justify-between items-center">
         <p className="text-lg font-bold">
           <span className="w-2 bg-blue-500 mr-2">&nbsp;</span>Categories
