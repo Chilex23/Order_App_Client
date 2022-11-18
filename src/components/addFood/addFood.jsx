@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Modal from "react-modal";
 import { IoCloseSharp } from "react-icons/io5";
+import FormInput from "../formInput/formInput";
 //IoAddOutline
 
 const customStyles = {
@@ -27,20 +28,28 @@ const AddFood = () => {
   const [foodDetails, setFoodDetails] = useState({
     title: "",
     description: "",
-    category: "",
+    category: "snacks",
     price: 0,
     foodImage: "",
   });
 
+  const { title, description, category, price, foodImage } = foodDetails;
+
   const handleSubmit = async (event) => {
     event.preventDefault();
-    this.setState({ title: "", description: "", price: 0, foodImage: "" });
+    console.log(foodDetails);
+    setFoodDetails({
+      title: "",
+      description: "",
+      category: "",
+      price: 0,
+      foodImage: "",
+    });
   };
 
   const handleChange = (event) => {
     const { value, name } = event.target;
     setFoodDetails({ ...foodDetails, [name]: value });
-    console.log(foodDetails)
   };
 
   function openModal() {
@@ -79,49 +88,47 @@ const AddFood = () => {
           enctype="multipart/form-data"
           onSubmit={handleSubmit}
         >
-          <div className="flex flex-col my-2">
-            <label>Food Title</label>
-            <input
-              type="text"
-              name="title"
-              className="border-[1px] border-gray-500 w-[24rem] h-10 p-2 rounded-md"
-              onChange={handleChange}
-            />
-          </div>
-          <div className="flex flex-col my-2">
-            <label>Food Description</label>
-            <input
-              type="text"
-              name="description"
-              className="border-[1px] border-gray-500 w-[24rem] h-10 p-2 rounded-md"
-              onChange={handleChange}
-            />
-          </div>
+          <FormInput
+            handleChange={handleChange}
+            name="title"
+            type="text"
+            label="Food Title"
+            value={title}
+          />
+          <FormInput
+            handleChange={handleChange}
+            name="description"
+            type="text"
+            label="Food Description"
+            value={description}
+          />
           <div className="flex flex-col my-2">
             <label>Food Category</label>
-            <select name="category" className="bg-white border-[1px] border-gray-500 w-[24rem] h-10 p-2 rounded-md" onChange={handleChange}>
-              <option>Snacks</option>
-              <option>Pizzas</option>
+            <select
+              name="category"
+              className="bg-white border-[1px] border-gray-500 sm2:w-[16rem] w-[24rem] h-10 p-2 rounded-md"
+              onChange={handleChange}
+            >
+              <option value="snacks" selected>
+                Snacks
+              </option>
+              <option value="pizzas">Pizzas</option>
             </select>
           </div>
-          <div className="flex flex-col my-2">
-            <label>Food Price</label>
-            <input
-              name="price"
-              type="number"
-              className="border-[1px] border-gray-500 w-[24rem] h-10 p-2 rounded-md"
-              onChange={handleChange}
-            />
-          </div>
-          <div className="flex flex-col my-2">
-            <label>Food Image</label>
-            <input
-              type="file"
-              name="foodImage"
-              className="border-[1px] border-gray-500 w-[24rem] h-10 p-2 rounded-md"
-              onChange={handleChange}
-            />
-          </div>
+          <FormInput
+            handleChange={handleChange}
+            name="price"
+            type="number"
+            label="Food Price"
+            value={price}
+          />
+          <FormInput
+            handleChange={handleChange}
+            name="foodImage"
+            type="file"
+            label="Food Image"
+            value={foodImage}
+          />
           <button className="bg-orange-500 mx-auto px-4 py-2 block my-5 text-white uppercase rounded-md text-lg">
             Add
           </button>

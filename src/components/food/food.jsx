@@ -1,7 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
+import { Menu, MenuItem, MenuButton, MenuRadioGroup } from "@szhsin/react-menu";
+import "@szhsin/react-menu/dist/transitions/slide.css";
 import foodPic from "../../assets/images/dronesnow.jpg";
 
 const Food = () => {
+  const [filter, setFilter] = useState("price");
+  console.log(filter);
   return (
     <div className="border-gray-400 border-[1px] p-3 rounded-md shadow-2xl">
       <p className="text-lg font-bold">
@@ -9,8 +13,25 @@ const Food = () => {
         <span>Food</span>
       </p>
       <div className="flex justify-between my-2">
-        <span className="border-b-[1px] border-black">By Price</span>
-        <span>Latest</span>
+        <Menu
+          menuButton={
+            <MenuButton className="border-[1px] border-gray-400 rounded-md px-4 py-2 font-medium">
+              Filter
+            </MenuButton>
+          }
+        >
+          <MenuRadioGroup
+            value={filter}
+            onRadioChange={(e) => setFilter(e.value)}
+          >
+            <MenuItem type="radio" value="price">
+              Price
+            </MenuItem>
+            <MenuItem type="radio" value="latest">
+              Latest
+            </MenuItem>
+          </MenuRadioGroup>
+        </Menu>
       </div>
       <div className="flex flex-col gap-y-2">
         <div className="flex items-center justify-between border-b-[1px] border-gray-300 pb-1">
