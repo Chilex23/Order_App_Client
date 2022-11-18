@@ -7,7 +7,7 @@ const DashboardHeader = () => {
       <span>
         <input
           type="search"
-          className="border-black border-2 sm2:w-[18rem] w-[24rem] h-12 px-2 rounded-md mr-4"
+          className="border-black border-2 sm2:w-[18rem] w-[24rem] h-12 px-2 rounded-md mr-4 focus:ring-indigo-500"
           placeholder="Search for food items"
         />
       </span>
