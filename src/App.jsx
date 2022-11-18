@@ -4,6 +4,7 @@ import NavBar from "./components/navbar/navbar";
 import AppLayout from "./components/appLayout/applayout";
 import HomePage from "./pages/homepage";
 import AdminDashboard from "./pages/adminDashboad";
+import "./App.css";
 
 function App() {
   return (
