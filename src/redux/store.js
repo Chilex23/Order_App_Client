@@ -5,7 +5,7 @@ import screenWidthReducer from "./features/screenWidth";
 const store = configureStore({
   reducer: {
     counter: counterReducer,
-    screenWidth: screenWidthReducer
+    screenWidth: screenWidthReducer,
   },
 });
 

@@ -5,7 +5,7 @@ const DashboardHeader = () => {
   return (
     <div className="flex justify-between flex-col lg:flex-row gap-y-5 items-center border-b-2 border-gray-400 pb-5">
       <span className="text-xl font-semibold">Good Afternoon, Chilex23</span>
-      <span className="relative z-[-1]">
+      <span className="relative z-0">
         <AiOutlineSearch className="absolute top-3 left-1 text-2xl"/>
         <input
           type="search"

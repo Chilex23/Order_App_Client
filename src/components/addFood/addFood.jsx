@@ -2,26 +2,8 @@ import React, { useState } from "react";
 import Modal from "react-modal";
 import { IoCloseSharp } from "react-icons/io5";
 import FormInput from "../formInput/formInput";
+import customStyles from "../../utils/customStyles";
 //IoAddOutline
-
-const customStyles = {
-  content: {
-    top: "50%",
-    left: "50%",
-    right: "auto",
-    bottom: "auto",
-    marginRight: "-50%",
-    transform: "translate(-50%, -50%)",
-  },
-  overlay: {
-    position: "fixed",
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    backgroundColor: "rgba(0, 0, 0, 0.75)",
-  },
-};
 
 const AddFood = () => {
   const [modalIsOpen, setIsOpen] = useState(false);
@@ -29,7 +11,7 @@ const AddFood = () => {
     title: "",
     description: "",
     category: "snacks",
-    price: 0,
+    price: "",
     foodImage: "",
   });
 
@@ -42,7 +24,7 @@ const AddFood = () => {
       title: "",
       description: "",
       category: "",
-      price: 0,
+      price: "",
       foodImage: "",
     });
   };
@@ -52,13 +34,13 @@ const AddFood = () => {
     setFoodDetails({ ...foodDetails, [name]: value });
   };
 
-  function openModal() {
+  const openModal = () => {
     setIsOpen(true);
-  }
+  };
 
-  function closeModal() {
+  const closeModal = () => {
     setIsOpen(false);
-  }
+  };
 
   return (
     <div className="my-5 flex justify-between items-center">
@@ -85,7 +67,7 @@ const AddFood = () => {
         <h1 className="text-center uppercase font-bold">Add Food</h1>
         <form
           method="post"
-          enctype="multipart/form-data"
+          encType="multipart/form-data"
           onSubmit={handleSubmit}
         >
           <FormInput
