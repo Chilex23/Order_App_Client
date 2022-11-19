@@ -5,7 +5,7 @@ const FormInput = ({ handleChange, label, ...otherprops }) => (
     <label>{label}</label>
     <input
       {...otherprops}
-      className="border-[1px] border-gray-500 sm2:w-[16rem] w-[24rem] h-10 p-2 rounded-md"
+      className="border-[1px] border-gray-500 sm2:w-[17rem] w-[24rem] h-10 p-2 rounded-md"
       onChange={handleChange}
     />
   </div>

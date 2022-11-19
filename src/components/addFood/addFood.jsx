@@ -88,10 +88,11 @@ const AddFood = () => {
             <label>Food Category</label>
             <select
               name="category"
-              className="bg-white border-[1px] border-gray-500 sm2:w-[16rem] w-[24rem] h-10 p-2 rounded-md"
+              value="snacks"
+              className="bg-white border-[1px] border-gray-500 sm2:w-[17rem] w-[24rem] h-10 p-2 rounded-md"
               onChange={handleChange}
             >
-              <option value="snacks" selected>
+              <option value="snacks">
                 Snacks
               </option>
               <option value="pizzas">Pizzas</option>

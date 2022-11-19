@@ -1,12 +1,24 @@
 import React, { useState } from "react";
 import { Menu, MenuItem, MenuButton, MenuRadioGroup } from "@szhsin/react-menu";
+import Modal from "react-modal";
+import { IoCloseSharp } from "react-icons/io5";
+import customStyles from "../../utils/customStyles";
 import { FaFilter } from "react-icons/fa";
 import "@szhsin/react-menu/dist/transitions/slide.css";
 import foodPic from "../../assets/images/dronesnow.jpg";
+import StarRating from "../starRating/starRating";
 
 const Food = () => {
   const [filter, setFilter] = useState("price");
+  const [modalIsOpen, setIsOpen] = useState(false);
   console.log(filter);
+  const openModal = () => {
+    setIsOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsOpen(false);
+  };
   return (
     <div className="border-gray-400 border-[1px] p-3 rounded-md">
       <p className="text-lg font-bold">
@@ -35,13 +47,16 @@ const Food = () => {
         </Menu>
       </div>
       <div className="flex flex-col gap-y-2">
-        <div className="flex items-center justify-between border-b-[1px] border-gray-300 pb-1">
-          <img src={foodPic} className="w-12 h-12 rounded-full" />
+        <div
+          className="flex items-center justify-between hover:bg-gray-300 p-1 border-b-[1px] border-gray-300 rounded-md cursor-pointer"
+          onClick={openModal}
+        >
+          <img src={foodPic} className="w-12 h-12 rounded-full" alt="food" />
           <span>Hot Dog</span>
           <span>$300</span>
         </div>
-        <div className="flex items-center justify-between border-b-[1px] border-gray-300 pb-1">
-          <img src={foodPic} className="w-12 h-12 rounded-full" />
+        <div className="flex items-center justify-between hover:bg-gray-300 p-1 border-b-[1px] border-gray-300 rounded-md cursor-pointer">
+          <img src={foodPic} className="w-12 h-12 rounded-full" alt="food" />
           <span>Hot Dog</span>
           <span>$300</span>
         </div>
@@ -49,6 +64,52 @@ const Food = () => {
       <button className="bg-orange-500 mx-auto block rounded-md px-3 py-2 text-white my-4">
         More Food
       </button>
+
+      <Modal
+        isOpen={modalIsOpen}
+        onRequestClose={closeModal}
+        style={customStyles}
+        closeTimeoutMS={200}
+        contentLabel="Add Food Modal"
+      >
+        <div className="flex justify-end">
+          <IoCloseSharp
+            onClick={closeModal}
+            className="text-3xl cursor-pointer bg-stone-800 text-white rounded-full"
+          />
+        </div>
+
+        <div className="w-[26rem] sm2:w-[17rem]">
+          <h1 className="text-center uppercase font-bold text-3xl sm2:text-xl">
+            Hot Dog
+          </h1>
+          <figure className="my-4">
+            <img
+              className="w-full h-[14rem] sm2:h-[10rem] rounded-md"
+              src={foodPic}
+              alt="food"
+            />
+          </figure>
+          <p className="mb-2 sm2:text-sm">
+            This is a nice hot dog. Lorem ipsum dolor sit amet consectetur,
+            adipisicing elit. Hic minima tempore maiores, dignissimos tempora
+            suscipit, cum pariatur mollitia odit quisquam incidunt deleniti
+            ducimus eius perferendis. Nulla animi officia ea dolore!
+          </p>
+          <div className="grid grid-cols-2 gap-2 my-4">
+            <p className="text-md sm2:text-sm">
+              <span className="font-bold mr-4">Price:</span> $300
+            </p>
+            <p className="text-md sm2:text-sm">
+              <span className="font-bold mr-4">Reviews:</span> 10
+            </p>
+            <p className="text-md sm2:text-sm flex items-center">
+              <span className="font-bold mr-4">Rating:</span>{" "}
+              <StarRating rating={4.5} />
+            </p>
+          </div>
+        </div>
+      </Modal>
     </div>
   );
 };
