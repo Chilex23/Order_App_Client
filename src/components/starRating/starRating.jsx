@@ -2,7 +2,7 @@ import React from "react";
 import { FaStar } from "react-icons/fa";
 
 const Star = ({ selected = false }) => (
-  <FaStar className={selected ? "text-orange-500" : "text-gray-400"} />
+  <FaStar className={selected ? "text-green-500" : "text-gray-400"} />
 );
 
 const createArray = (length) => [...Array(length)];

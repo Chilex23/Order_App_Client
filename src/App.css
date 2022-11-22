@@ -119,7 +119,7 @@
 }
 .szh-menu__item--type-radio.szh-menu__item--checked::before {
   content: "●";
-  color: #f97316;
+  color: #22c55e;
 }
 .szh-menu__item--type-checkbox {
   padding-left: 2.2rem;

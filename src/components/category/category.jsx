@@ -4,6 +4,7 @@ import { IoCloseSharp } from "react-icons/io5";
 import FormInput from "../formInput/formInput";
 import foodPic from "../../assets/images/dronesnow.jpg";
 import customStyles from "../../utils/customStyles";
+import { ButtonSm } from "../button/button";
 
 const Category = () => {
   const [modalIsOpen, setIsOpen] = useState(false);
@@ -33,7 +34,7 @@ const Category = () => {
 
   const { type } = categoryDetails;
   return (
-    <div className="border-gray-400 border-[1px] p-3 rounded-md">
+    <div className="shadow-2xl p-3 rounded-md bg-white">
       <div className="flex justify-between items-center">
         <p className="text-lg font-bold">
           <span className="w-2 bg-blue-500 mr-2">&nbsp;</span>Categories
@@ -52,9 +53,7 @@ const Category = () => {
           <span>Pizzas</span>
         </div>
       </div>
-      <button className="bg-orange-500 mx-auto block rounded-md px-3 py-2 text-white">
-        View all
-      </button>
+      <ButtonSm>View all</ButtonSm>
 
       <Modal
         isOpen={modalIsOpen}

@@ -18,7 +18,7 @@ const SideBar = () => {
     //setCurrentPage("category")
   };
   return (
-    <div className="bg-orange-500 uppercase text-white w-[12rem] px-6 pt-6 h-screen fixed flex flex-col gap-y-3">
+    <div className="bg-green-500 uppercase text-white w-[12rem] px-6 pt-6 h-screen fixed flex flex-col gap-y-3">
       <Link
         to="/"
         className={`cursor-pointer ${

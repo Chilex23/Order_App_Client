@@ -2,12 +2,13 @@ import React, { useState } from "react";
 import { Menu, MenuItem, MenuButton, MenuRadioGroup } from "@szhsin/react-menu";
 import { FaFilter } from "react-icons/fa";
 import "@szhsin/react-menu/dist/transitions/slide.css";
+import { ButtonSm } from "../button/button";
 
 const Orders = () => {
   const [filter, setFilter] = useState("undelivered");
   console.log(filter);
   return (
-    <div className="border-gray-400 border-[1px] p-3 rounded-md">
+    <div className="shadow-2xl p-3 rounded-md bg-white">
       <div className="text-lg font-bold">
         <span className="w-2 bg-red-500 mr-2">&nbsp;</span>
         <span>Orders</span>
@@ -57,9 +58,7 @@ const Orders = () => {
           </tr>
         </tbody>
       </table>
-      <button className="bg-orange-500 mx-auto block rounded-md px-3 py-2 text-white my-4">
-        More Orders
-      </button>
+      <ButtonSm>More Orders</ButtonSm>
     </div>
   );
 };

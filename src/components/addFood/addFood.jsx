@@ -2,7 +2,9 @@ import React, { useState } from "react";
 import Modal from "react-modal";
 import { IoCloseSharp } from "react-icons/io5";
 import FormInput from "../formInput/formInput";
+import { HoverButton } from "../button/button";
 import customStyles from "../../utils/customStyles";
+import { ButtonSm } from "../button/button";
 //IoAddOutline
 
 const AddFood = () => {
@@ -45,12 +47,7 @@ const AddFood = () => {
   return (
     <div className="my-5 flex justify-between items-center">
       <span className="uppercase font-bold">Admin Dashboard</span>
-      <button
-        onClick={openModal}
-        className="bg-orange-500 py-2 px-3 md:py-3 md:px-4 rounded-lg text-white hover:shadow-lg hover:-translate-y-2 transition-all"
-      >
-        + Add Food
-      </button>
+      <HoverButton clickHandler={openModal}>+ Add Food</HoverButton>
       <Modal
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
@@ -92,9 +89,7 @@ const AddFood = () => {
               className="bg-white border-[1px] border-gray-500 sm2:w-[17rem] w-[24rem] h-10 p-2 rounded-md"
               onChange={handleChange}
             >
-              <option value="snacks">
-                Snacks
-              </option>
+              <option value="snacks">Snacks</option>
               <option value="pizzas">Pizzas</option>
             </select>
           </div>
@@ -112,7 +107,7 @@ const AddFood = () => {
             label="Food Image"
             value={foodImage}
           />
-          <button className="bg-orange-500 mx-auto px-4 py-2 block my-5 text-white uppercase rounded-md text-lg">
+          <button className="bg-green-500 mx-auto px-4 py-2 block my-5 text-white uppercase rounded-md text-lg">
             Add
           </button>
         </form>
