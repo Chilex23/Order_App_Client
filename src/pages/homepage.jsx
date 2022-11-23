@@ -7,9 +7,9 @@ const HomePage = () => {
   const count = useSelector(selectCount);
   const dispatch = useDispatch();
   return (
-    <>
+    <div className="w-[95%] mx-auto">
       <Hero />
-    </>
+    </div>
   );
 };
 export default HomePage;
