@@ -18,7 +18,7 @@ const SideBar = () => {
     //setCurrentPage("category")
   };
   return (
-    <div className="bg-green-500 uppercase text-white w-[12rem] px-6 pt-6 h-screen fixed flex flex-col gap-y-3">
+    <div className="bg-stone-700 uppercase text-white w-[12rem] px-6 pt-6 h-screen fixed flex flex-col gap-y-3">
       <Link
         to="/"
         className={`cursor-pointer ${
@@ -57,13 +57,13 @@ const SideBar = () => {
           dropDownHiddenState ? "hidden" : "flex flex-col"
         }`}
       >
-        <span className="flex items-center cursor-pointer">
+        <span className="flex items-center justify-between cursor-pointer">
           Pizzas <FaPizzaSlice className="ml-2" />{" "}
         </span>
-        <span className="flex items-center cursor-pointer">
+        <span className="flex items-center justify-between cursor-pointer">
           Drinks <MdOutlineLocalDrink className="ml-2" />{" "}
         </span>
-        <span className="flex items-center cursor-pointer">
+        <span className="flex items-center justify-between cursor-pointer">
           Snacks <GiHamburger className="ml-2" />{" "}
         </span>
       </div>
