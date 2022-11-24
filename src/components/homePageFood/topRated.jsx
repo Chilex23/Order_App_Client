@@ -27,7 +27,10 @@ const items = [
       </span>
       <span className="ml-2 font-medium">12 reviews</span>
     </p>
-    <ButtonSm>Add to Cart</ButtonSm>
+    <div className="flex">
+      <ButtonSm>Add to Cart</ButtonSm>
+      <ButtonSm>View Food</ButtonSm>
+    </div>
   </div>,
 
   <div className="mr-4 p-3 bg-white rounded-md">
@@ -46,7 +49,10 @@ const items = [
       </span>
       <span className="ml-2 font-medium">12 reviews</span>
     </p>
-    <ButtonSm>Add to Cart</ButtonSm>
+    <div className="flex">
+      <ButtonSm>Add to Cart</ButtonSm>
+      <ButtonSm>View Food</ButtonSm>
+    </div>
   </div>,
 
   <div className="mr-4 p-3 bg-white rounded-md">
@@ -65,7 +71,10 @@ const items = [
       </span>
       <span className="ml-2 font-medium">12 reviews</span>
     </p>
-    <ButtonSm>Add to Cart</ButtonSm>
+    <div className="flex">
+      <ButtonSm>Add to Cart</ButtonSm>
+      <ButtonSm>View Food</ButtonSm>
+    </div>
   </div>,
 
   <div className="mr-4 p-3 bg-white rounded-md">
@@ -84,7 +93,10 @@ const items = [
       </span>
       <span className="ml-2 font-medium">12 reviews</span>
     </p>
-    <ButtonSm>Add to Cart</ButtonSm>
+    <div className="flex">
+      <ButtonSm>Add to Cart</ButtonSm>
+      <ButtonSm>View Food</ButtonSm>
+    </div>
   </div>,
 ];
 

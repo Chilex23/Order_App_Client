@@ -21,11 +21,18 @@ const AddFood = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log(foodDetails);
+
+    const formData = new FormData();
+    formData.append("title", title);
+    formData.append("description", description)
+    formData.append("category", category);
+    formData.append("price", price);
+    formData.append("foodImage", foodImage);
+    console.log(formData);
     setFoodDetails({
       title: "",
       description: "",
-      category: "",
+      category: "snacks",
       price: "",
       foodImage: "",
     });
@@ -35,6 +42,10 @@ const AddFood = () => {
     const { value, name } = event.target;
     setFoodDetails({ ...foodDetails, [name]: value });
   };
+
+  const fileChange = (event) => {
+    setFoodDetails({ ...foodDetails, "foodImage": event.target.files[0] });
+  }
 
   const openModal = () => {
     setIsOpen(true);
@@ -101,11 +112,10 @@ const AddFood = () => {
             value={price}
           />
           <FormInput
-            handleChange={handleChange}
+            handleChange={fileChange}
             name="foodImage"
             type="file"
             label="Food Image"
-            value={foodImage}
           />
           <button className="bg-green-500 mx-auto px-4 py-2 block my-5 text-white uppercase rounded-md text-lg">
             Add
