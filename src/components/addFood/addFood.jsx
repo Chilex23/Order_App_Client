@@ -33,7 +33,7 @@ const AddFood = () => {
     if (!isLoading) {
       try {
         const payload = await addNewFood(formData).unwrap();
-        alert("fulfilled", payload);
+        console.log('fulfilled', payload)
         setFoodDetails({
           title: "",
           description: "",
