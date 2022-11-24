@@ -1,5 +1,5 @@
 import React from "react";
-import foodPic from "../../assets/images/dronesnow.jpg";
+import foodPic from "../../assets/images/foodBanner.jpg";
 import { useSelector } from "react-redux";
 import { selectWidth } from "../../redux/features/screenWidth";
 
@@ -17,7 +17,7 @@ const Hero = () => {
       }}
     >
       <div className="sm:w-[50%] text-white">
-        <h1 className="text-3xl font-extrabold mb-7">Home Of Great Food!!!</h1>
+        <h1 className="text-3xl font-extrabold mb-7 font-rubik">Home Of Great Food!!!</h1>
         <p className="text-lg">
           Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ad porro
           quis excepturi ipsum quia rerum dolorem, ea quas maxime consequuntur

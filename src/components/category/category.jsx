@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import Modal from "react-modal";
 import { IoCloseSharp } from "react-icons/io5";
 import FormInput from "../formInput/formInput";
-import foodPic from "../../assets/images/dronesnow.jpg";
+import foodPic from "../../assets/images/pizza.jpg";
+import drinkPic from "../../assets/images/drinks.jpg";
 import customStyles from "../../utils/customStyles";
 import { ButtonSm } from "../button/button";
 
@@ -45,7 +46,7 @@ const Category = () => {
       </div>
       <div className="my-4">
         <div className="flex items-center mb-4 bg-gray-200 p-2 rounded-lg">
-          <img src={foodPic} className="w-12 h-12 rounded-full mr-8" />
+          <img src={drinkPic} className="w-12 h-12 rounded-full mr-8" />
           <span>Drinks</span>
         </div>
         <div className="flex items-center bg-gray-200 p-2 rounded-lg">

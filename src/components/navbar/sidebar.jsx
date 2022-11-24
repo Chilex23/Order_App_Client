@@ -18,11 +18,13 @@ const SideBar = () => {
     //setCurrentPage("category")
   };
   return (
-    <div className="bg-stone-700 uppercase text-white w-[12rem] px-6 pt-6 h-screen fixed flex flex-col gap-y-3">
+    <div className="bg-stone-900 uppercase text-white w-[12rem] px-6 pt-6 h-screen fixed flex flex-col gap-y-3">
       <Link
         to="/"
         className={`cursor-pointer ${
-          currentPage === "/" ? "bg-white text-black p-1 rounded-md" : ""
+          currentPage === "/"
+            ? "bg-white text-black p-1 rounded-md"
+            : "hover:bg-stone-700 p-1 rounded-md"
         }`}
         onClick={() => setCurrentPage("/")}
       >
@@ -34,7 +36,7 @@ const SideBar = () => {
         className={`cursor-pointer ${
           currentPage === "/dashboard"
             ? "bg-white text-black p-1 rounded-md"
-            : ""
+            : "hover:bg-stone-700 p-1 rounded-md"
         }`}
         onClick={() => setCurrentPage("/dashboard")}
       >
@@ -42,7 +44,7 @@ const SideBar = () => {
       </Link>
 
       <span
-        className="cursor-pointer flex items-center"
+        className="cursor-pointer flex items-center justify-between"
         onClick={toggleDropDown}
       >
         Categories
@@ -57,13 +59,13 @@ const SideBar = () => {
           dropDownHiddenState ? "hidden" : "flex flex-col"
         }`}
       >
-        <span className="flex items-center justify-between cursor-pointer">
+        <span className="flex items-center justify-between cursor-pointer hover:bg-stone-700 p-1 rounded-md">
           Pizzas <FaPizzaSlice className="ml-2" />{" "}
         </span>
-        <span className="flex items-center justify-between cursor-pointer">
+        <span className="flex items-center justify-between cursor-pointer hover:bg-stone-700 p-1 rounded-md">
           Drinks <MdOutlineLocalDrink className="ml-2" />{" "}
         </span>
-        <span className="flex items-center justify-between cursor-pointer">
+        <span className="flex items-center justify-between cursor-pointer hover:bg-stone-700 p-1 rounded-md">
           Snacks <GiHamburger className="ml-2" />{" "}
         </span>
       </div>

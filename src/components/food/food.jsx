@@ -5,7 +5,7 @@ import { IoCloseSharp } from "react-icons/io5";
 import customStyles from "../../utils/customStyles";
 import { FaFilter } from "react-icons/fa";
 import "@szhsin/react-menu/dist/transitions/slide.css";
-import foodPic from "../../assets/images/dronesnow.jpg";
+import foodPic from "../../assets/images/hamburger.jpg";
 import StarRating from "../starRating/starRating";
 import { ButtonSm } from "../button/button";
 
@@ -49,16 +49,16 @@ const Food = () => {
       </div>
       <div className="flex flex-col gap-y-2">
         <div
-          className="flex items-center justify-between hover:bg-gray-300 p-1 border-b-[1px] border-gray-300 rounded-md cursor-pointer"
+          className="flex items-center justify-between hover:bg-gray-300 p-1 border-b-[1px] border-gray-300 hover:rounded-md cursor-pointer"
           onClick={openModal}
         >
           <img src={foodPic} className="w-12 h-12 rounded-full" alt="food" />
-          <span>Hot Dog</span>
+          <span>Hamburger</span>
           <span>$300</span>
         </div>
-        <div className="flex items-center justify-between hover:bg-gray-300 p-1 border-b-[1px] border-gray-300 rounded-md cursor-pointer">
+        <div className="flex items-center justify-between hover:bg-gray-300 p-1 border-b-[1px] border-gray-300 hover:rounded-md cursor-pointer">
           <img src={foodPic} className="w-12 h-12 rounded-full" alt="food" />
-          <span>Hot Dog</span>
+          <span>Hamburger</span>
           <span>$300</span>
         </div>
       </div>
@@ -79,8 +79,8 @@ const Food = () => {
         </div>
 
         <div className="w-[26rem] sm2:w-[17rem]">
-          <h1 className="text-center uppercase font-bold text-3xl sm2:text-xl">
-            Hot Dog
+          <h1 className="text-center uppercase font-bold text-3xl sm2:text-xl font-rubik">
+            Hamburger
           </h1>
           <figure className="my-4">
             <img

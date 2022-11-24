@@ -5,16 +5,19 @@ module.exports = {
     extend: {
       gridTemplateColumns: {
         "auto-fit": "repeat(auto-fit, minmax(fit-content, 1fr));",
-      }
+      },
     },
     screens: {
-      "sm": "640px",
-      "md": "768px",
-      "lg": "1024px",
-      "tablet": "880px",
-      "sm2": { max: "480px" },
-      "myXl": "1150px",
+      sm: "640px",
+      md: "768px",
+      lg: "1024px",
+      tablet: "880px",
+      sm2: { max: "480px" },
+      myXl: "1150px",
       "2xl": "1350px",
+    },
+    fontFamily: {
+      rubik: ["Rubik Distressed", "cursive"],
     },
   },
   plugins: [],
