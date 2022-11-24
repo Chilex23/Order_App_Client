@@ -4,7 +4,7 @@ import { IoCloseSharp } from "react-icons/io5";
 import FormInput from "../formInput/formInput";
 import { HoverButton } from "../button/button";
 import customStyles from "../../utils/customStyles";
-import { ButtonSm } from "../button/button";
+import { useAddNewFoodMutation } from "../../redux/features/api/foodSlice";
 //IoAddOutline
 
 const AddFood = () => {
@@ -12,10 +12,11 @@ const AddFood = () => {
   const [foodDetails, setFoodDetails] = useState({
     title: "",
     description: "",
-    category: "snacks",
+    category: "Snacks",
     price: "",
     foodImage: "",
   });
+  const [addNewFood, { isLoading }] = useAddNewFoodMutation();
 
   const { title, description, category, price, foodImage } = foodDetails;
 
@@ -24,18 +25,26 @@ const AddFood = () => {
 
     const formData = new FormData();
     formData.append("title", title);
-    formData.append("description", description)
+    formData.append("description", description);
     formData.append("category", category);
     formData.append("price", price);
     formData.append("foodImage", foodImage);
     console.log(formData);
-    setFoodDetails({
-      title: "",
-      description: "",
-      category: "snacks",
-      price: "",
-      foodImage: "",
-    });
+    if (!isLoading) {
+      try {
+        const payload = await addNewFood(formData).unwrap();
+        alert("fulfilled", payload);
+        setFoodDetails({
+          title: "",
+          description: "",
+          category: "Snacks",
+          price: "",
+          foodImage: "",
+        });
+      } catch (err) {
+        console.log("Failed to add food", err);
+      }
+    }
   };
 
   const handleChange = (event) => {
@@ -44,8 +53,12 @@ const AddFood = () => {
   };
 
   const fileChange = (event) => {
-    setFoodDetails({ ...foodDetails, "foodImage": event.target.files[0] });
-  }
+    if (event.target.files[0].size > 2000000) {
+      alert("File too big");
+      return;
+    }
+    setFoodDetails({ ...foodDetails, foodImage: event.target.files[0] });
+  };
 
   const openModal = () => {
     setIsOpen(true);
@@ -100,8 +113,8 @@ const AddFood = () => {
               className="bg-white border-[1px] border-gray-500 sm2:w-[17rem] w-[24rem] h-10 p-2 rounded-md"
               onChange={handleChange}
             >
-              <option value="snacks">Snacks</option>
-              <option value="pizzas">Pizzas</option>
+              <option value="Snacks">Snacks</option>
+              <option value="Pizzas">Pizzas</option>
             </select>
           </div>
           <FormInput

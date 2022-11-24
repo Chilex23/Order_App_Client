@@ -86,13 +86,13 @@ const items = [
       voluptate qui officia voluptates natus alias cumque culpa!
     </p>
     <p className="my-2 font-semibold">Price: $3300</p>
-    <p className="my-2 font-semibold flex items-center">
+    <div className="my-2 font-semibold flex items-center">
       <span className="mr-2">Rating:</span>{" "}
       <span className="text-lg">
         <StarRating rating={4.5} />
       </span>
       <span className="ml-2 font-medium">12 reviews</span>
-    </p>
+    </div>
     <div className="flex">
       <ButtonSm>Add to Cart</ButtonSm>
       <ButtonSm>View Food</ButtonSm>
