@@ -1,22 +1,14 @@
 import AliceCarousel from "react-alice-carousel";
-import foodPic from "../../assets/images/hamburger.jpg";
 import pizzaPic from "../../assets/images/pizza.jpg";
-import drinkPic from "../../assets/images/drinks.jpg";
-import hotDogPic from "../../assets/images/hotDog.jpg";
 import StarRating from "../starRating/starRating";
 import { ButtonSm } from "../button/button";
-
-export const responsive = {
-  0: { items: 1 },
-  568: { items: 2 },
-  1024: { items: 3 },
-};
+import { responsive } from "./topRated";
 
 const items = [
   <div className="mr-4 p-3 bg-white rounded-md shadow-2xl">
-    <img src={foodPic} className="w-full h-[10rem] rounded-md" alt="food" />
+    <img src={pizzaPic} className="w-full h-[10rem] rounded-md" alt="food" />
     <h3 className="text-xl font-semibold my-2 uppercase font-rubik">
-      Hamburger
+      Pepperoni Pizza
     </h3>
     <p className="my-2">
       Lorem, ipsum dolor sit amet consectetur adipisicing elit. Expedita et vel
@@ -37,9 +29,9 @@ const items = [
   </div>,
 
   <div className="mr-4 p-3 bg-white rounded-md shadow-2xl">
-    <img src={drinkPic} className="w-full h-[10rem] rounded-md" alt="food" />
+    <img src={pizzaPic} className="w-full h-[10rem] rounded-md" alt="food" />
     <h3 className="text-xl font-semibold my-2 uppercase font-rubik">
-      Cola Drink
+      Anchovis Pizza
     </h3>
     <p className="my-2">
       Lorem, ipsum dolor sit amet consectetur adipisicing elit. Expedita et vel
@@ -81,8 +73,10 @@ const items = [
   </div>,
 
   <div className="mr-4 p-3 bg-white rounded-md shadow-2xl">
-    <img src={hotDogPic} className="w-full h-[10rem] rounded-md" alt="food" />
-    <h3 className="text-xl font-semibold my-2 uppercase font-rubik">Hot Dog</h3>
+    <img src={pizzaPic} className="w-full h-[10rem] rounded-md" alt="food" />
+    <h3 className="text-xl font-semibold my-2 uppercase font-rubik">
+      Spicy Pizza
+    </h3>
     <p className="my-2">
       Lorem, ipsum dolor sit amet consectetur adipisicing elit. Expedita et vel
       ea iure officiis hic consequuntur.
@@ -102,10 +96,10 @@ const items = [
   </div>,
 ];
 
-export const TopRatedCarousel = () => (
+export const TopRatedPizzaCarousel = () => (
   <div className="my-10">
     <h2 className="text-3xl font-extrabold uppercase my-4 font-rubik text-center">
-      Top Rated Food
+      Best of Pizzageddon
     </h2>
     <AliceCarousel
       mouseTracking
@@ -116,5 +110,8 @@ export const TopRatedCarousel = () => (
       autoPlayInterval={2000}
       infinite={true}
     />
+    <ButtonSm>View All</ButtonSm>
   </div>
 );
+
+export default TopRatedPizzaCarousel;

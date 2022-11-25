@@ -7,6 +7,9 @@ import { MdOutlineLocalDrink } from "react-icons/md";
 import { GiHamburger } from "react-icons/gi";
 // AiFillCaretLeft
 // AiFillCaretRight
+// AiFillHome
+// MdDashboardCustomize
+// BiCategory FiLogIn FiLogOut FiSettings
 
 const SideBar = () => {
   const [dropDownHiddenState, setDropDownHiddenState] = useState(true);

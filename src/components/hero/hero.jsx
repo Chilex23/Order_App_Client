@@ -11,7 +11,7 @@ const Hero = () => {
       style={{
         backgroundImage: `linear-gradient(${
           width > 600 ? "to right" : "to bottom"
-        }, #22c55e, transparent), url(${foodPic})`,
+        }, #1ba94f, transparent), url(${foodPic})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}

@@ -81,7 +81,7 @@ const Category = () => {
             label="Category Type"
             value={type}
           />
-          <button className="bg-orange-500 mx-auto px-4 py-2 block my-5 text-white uppercase rounded-md text-lg">
+          <button className="bg-gradient-to-r from-green-400 to-green-600 mx-auto px-4 py-1 block my-5 text-white uppercase rounded-md text-lg">
             Add
           </button>
         </form>

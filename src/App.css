@@ -211,6 +211,8 @@
   box-sizing: border-box;
   width: 100%;
   height: auto;
+  padding-bottom: 2rem;
+  /* padding-top: 2rem */
 }
 
 .alice-carousel__stage {
