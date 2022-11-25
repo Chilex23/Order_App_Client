@@ -29,7 +29,7 @@ const Food = () => {
       <div className="flex justify-between mt-2 mb-4">
         <Menu
           menuButton={
-            <MenuButton className="border-[1px] flex items-center border-gray-400 rounded-md px-4 py-2 font-medium">
+            <MenuButton className="border-[1px] flex items-center border-gray-400 rounded-md px-2 py-1 font-medium">
               <FaFilter className="mr-2" /> Filter
             </MenuButton>
           }

@@ -1,14 +1,12 @@
 import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
 import { Link } from "react-router-dom";
-import { AiFillCaretDown, AiFillCaretUp } from "react-icons/ai";
+import { AiFillCaretDown, AiFillCaretUp, AiFillHome } from "react-icons/ai";
 import { FaPizzaSlice } from "react-icons/fa";
-import { MdOutlineLocalDrink } from "react-icons/md";
+import { MdOutlineLocalDrink, MdDashboardCustomize } from "react-icons/md";
 import { GiHamburger } from "react-icons/gi";
-// AiFillCaretLeft
-// AiFillCaretRight
-// AiFillHome
-// MdDashboardCustomize
+import { BiCategory } from "react-icons/bi";
+import { FiLogIn, FiLogOut } from "react-icons/fi";
 // BiCategory FiLogIn FiLogOut FiSettings
 
 const SideBar = () => {
@@ -24,56 +22,62 @@ const SideBar = () => {
     <div className="bg-stone-900 uppercase text-white w-[12rem] px-6 pt-6 h-screen fixed flex flex-col gap-y-3">
       <Link
         to="/"
-        className={`cursor-pointer ${
+        className={`cursor-pointer flex items-center ${
           currentPage === "/"
             ? "bg-white text-black p-1 rounded-md"
             : "hover:bg-stone-700 p-1 rounded-md"
         }`}
         onClick={() => setCurrentPage("/")}
       >
+        <AiFillHome className="mr-2" />
         <span>Home</span>
       </Link>
 
       <Link
         to="/dashboard"
-        className={`cursor-pointer ${
+        className={`cursor-pointer flex items-center ${
           currentPage === "/dashboard"
             ? "bg-white text-black p-1 rounded-md"
             : "hover:bg-stone-700 p-1 rounded-md"
         }`}
         onClick={() => setCurrentPage("/dashboard")}
       >
+        <MdDashboardCustomize className="mr-2" />
         <span>Dashboard</span>
       </Link>
 
-      <span
-        className="cursor-pointer flex items-center justify-between"
+      <div
+        className="cursor-pointer flex items-center justify-between hover:bg-stone-700 p-1 rounded-md"
         onClick={toggleDropDown}
       >
-        Categories
+        <BiCategory className="mr-2" />
+        <span> Categories</span>
         {dropDownHiddenState ? (
           <AiFillCaretDown className="ml-2" />
         ) : (
           <AiFillCaretUp className="ml-2" />
         )}
-      </span>
+      </div>
       <div
         className={`gap-y-2 ml-4 ${
           dropDownHiddenState ? "hidden" : "flex flex-col"
         }`}
       >
-        <span className="flex items-center justify-between cursor-pointer hover:bg-stone-700 p-1 rounded-md">
+        <Link to="/food/Pizzas" className="flex items-center justify-between cursor-pointer hover:bg-stone-700 p-1 rounded-md">
           Pizzas <FaPizzaSlice className="ml-2" />{" "}
-        </span>
-        <span className="flex items-center justify-between cursor-pointer hover:bg-stone-700 p-1 rounded-md">
+        </Link>
+        <Link to="/food/Drinks" className="flex items-center justify-between cursor-pointer hover:bg-stone-700 p-1 rounded-md">
           Drinks <MdOutlineLocalDrink className="ml-2" />{" "}
-        </span>
-        <span className="flex items-center justify-between cursor-pointer hover:bg-stone-700 p-1 rounded-md">
+        </Link>
+        <Link to="/food/Snacks" className="flex items-center justify-between cursor-pointer hover:bg-stone-700 p-1 rounded-md">
           Snacks <GiHamburger className="ml-2" />{" "}
-        </span>
+        </Link>
       </div>
 
-      <span className="cursor-pointer">Login</span>
+      <div className="cursor-pointer flex items-center hover:bg-stone-700 p-1 rounded-md">
+        <FiLogOut className="mr-2" />
+        <span>Login</span>
+      </div>
     </div>
   );
 };
