@@ -4,6 +4,7 @@ import Modal from "react-modal";
 import { IoCloseSharp } from "react-icons/io5";
 import customStyles from "../../utils/customStyles";
 import { FaFilter } from "react-icons/fa";
+import { Audio } from "react-loader-spinner";
 import "@szhsin/react-menu/dist/transitions/slide.css";
 import foodPic from "../../assets/images/hamburger.jpg";
 import StarRating from "../starRating/starRating";
@@ -14,36 +15,69 @@ const Food = () => {
   const { data, isLoading, isSuccess, isError, error } = useGetFoodsQuery();
   const [filter, setFilter] = useState("price");
   const [modalIsOpen, setIsOpen] = useState(false);
-  const openModal = () => {
+  const [modalDetails, setModalDetails] = useState({
+    title: "",
+    imageSrc: "",
+    description: "",
+    rating: 0,
+    price: 0,
+    reviews: 0,
+  });
+  const openModal = (title, imageSrc, description, rating, price, reviews) => {
     setIsOpen(true);
+    setModalDetails({
+      title,
+      imageSrc,
+      description,
+      rating,
+      price,
+      reviews,
+    });
   };
 
   const closeModal = () => {
     setIsOpen(false);
   };
+
   let content;
   if (isLoading) {
-    content = <div>Loading...</div>;
-  } else if (isSuccess) {
-    console.log(data);
-    content = data.foodItems.slice(0, 5).map((el) => (
-      <div
-        className="flex items-center justify-between hover:bg-gray-300 p-1 border-b-[1px] border-gray-300 hover:rounded-md cursor-pointer"
-        onClick={openModal}
-        key={el._id}
-      >
-        <img
-          src={el?.imageLink || foodPic}
-          className="w-12 h-12 rounded-full"
-          alt="food"
-        />
-        <span>{el.title}</span>
-        <span>${el.price}</span>
+    content = (
+      <div className="self-center">
+        <Audio color="#22c55e" height={80} width={80} />
       </div>
-    ));
+    );
+  } else if (isSuccess) {
+    content = data.foodItems.slice(0, 5).map((el) => {
+      let imageSrc = el?.imageLink
+        ? `http://localhost:3000/${el?.imageLink}`
+        : foodPic;
+      let noOfReviews = 12;
+      return (
+        <div
+          className="flex items-center justify-between hover:bg-gray-300 p-1 border-b-[1px] border-gray-300 hover:rounded-md cursor-pointer transition"
+          onClick={() =>
+            openModal(
+              el.title,
+              imageSrc,
+              el.description,
+              el.avgRating,
+              el.price,
+              noOfReviews
+            )
+          }
+          key={el._id}
+        >
+          <img src={imageSrc} className="w-12 h-12 rounded-full" alt="food" />
+          <span>{el.title}</span>
+          <span>${el.price}</span>
+        </div>
+      );
+    });
   } else if (isError) {
     content = <div>{error?.data?.message || error?.data}</div>;
   }
+
+  const { title, imageSrc, description, rating, price, reviews } = modalDetails;
 
   return (
     <div className="shadow-2xl p-3 rounded-md bg-white relative">
@@ -72,7 +106,7 @@ const Food = () => {
           </MenuRadioGroup>
         </Menu>
       </div>
-      <div className="flex flex-col gap-y-2">{content}</div>
+      <div className="flex flex-col gap-y-2 mb-24">{content}</div>
       <div className="absolute bottom-0 w-full">
         <ButtonSm>More Food</ButtonSm>
       </div>
@@ -93,32 +127,27 @@ const Food = () => {
 
         <div className="w-[26rem] sm2:w-[17rem]">
           <h1 className="text-center uppercase font-bold text-3xl sm2:text-xl font-rubik">
-            Hamburger
+            {title}
           </h1>
           <figure className="my-4">
             <img
               className="w-full h-[14rem] sm2:h-[10rem] rounded-md"
-              src={foodPic}
+              src={imageSrc}
               alt="food"
             />
           </figure>
-          <p className="mb-2 sm2:text-sm">
-            This is a nice hot dog. Lorem ipsum dolor sit amet consectetur,
-            adipisicing elit. Hic minima tempore maiores, dignissimos tempora
-            suscipit, cum pariatur mollitia odit quisquam incidunt deleniti
-            ducimus eius perferendis. Nulla animi officia ea dolore!
-          </p>
+          <p className="mb-2 sm2:text-sm">{description}</p>
           <div className="grid grid-cols-2 gap-2 my-4">
             <p className="text-md sm2:text-sm">
-              <span className="font-bold mr-4">Price:</span> $300
+              <span className="font-bold mr-4">Price:</span> ${price}
             </p>
             <p className="text-md sm2:text-sm">
-              <span className="font-bold mr-4">Reviews:</span> 10
+              <span className="font-bold mr-4">Reviews:</span> {reviews}
             </p>
-            <p className="text-md sm2:text-sm flex items-center">
+            <div className="text-md sm2:text-sm flex items-center">
               <span className="font-bold mr-4">Rating:</span>{" "}
-              <StarRating rating={4.5} />
-            </p>
+              <StarRating rating={rating} />
+            </div>
           </div>
         </div>
       </Modal>

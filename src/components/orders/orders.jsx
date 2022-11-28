@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Menu, MenuItem, MenuButton, MenuRadioGroup } from "@szhsin/react-menu";
 import { FaFilter } from "react-icons/fa";
+import { Audio } from "react-loader-spinner";
 import "@szhsin/react-menu/dist/transitions/slide.css";
 import { ButtonSm } from "../button/button";
 import { useGetOrdersForAdminQuery } from "../../redux/features/api/apiSlice";
@@ -11,12 +12,15 @@ const Orders = () => {
   const [filter, setFilter] = useState("undelivered");
   let content;
   if (isLoading) {
-    content = <div>Loading...</div>;
+    content = (
+      <div className="flex justify-center">
+        <Audio color="#22c55e" height={80} width={80} />
+      </div>
+    );
   } else if (isSuccess) {
-    console.log(data);
     content = (
       <div className="flex flex-col gap-2 mb-16">
-        {data.orders.slice(0,5).map((el) => (
+        {data.orders.slice(0, 5).map((el) => (
           <div
             className="flex flex-col border-black border-2 p-1 rounded-md"
             key={el._id}
