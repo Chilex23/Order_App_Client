@@ -7,7 +7,7 @@ import Category from "../components/category/category";
 
 const AdminDashboard = () => {
   return (
-    <section className="w-[95%] mx-auto">
+    <section className="w-[95%] mx-auto mb-16">
       <DashboardHeader />
       <AddFood />
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-2 gap-y-5 pb-10">

@@ -8,7 +8,7 @@ import TopRatedSnacksCarousel from "../components/homePageFood/topSnacks";
 const HomePage = () => {
   window.scrollTo(0,0)
   return (
-    <div className="w-[95%] mx-auto">
+    <div className="w-[95%] mx-auto mb-24">
       <Hero />
       <div>
         <TopRatedCarousel />

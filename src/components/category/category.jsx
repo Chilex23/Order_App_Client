@@ -44,7 +44,7 @@ const Category = () => {
           + New Category
         </button>
       </div>
-      <div className="my-4">
+      <div className="mt-4 mb-24">
         <div className="flex items-center mb-4 bg-gray-200 p-2 rounded-lg">
           <img src={drinkPic} className="w-12 h-12 rounded-full mr-8" />
           <span>Drinks</span>
