@@ -4,7 +4,8 @@ import { FaFilter } from "react-icons/fa";
 import { Audio } from "react-loader-spinner";
 import "@szhsin/react-menu/dist/transitions/slide.css";
 import { ButtonSm } from "../button/button";
-import { useGetOrdersForAdminQuery } from "../../redux/features/api/apiSlice";
+// import { useGetOrdersForAdminQuery } from "../../redux/features/api/apiSlice";
+import { useGetOrdersForAdminQuery } from "../../redux/features/api/orderSlice";
 
 const Orders = () => {
   const { data, isLoading, isSuccess, isError, error } =
