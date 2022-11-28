@@ -35,7 +35,7 @@ const Category = () => {
 
   const { type } = categoryDetails;
   return (
-    <div className="shadow-2xl p-3 rounded-md bg-white">
+    <div className="shadow-2xl p-3 rounded-md bg-white relative">
       <div className="flex justify-between items-center">
         <p className="text-lg font-bold">
           <span className="w-2 bg-blue-500 mr-2">&nbsp;</span>Categories
@@ -54,7 +54,9 @@ const Category = () => {
           <span>Pizzas</span>
         </div>
       </div>
-      <ButtonSm>View all</ButtonSm>
+      <div className="absolute bottom-0 w-full">
+        <ButtonSm>View all</ButtonSm>
+      </div>
 
       <Modal
         isOpen={modalIsOpen}
@@ -70,10 +72,7 @@ const Category = () => {
           />
         </div>
         <h1 className="text-center uppercase font-bold">Add Category</h1>
-        <form
-          method="post"
-          onSubmit={handleSubmit}
-        >
+        <form method="post" onSubmit={handleSubmit}>
           <FormInput
             handleChange={handleChange}
             name="type"

@@ -5,13 +5,14 @@ import StarRating from "../components/starRating/starRating";
 import { ButtonSm } from "../components/button/button";
 
 const FoodCategory = () => {
+  window.scrollTo(0, 0)
   const { foodCategory } = useParams();
   const [currentPage, setCurrentPage] = useState(1);
   const selectPage = (page) => {
     setCurrentPage(page);
   }
   return (
-    <div>
+    <div className="mr-4">
       <h1 className="text-3xl font-bold font-rubik uppercase text-center my-5">
         {foodCategory}
       </h1>

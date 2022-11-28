@@ -8,11 +8,12 @@ import "@szhsin/react-menu/dist/transitions/slide.css";
 import foodPic from "../../assets/images/hamburger.jpg";
 import StarRating from "../starRating/starRating";
 import { ButtonSm } from "../button/button";
+import { useGetFoodsQuery } from "../../redux/features/api/apiSlice";
 
 const Food = () => {
+  const { data, isLoading, isSuccess, isError, error } = useGetFoodsQuery();
   const [filter, setFilter] = useState("price");
   const [modalIsOpen, setIsOpen] = useState(false);
-  console.log(filter);
   const openModal = () => {
     setIsOpen(true);
   };
@@ -20,8 +21,32 @@ const Food = () => {
   const closeModal = () => {
     setIsOpen(false);
   };
+  let content;
+  if (isLoading) {
+    content = <div>Loading...</div>;
+  } else if (isSuccess) {
+    console.log(data);
+    content = data.foodItems.slice(0, 5).map((el) => (
+      <div
+        className="flex items-center justify-between hover:bg-gray-300 p-1 border-b-[1px] border-gray-300 hover:rounded-md cursor-pointer"
+        onClick={openModal}
+        key={el._id}
+      >
+        <img
+          src={el?.imageLink || foodPic}
+          className="w-12 h-12 rounded-full"
+          alt="food"
+        />
+        <span>{el.title}</span>
+        <span>${el.price}</span>
+      </div>
+    ));
+  } else if (isError) {
+    content = <div>{error?.data?.message || error?.data}</div>;
+  }
+
   return (
-    <div className="shadow-2xl p-3 rounded-md bg-white">
+    <div className="shadow-2xl p-3 rounded-md bg-white relative">
       <p className="text-lg font-bold">
         <span className="w-2 bg-green-500 mr-2">&nbsp;</span>
         <span>Food</span>
@@ -47,22 +72,10 @@ const Food = () => {
           </MenuRadioGroup>
         </Menu>
       </div>
-      <div className="flex flex-col gap-y-2">
-        <div
-          className="flex items-center justify-between hover:bg-gray-300 p-1 border-b-[1px] border-gray-300 hover:rounded-md cursor-pointer"
-          onClick={openModal}
-        >
-          <img src={foodPic} className="w-12 h-12 rounded-full" alt="food" />
-          <span>Hamburger</span>
-          <span>$300</span>
-        </div>
-        <div className="flex items-center justify-between hover:bg-gray-300 p-1 border-b-[1px] border-gray-300 hover:rounded-md cursor-pointer">
-          <img src={foodPic} className="w-12 h-12 rounded-full" alt="food" />
-          <span>Hamburger</span>
-          <span>$300</span>
-        </div>
+      <div className="flex flex-col gap-y-2">{content}</div>
+      <div className="absolute bottom-0 w-full">
+        <ButtonSm>More Food</ButtonSm>
       </div>
-      <ButtonSm>More Food</ButtonSm>
 
       <Modal
         isOpen={modalIsOpen}

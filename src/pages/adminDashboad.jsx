@@ -10,7 +10,7 @@ const AdminDashboard = () => {
     <section className="w-[95%] mx-auto">
       <DashboardHeader />
       <AddFood />
-      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-2 gap-y-5">
+      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-2 gap-y-5 pb-10">
         <Orders />
         <Food />
         <Category />

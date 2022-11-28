@@ -1,16 +1,16 @@
 import { configureStore } from "@reduxjs/toolkit";
 import counterReducer from "./features/counter";
 import screenWidthReducer from "./features/screenWidth";
-import { foodSlice } from "./features/api/foodSlice";
+import { apiSlice } from "./features/api/apiSlice";
 
 const store = configureStore({
   reducer: {
     counter: counterReducer,
     screenWidth: screenWidthReducer,
-    [foodSlice.reducerPath]: foodSlice.reducer
+    [apiSlice.reducerPath]: apiSlice.reducer
   },
   middleware: getDefaultMiddleware =>
-    getDefaultMiddleware().concat(foodSlice.middleware)
+    getDefaultMiddleware().concat(apiSlice.middleware)
 });
 
 export default store;

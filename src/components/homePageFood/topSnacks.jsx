@@ -1,4 +1,5 @@
 import AliceCarousel from "react-alice-carousel";
+import { Link } from "react-router-dom";
 import foodPic from "../../assets/images/hamburger.jpg";
 import StarRating from "../starRating/starRating";
 import { ButtonSm } from "../button/button";
@@ -15,59 +16,13 @@ const items = [
       ea iure officiis hic consequuntur.
     </p>
     <p className="my-2 font-semibold">Price: $3300</p>
-    <p className="my-2 font-semibold flex items-center">
+    <div className="my-2 font-semibold flex items-center">
       <span className="mr-2">Rating:</span>{" "}
-      <span className="text-lg">
+      <div className="text-lg">
         <StarRating rating={4.5} />
-      </span>
+      </div>
       <span className="ml-2 font-medium">12 reviews</span>
-    </p>
-    <div className="flex">
-      <ButtonSm>Add to Cart</ButtonSm>
-      <ButtonSm>View Food</ButtonSm>
     </div>
-  </div>,
-
-  <div className="mr-4 p-3 bg-white rounded-md shadow-2xl">
-    <img src={foodPic} className="w-full h-[10rem] rounded-md" alt="food" />
-    <h3 className="text-xl font-semibold my-2 uppercase font-rubik">
-    Hamburger
-    </h3>
-    <p className="my-2">
-      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Expedita et vel
-      ea iure officiis hic consequuntur.
-    </p>
-    <p className="my-2 font-semibold">Price: $3300</p>
-    <p className="my-2 font-semibold flex items-center">
-      <span className="mr-2">Rating:</span>{" "}
-      <span className="text-lg">
-        <StarRating rating={4.5} />
-      </span>
-      <span className="ml-2 font-medium">12 reviews</span>
-    </p>
-    <div className="flex">
-      <ButtonSm>Add to Cart</ButtonSm>
-      <ButtonSm>View Food</ButtonSm>
-    </div>
-  </div>,
-
-  <div className="mr-4 p-3 bg-white rounded-md shadow-2xl">
-    <img src={foodPic} className="w-full h-[10rem] rounded-md" alt="food" />
-    <h3 className="text-xl font-semibold my-2 uppercase font-rubik">
-    Hamburger
-    </h3>
-    <p className="my-2">
-      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Expedita et vel
-      ea iure officiis hic consequuntur.
-    </p>
-    <p className="my-2 font-semibold">Price: $3300</p>
-    <p className="my-2 font-semibold flex items-center">
-      <span className="mr-2">Rating:</span>{" "}
-      <span className="text-lg">
-        <StarRating rating={4.5} />
-      </span>
-      <span className="ml-2 font-medium">12 reviews</span>
-    </p>
     <div className="flex">
       <ButtonSm>Add to Cart</ButtonSm>
       <ButtonSm>View Food</ButtonSm>
@@ -86,9 +41,55 @@ const items = [
     <p className="my-2 font-semibold">Price: $3300</p>
     <div className="my-2 font-semibold flex items-center">
       <span className="mr-2">Rating:</span>{" "}
-      <span className="text-lg">
+      <div className="text-lg">
         <StarRating rating={4.5} />
-      </span>
+      </div>
+      <span className="ml-2 font-medium">12 reviews</span>
+    </div>
+    <div className="flex">
+      <ButtonSm>Add to Cart</ButtonSm>
+      <ButtonSm>View Food</ButtonSm>
+    </div>
+  </div>,
+
+  <div className="mr-4 p-3 bg-white rounded-md shadow-2xl">
+    <img src={foodPic} className="w-full h-[10rem] rounded-md" alt="food" />
+    <h3 className="text-xl font-semibold my-2 uppercase font-rubik">
+    Hamburger
+    </h3>
+    <p className="my-2">
+      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Expedita et vel
+      ea iure officiis hic consequuntur.
+    </p>
+    <p className="my-2 font-semibold">Price: $3300</p>
+    <div className="my-2 font-semibold flex items-center">
+      <span className="mr-2">Rating:</span>{" "}
+      <div className="text-lg">
+        <StarRating rating={4.5} />
+      </div>
+      <span className="ml-2 font-medium">12 reviews</span>
+    </div>
+    <div className="flex">
+      <ButtonSm>Add to Cart</ButtonSm>
+      <ButtonSm>View Food</ButtonSm>
+    </div>
+  </div>,
+
+  <div className="mr-4 p-3 bg-white rounded-md shadow-2xl">
+    <img src={foodPic} className="w-full h-[10rem] rounded-md" alt="food" />
+    <h3 className="text-xl font-semibold my-2 uppercase font-rubik">
+    Hamburger
+    </h3>
+    <p className="my-2">
+      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Expedita et vel
+      ea iure officiis hic consequuntur.
+    </p>
+    <p className="my-2 font-semibold">Price: $3300</p>
+    <div className="my-2 font-semibold flex items-center">
+      <span className="mr-2">Rating:</span>{" "}
+      <div className="text-lg">
+        <StarRating rating={4.5} />
+      </div>
       <span className="ml-2 font-medium">12 reviews</span>
     </div>
     <div className="flex">
@@ -109,10 +110,12 @@ export const TopRatedSnacksCarousel = () => (
       responsive={responsive}
       controlsStrategy="alternate"
       autoPlay={true}
-      autoPlayInterval={2000}
+      autoPlayInterval={1500}
       infinite={true}
     />
-    <ButtonSm>View All</ButtonSm>
+    <Link to="/food/Snacks">
+      <ButtonSm>View All</ButtonSm>
+    </Link>
   </div>
 );
 

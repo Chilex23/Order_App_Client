@@ -23,13 +23,13 @@ const items = [
       ea iure officiis hic consequuntur.
     </p>
     <p className="my-2 font-semibold">Price: $3300</p>
-    <p className="my-2 font-semibold flex items-center">
+    <div className="my-2 font-semibold flex items-center">
       <span className="mr-2">Rating:</span>{" "}
-      <span className="text-lg">
+      <div className="text-lg">
         <StarRating rating={4.5} />
-      </span>
+      </div>
       <span className="ml-2 font-medium">12 reviews</span>
-    </p>
+    </div>
     <div className="flex">
       <ButtonSm>Add to Cart</ButtonSm>
       <ButtonSm>View Food</ButtonSm>
@@ -46,13 +46,13 @@ const items = [
       ea iure officiis hic consequuntur.
     </p>
     <p className="my-2 font-semibold">Price: $3300</p>
-    <p className="my-2 font-semibold flex items-center">
+    <div className="my-2 font-semibold flex items-center">
       <span className="mr-2">Rating:</span>{" "}
-      <span className="text-lg">
+      <div className="text-lg">
         <StarRating rating={4.5} />
-      </span>
+      </div>
       <span className="ml-2 font-medium">12 reviews</span>
-    </p>
+    </div>
     <div className="flex">
       <ButtonSm>Add to Cart</ButtonSm>
       <ButtonSm>View Food</ButtonSm>
@@ -67,13 +67,13 @@ const items = [
       ea iure officiis hic consequuntur.
     </p>
     <p className="my-2 font-semibold">Price: $3300</p>
-    <p className="my-2 font-semibold flex items-center">
+    <div className="my-2 font-semibold flex items-center">
       <span className="mr-2">Rating:</span>{" "}
-      <span className="text-lg">
+      <div className="text-lg">
         <StarRating rating={4.5} />
-      </span>
+      </div>
       <span className="ml-2 font-medium">12 reviews</span>
-    </p>
+    </div>
     <div className="flex">
       <ButtonSm>Add to Cart</ButtonSm>
       <ButtonSm>View Food</ButtonSm>
@@ -90,9 +90,9 @@ const items = [
     <p className="my-2 font-semibold">Price: $3300</p>
     <div className="my-2 font-semibold flex items-center">
       <span className="mr-2">Rating:</span>{" "}
-      <span className="text-lg">
+      <div className="text-lg">
         <StarRating rating={4.5} />
-      </span>
+      </div>
       <span className="ml-2 font-medium">12 reviews</span>
     </div>
     <div className="flex">
@@ -113,7 +113,7 @@ export const TopRatedCarousel = () => (
       responsive={responsive}
       controlsStrategy="alternate"
       autoPlay={true}
-      autoPlayInterval={2000}
+      autoPlayInterval={1500}
       infinite={true}
     />
   </div>

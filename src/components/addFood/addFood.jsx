@@ -6,7 +6,7 @@ import { IoCloseSharp } from "react-icons/io5";
 import FormInput from "../formInput/formInput";
 import { HoverButton } from "../button/button";
 import customStyles from "../../utils/customStyles";
-import { useAddNewFoodMutation } from "../../redux/features/api/foodSlice";
+import { useAddNewFoodMutation } from "../../redux/features/api/apiSlice";
 //IoAddOutline
 
 const AddFood = () => {
