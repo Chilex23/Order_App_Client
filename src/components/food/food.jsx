@@ -4,7 +4,7 @@ import Modal from "react-modal";
 import { IoCloseSharp } from "react-icons/io5";
 import customStyles from "../../utils/customStyles";
 import { FaFilter } from "react-icons/fa";
-import { Audio } from "react-loader-spinner";
+import { Triangle } from "react-loader-spinner";
 import "@szhsin/react-menu/dist/transitions/slide.css";
 import foodPic from "../../assets/images/hamburger.jpg";
 import StarRating from "../starRating/starRating";
@@ -42,8 +42,8 @@ const Food = () => {
   let content;
   if (isLoading) {
     content = (
-      <div className="self-center">
-        <Audio color="#22c55e" height={80} width={80} />
+      <div className="self-center my-2">
+        <Triangle color="#22c55e" height={80} width={80} />
       </div>
     );
   } else if (isSuccess) {

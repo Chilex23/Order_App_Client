@@ -1,21 +1,25 @@
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import { Menu, MenuItem, MenuButton, MenuRadioGroup } from "@szhsin/react-menu";
 import { FaFilter } from "react-icons/fa";
-import { Audio } from "react-loader-spinner";
+import { Triangle } from "react-loader-spinner";
 import "@szhsin/react-menu/dist/transitions/slide.css";
 import { ButtonSm } from "../button/button";
-// import { useGetOrdersForAdminQuery } from "../../redux/features/api/apiSlice";
-import { useGetOrdersForAdminQuery } from "../../redux/features/api/orderSlice";
+import {
+  useGetOrdersForAdminQuery,
+  selectOrdersData,
+} from "../../redux/features/api/orderSlice";
 
 const Orders = () => {
   const { data, isLoading, isSuccess, isError, error } =
     useGetOrdersForAdminQuery();
+  console.log(useSelector(selectOrdersData));
   const [filter, setFilter] = useState("undelivered");
   let content;
   if (isLoading) {
     content = (
-      <div className="flex justify-center">
-        <Audio color="#22c55e" height={80} width={80} />
+      <div className="flex justify-center my-2">
+        <Triangle color="#22c55e" height={80} width={80} />
       </div>
     );
   } else if (isSuccess) {
@@ -27,13 +31,16 @@ const Orders = () => {
             key={el._id}
           >
             <p className="text-sm">
-              <span className="font-bold">ID:</span> {el.uuid}
+              <span className="font-bold mr-2">ID:</span>
+              <span>{el.uuid}</span>
             </p>
             <p className="text-sm">
-              <span className="font-bold">Price:</span> ${el.total_price}
+              <span className="font-bold">Price:</span>{" "}
+              <span>${el.total_price}</span>
             </p>
             <p className="text-sm">
-              <span className="font-bold">Date:</span> {el.order_date}
+              <span className="font-bold">Date:</span>{" "}
+              <span>{el.order_date}</span>
             </p>
           </div>
         ))}

@@ -6,6 +6,7 @@ import Food from "../components/food/food";
 import Category from "../components/category/category";
 
 const AdminDashboard = () => {
+  window.scrollTo(0,0)
   return (
     <section className="w-[95%] mx-auto mb-16">
       <DashboardHeader />

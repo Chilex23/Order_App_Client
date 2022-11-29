@@ -1,3 +1,4 @@
+import { createSelector } from "@reduxjs/toolkit";
 import { apiSlice, authHeaders } from "./apiSlice";
 
 export const orderSlice = apiSlice.injectEndpoints({
@@ -10,5 +11,15 @@ export const orderSlice = apiSlice.injectEndpoints({
     }),
   }),
 });
+
+const emptyOrders = [];
+
+export const selectOrdersResult =
+  orderSlice.endpoints.getOrdersForAdmin.select();
+
+export const selectOrdersData = createSelector(
+  selectOrdersResult,
+  (result) => result?.data ?? emptyOrders
+);
 
 export const { useGetOrdersForAdminQuery } = orderSlice;
