@@ -1,5 +1,6 @@
 import AliceCarousel from "react-alice-carousel";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 import { addItemToCart } from "../../redux/features/cart";
 import foodPic from "../../assets/images/hamburger.jpg";
 import pizzaPic from "../../assets/images/pizza.jpg";
@@ -34,14 +35,24 @@ export const TopRatedCarousel = () => {
         </div>
         <span className="ml-2 font-medium">12 reviews</span>
       </div>
-      <div className="flex">
+      <div className="flex justify-center">
         <button
           className="bg-gradient-to-r from-green-400 to-green-600 mx-auto block rounded-md px-3 py-2 text-white my-4 hover:shadow-lg hover:scale-105 transition-all"
-          onClick={() => dispatch(addItemToCart("Hamburger", 3300))}
+          onClick={() =>
+            dispatch(
+              addItemToCart(
+                "Hamburger",
+                3300,
+                "a7ff021d-4081-4cc3-be69-ad3030eed099"
+              )
+            )
+          }
         >
           Add to Cart
         </button>
-        <ButtonSm>View Food</ButtonSm>
+        <ButtonSm>
+          <Link to="/food/hamburger">View Food</Link>
+        </ButtonSm>
       </div>
     </div>,
 

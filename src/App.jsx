@@ -6,6 +6,7 @@ import AppLayout from "./components/appLayout/applayout";
 import HomePage from "./pages/homepage";
 import AdminDashboard from "./pages/adminDashboad";
 import FoodCategory from "./pages/foodCategory";
+import Food from "./pages/food";
 import "./App.css";
 
 Modal.setAppElement("#root");
@@ -20,7 +21,8 @@ function App() {
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/dashboard" element={<AdminDashboard />} />
-            <Route path="/food/:foodCategory" element={<FoodCategory />} />
+            <Route path="/category/:foodCategory" element={<FoodCategory />} />
+            <Route path="/food/:foodId" element={<Food />} />
           </Routes>
         </AppLayout>
       </Router>

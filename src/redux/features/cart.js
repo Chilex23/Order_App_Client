@@ -16,11 +16,7 @@ const cartSlice = createSlice({
         );
 
         if (existingCartItem) {
-          state.cartItems = state.cartItems.map((cartItem) =>
-            cartItem.name === name
-              ? { ...cartItem, quantity: cartItem.quantity + 1 }
-              : cartItem
-          );
+          existingCartItem.quantity++
           return;
         }
 
@@ -29,9 +25,10 @@ const cartSlice = createSlice({
           { ...action.payload, quantity: 1 },
         ];
       },
-      prepare(name, price) {
+      prepare(name, price, id) {
         return {
           payload: {
+            id,
             name,
             price,
           },
