@@ -4,6 +4,7 @@ import StarRating from "../components/starRating/starRating";
 import { ButtonSm } from "../components/button/button";
 
 const Food = () => {
+  window.scrollTo(0, 0);
   const { foodId } = useParams();
   return (
     <div className="w-7/12 mx-auto">
@@ -31,6 +32,7 @@ const Food = () => {
       <button className="bg-gradient-to-r from-green-400 to-green-600 block rounded-md px-3 py-2 text-white my-4 hover:shadow-lg hover:scale-105 transition-all">
         Add to Cart
       </button>
+      <div className="w-full h-1 bg-gray-300">&nbsp;</div>
 
       <p className="my-5 mx-auto flex items-center">
         <span className="text-3xl font-rubik font-bold uppercase">Reviews</span>
@@ -45,9 +47,9 @@ const Food = () => {
       </div>
 
       <div className="my-5 mx-auto">
-        <div className="p-2 border-2 border-black rounded-md">
+        <div className="p-2 border-2 border-gray-300 rounded-md">
           <div className="flex items-center">
-            <span className="w-16 h-16 bg-gray-500 rounded-full">&nbsp;</span>
+            <span className="w-16 h-16 bg-gray-300 rounded-full">&nbsp;</span>
             <span className="ml-5 text-xl font-semibold">Sammy 24</span>
           </div>
           <p className="my-2">

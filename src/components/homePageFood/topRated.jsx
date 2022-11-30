@@ -43,7 +43,8 @@ export const TopRatedCarousel = () => {
               addItemToCart(
                 "Hamburger",
                 3300,
-                "a7ff021d-4081-4cc3-be69-ad3030eed099"
+                "a7ff021d-4081-4cc3-be69-ad3030eed099",
+                foodPic
               )
             )
           }

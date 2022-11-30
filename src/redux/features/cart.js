@@ -25,12 +25,13 @@ const cartSlice = createSlice({
           { ...action.payload, quantity: 1 },
         ];
       },
-      prepare(name, price, id) {
+      prepare(name, price, id, imageLink) {
         return {
           payload: {
             id,
             name,
             price,
+            imageLink
           },
         };
       },
