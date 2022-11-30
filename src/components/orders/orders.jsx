@@ -27,7 +27,7 @@ const Orders = () => {
       <div className="flex flex-col gap-2 mb-16">
         {data.orders.slice(0, 5).map((el) => (
           <div
-            className="flex flex-col border-black border-2 p-1 rounded-md"
+            className="flex flex-col border-gray-300 border-2 p-1 rounded-md"
             key={el._id}
           >
             <p className="text-sm">

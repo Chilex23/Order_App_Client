@@ -9,7 +9,7 @@ const DashboardHeader = () => {
         <AiOutlineSearch className="absolute top-3 left-1 text-2xl"/>
         <input
           type="search"
-          className="border-black border-[1px] sm2:w-[18rem] w-[24rem] h-12 pl-8 rounded-md mr-4 focus:ring-red-500"
+          className="border-black border-[1px] sm2:w-[18rem] w-[24rem] h-12 pl-8 rounded-md mr-4 focus:border-green-600 focus-visible:border-green-600"
           placeholder="Search for food items"
         />
       </span>

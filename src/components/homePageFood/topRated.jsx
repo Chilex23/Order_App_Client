@@ -24,6 +24,7 @@ export const TopRatedCarousel = () => {
         Hamburger
       </h3>
       <p className="my-2">
+      Frappucino With Vanilla Ice Cream
         Lorem, ipsum dolor sit amet consectetur adipisicing elit. Expedita et
         vel ea iure officiis hic consequuntur.
       </p>
