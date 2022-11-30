@@ -7,6 +7,7 @@ import {
   selectCartTotal,
   addItemToCart,
   removeItemFromCart,
+  clearItemFromCart,
 } from "../redux/features/cart";
 import { formatNumber } from "../utils/formatNumber";
 
@@ -38,22 +39,16 @@ const Cart = () => {
                 <p>${formatNumber(el.price)}</p>
               </div>
               <div className="mt-2 flex justify-between items-center">
-                <div className="flex items-center text-lg text-green-500 cursor-pointer">
+                <div
+                  className="flex items-center text-lg text-green-500 cursor-pointer"
+                  onClick={() => dispatch(clearItemFromCart(el.id))}
+                >
                   <FaTrashAlt />
                   <span className="ml-2 uppercase">Remove</span>
                 </div>
                 <div className="text-lg">
                   <span
-                    onClick={() =>
-                      dispatch(
-                        removeItemFromCart(
-                          el.name,
-                          el.price,
-                          el.id,
-                          el.imageLink
-                        )
-                      )
-                    }
+                    onClick={() => dispatch(removeItemFromCart(el.id))}
                     className="bg-green-500 px-3 py-1 rounded-md mr-2 cursor-pointer"
                   >
                     -
@@ -81,7 +76,9 @@ const Cart = () => {
           </p>
           <p className="flex items-center justify-between">
             <span>Subtotal</span>
-            <span className="text-lg font-bold">${formatNumber(cartTotal)}</span>
+            <span className="text-lg font-bold">
+              ${formatNumber(cartTotal)}
+            </span>
           </p>
           <button className="bg-gradient-to-r from-green-400 to-green-600 block rounded-md py-2 text-white my-4 w-full uppercase">
             checkout(${formatNumber(cartTotal)})

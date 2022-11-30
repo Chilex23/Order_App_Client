@@ -10,9 +10,9 @@ const cartSlice = createSlice({
   reducers: {
     addItemToCart: {
       reducer(state, action) {
-        const { name } = action.payload;
+        const { id } = action.payload;
         const existingCartItem = state.cartItems.find(
-          (cartItem) => cartItem.name === name
+          (cartItem) => cartItem.id === id
         );
 
         if (existingCartItem) {
@@ -38,31 +38,42 @@ const cartSlice = createSlice({
     },
     removeItemFromCart: {
       reducer(state, action) {
-        const { name } = action.payload;
+        const { id } = action.payload;
         const existingCartItem = state.cartItems.find(
-          (cartItem) => cartItem.name === name
+          (cartItem) => cartItem.id === id
         );
 
         if (existingCartItem.quantity === 1) {
           state.cartItems = state.cartItems.filter(
-            (cartItem) => cartItem.name !== name
+            (cartItem) => cartItem.id !== id
           );
           return;
         }
 
         state.cartItems = state.cartItems.map((cartItem) =>
-          cartItem.name === name
+          cartItem.id === id
             ? { ...cartItem, quantity: cartItem.quantity - 1 }
             : cartItem
         );
       },
-      prepare(name, price, id, imageLink) {
+      prepare(id) {
         return {
           payload: {
-            id,
-            name,
-            price,
-            imageLink,
+            id
+          },
+        };
+      },
+    },
+    clearItemFromCart: {
+      reducer(state, action) {
+        state.cartItems = state.cartItems.filter(
+          (cartItem) => cartItem.id !== action.payload.id
+        );
+      },
+      prepare(id) {
+        return {
+          payload: {
+            id
           },
         };
       },
@@ -70,7 +81,7 @@ const cartSlice = createSlice({
   },
 });
 
-export const { addItemToCart, removeItemFromCart } = cartSlice.actions;
+export const { addItemToCart, removeItemFromCart, clearItemFromCart } = cartSlice.actions;
 
 const selectCart = (state) => state.cart;
 
