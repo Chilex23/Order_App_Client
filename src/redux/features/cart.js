@@ -16,7 +16,7 @@ const cartSlice = createSlice({
         );
 
         if (existingCartItem) {
-          existingCartItem.quantity++
+          existingCartItem.quantity++;
           return;
         }
 
@@ -31,7 +31,38 @@ const cartSlice = createSlice({
             id,
             name,
             price,
-            imageLink
+            imageLink,
+          },
+        };
+      },
+    },
+    removeItemFromCart: {
+      reducer(state, action) {
+        const { name } = action.payload;
+        const existingCartItem = state.cartItems.find(
+          (cartItem) => cartItem.name === name
+        );
+
+        if (existingCartItem.quantity === 1) {
+          state.cartItems = state.cartItems.filter(
+            (cartItem) => cartItem.name !== name
+          );
+          return;
+        }
+
+        state.cartItems = state.cartItems.map((cartItem) =>
+          cartItem.name === name
+            ? { ...cartItem, quantity: cartItem.quantity - 1 }
+            : cartItem
+        );
+      },
+      prepare(name, price, id, imageLink) {
+        return {
+          payload: {
+            id,
+            name,
+            price,
+            imageLink,
           },
         };
       },
@@ -39,7 +70,7 @@ const cartSlice = createSlice({
   },
 });
 
-export const { addItemToCart } = cartSlice.actions;
+export const { addItemToCart, removeItemFromCart } = cartSlice.actions;
 
 const selectCart = (state) => state.cart;
 
@@ -56,6 +87,14 @@ export const selectCartItemsCount = createSelector(
         accumulatedQuantity + cartItem.quantity,
       0
     )
+);
+
+export const selectCartTotal = createSelector(selectCartItems, (cartItems) =>
+  cartItems.reduce(
+    (accumulatedQuantity, cartItem) =>
+      accumulatedQuantity + cartItem.quantity * cartItem.price,
+    0
+  )
 );
 
 export default cartSlice.reducer;
