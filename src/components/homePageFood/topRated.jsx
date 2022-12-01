@@ -23,11 +23,7 @@ export const TopRatedCarousel = () => {
       <h3 className="text-xl font-semibold my-2 uppercase font-rubik">
         Hamburger
       </h3>
-      <p className="my-2">
-      Frappucino With Vanilla Ice Cream
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Expedita et
-        vel ea iure officiis hic consequuntur.
-      </p>
+      <p className="my-2">Frappucino With Vanilla Ice Cream</p>
       <p className="my-2 font-semibold">Price: $3300</p>
       <div className="my-2 font-semibold flex items-center">
         <span className="mr-2">Rating:</span>{" "}

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { Menu, MenuItem, MenuButton, MenuRadioGroup } from "@szhsin/react-menu";
 import Modal from "react-modal";
 import { IoCloseSharp } from "react-icons/io5";
@@ -17,16 +18,18 @@ const Food = () => {
   const [modalIsOpen, setIsOpen] = useState(false);
   const [modalDetails, setModalDetails] = useState({
     title: "",
+    id: "",
     imageSrc: "",
     description: "",
     rating: 0,
     price: 0,
     reviews: 0,
   });
-  const openModal = (title, imageSrc, description, rating, price, reviews) => {
+  const openModal = (title, id, imageSrc, description, rating, price, reviews) => {
     setIsOpen(true);
     setModalDetails({
       title,
+      id,
       imageSrc,
       description,
       rating,
@@ -51,13 +54,19 @@ const Food = () => {
       let imageSrc = el?.imageLink
         ? `http://localhost:3000/${el?.imageLink}`
         : foodPic;
-      let noOfReviews = 12;
+      let noOfReviews;
+      if (el.reviews) {
+        noOfReviews = Object.keys(el.reviews).length;
+      } else {
+        noOfReviews = 0;
+      }
       return (
         <div
-          className="flex items-center justify-between hover:bg-gray-300 p-1 border-b-[1px] border-gray-300 hover:rounded-md cursor-pointer transition"
+          className="flex items-center hover:bg-gray-200 p-1 border-b-[1px] border-gray-300 hover:rounded-md cursor-pointer transition"
           onClick={() =>
             openModal(
               el.title,
+              el.uuid,
               imageSrc,
               el.description,
               el.avgRating,
@@ -68,7 +77,7 @@ const Food = () => {
           key={el._id}
         >
           <img src={imageSrc} className="w-12 h-12 rounded-full" alt="food" />
-          <span>{el.title}</span>
+          <span className="px-3 mr-auto">{el.title}</span>
           <span>${el.price}</span>
         </div>
       );
@@ -77,7 +86,7 @@ const Food = () => {
     content = <div>{error?.data?.message || error?.data}</div>;
   }
 
-  const { title, imageSrc, description, rating, price, reviews } = modalDetails;
+  const { title, id, imageSrc, description, rating, price, reviews } = modalDetails;
 
   return (
     <div className="shadow-2xl p-3 rounded-md bg-white relative">
@@ -118,7 +127,7 @@ const Food = () => {
         closeTimeoutMS={200}
         contentLabel="Add Food Modal"
       >
-        <div className="flex justify-end">
+        <div className="flex justify-end mb-2">
           <IoCloseSharp
             onClick={closeModal}
             className="text-3xl cursor-pointer bg-stone-800 text-white rounded-full"
@@ -126,7 +135,7 @@ const Food = () => {
         </div>
 
         <div className="w-[26rem] sm2:w-[17rem]">
-          <h1 className="text-center uppercase font-bold text-3xl sm2:text-xl font-rubik">
+          <h1 className="text-center uppercase font-bold text-xl sm2:text-xl font-rubik">
             {title}
           </h1>
           <figure className="my-4">
@@ -149,6 +158,9 @@ const Food = () => {
               <StarRating rating={rating} />
             </div>
           </div>
+          <ButtonSm>
+            <Link to={`/food/${title}`}>View Food</Link>
+          </ButtonSm>
         </div>
       </Modal>
     </div>

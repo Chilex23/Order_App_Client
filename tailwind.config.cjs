@@ -18,6 +18,7 @@ module.exports = {
     },
     fontFamily: {
       rubik: ["Rubik Distressed", "cursive"],
+      karla: ["Karla", "sans-serif"]
     },
   },
   plugins: [],

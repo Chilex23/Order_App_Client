@@ -19,31 +19,37 @@ const AddFood = () => {
     foodImage: "",
   });
   const [addNewFood, { isLoading }] = useAddNewFoodMutation();
-  const closeBtnElement = useRef();
-
   const { title, description, category, price, foodImage } = foodDetails;
 
-  const notify = (message) => {
-    toast.success(message, {
-      position: toast.POSITION.TOP_CENTER,
-    });
+  const notify = (type, message) => {
+    if (type === "error") {
+      toast.error(message, {
+        position: toast.POSITION.TOP_CENTER,
+      });
+    } else if (type === "success") {
+      toast.success(message, {
+        position: toast.POSITION.TOP_CENTER,
+      });
+    }
   };
 
+  const canSave =
+    [title, description, category, price, foodImage].every(Boolean) &&
+    !isLoading;
+  
   const handleSubmit = async (event) => {
     event.preventDefault();
-
-    const formData = new FormData();
-    formData.append("title", title);
-    formData.append("description", description);
-    formData.append("category", category);
-    formData.append("price", price);
-    formData.append("foodImage", foodImage);
-   
-    if (!isLoading) {
+    if (canSave) {
+      const formData = new FormData();
+      formData.append("title", title);
+      formData.append("description", description);
+      formData.append("category", category);
+      formData.append("price", price);
+      formData.append("foodImage", foodImage);
+      notify("success", `Adding ${title}`)
       try {
         const payload = await addNewFood(formData).unwrap();
-        notify(payload.message);
-        closeBtnElement.current.click();
+        notify("success", payload.message);
         setFoodDetails({
           title: "",
           description: "",
@@ -54,6 +60,8 @@ const AddFood = () => {
       } catch (err) {
         console.log("Failed to add food", err);
       }
+    } else {
+      notify("error", "Please Fill all fields");
     }
   };
 
@@ -64,7 +72,7 @@ const AddFood = () => {
 
   const fileChange = (event) => {
     if (event.target.files[0].size > 2000000) {
-      alert("File too big");
+      notify("error", "File too big, it must be less than 2mb");
       return;
     }
     setFoodDetails({ ...foodDetails, foodImage: event.target.files[0] });
@@ -91,7 +99,7 @@ const AddFood = () => {
           contentLabel="Add Food Modal"
         >
           <div className="flex justify-end">
-            <span onClick={closeModal} ref={closeBtnElement}>
+            <span onClick={closeModal}>
               <IoCloseSharp className="text-3xl cursor-pointer bg-stone-800 text-white rounded-full" />
             </span>
           </div>
@@ -107,6 +115,7 @@ const AddFood = () => {
               type="text"
               label="Food Title"
               value={title}
+              required={true}
             />
             <FormInput
               handleChange={handleChange}
@@ -114,13 +123,14 @@ const AddFood = () => {
               type="text"
               label="Food Description"
               value={description}
+              required={true}
             />
             <div className="flex flex-col my-2">
               <label>Food Category</label>
               <select
                 name="category"
                 value="snacks"
-                className="bg-white border-[1px] border-gray-500 sm2:w-[17rem] w-[24rem] h-10 p-2 rounded-md"
+                className="bg-white border-[1px] font-karla border-gray-500 sm2:w-[17rem] w-[24rem] h-10 p-2 rounded-md"
                 onChange={handleChange}
               >
                 <option value="Snacks">Snacks</option>
@@ -133,14 +143,19 @@ const AddFood = () => {
               type="number"
               label="Food Price"
               value={price}
+              required={true}
             />
             <FormInput
               handleChange={fileChange}
               name="foodImage"
               type="file"
               label="Food Image"
+              required={true}
             />
-            <button className="bg-gradient-to-r from-green-400 to-green-600 mx-auto px-4 py-1 block my-5 text-white uppercase rounded-md text-lg">
+            <button
+              onClick={closeModal}
+              className="bg-gradient-to-r from-green-400 to-green-600 mx-auto px-4 py-1 block my-5 text-white uppercase rounded-md text-lg"
+            >
               Add
             </button>
           </form>

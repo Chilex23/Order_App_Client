@@ -15,8 +15,8 @@ const DashboardHeader = () => {
       </span>
       <div className="flex flex-col border-l-2 border-gray-400 pl-4">
         <div className="flex items-center">
-          <span className="bg-gray-300 w-10 h-10 mr-4 rounded-full">
-            &nbsp;
+          <span className="bg-gradient-to-r from-green-400 to-green-600 flex justify-center items-center text-2xl text-white font-semibold w-10 h-10 mr-4 rounded-full">
+            C
           </span>
           <span className="font-bold">Onumaegbu Chima</span>
         </div>

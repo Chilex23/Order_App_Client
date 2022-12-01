@@ -7,7 +7,7 @@ const Food = () => {
   window.scrollTo(0, 0);
   const { foodId } = useParams();
   return (
-    <div className="w-7/12 mx-auto">
+    <div className="w-7/12 mr-auto">
       <p className="text-3xl font-rubik font-bold uppercase my-5 mx-auto">
         {foodId}
       </p>

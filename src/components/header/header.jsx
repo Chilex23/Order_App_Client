@@ -16,7 +16,7 @@ const Header = () => {
       <div className="absolute right-16">
         <Link to="/cart">
           <IoCart className="text-5xl" />
-          <span className="bg-white text-black text-lg absolute top-0 right-0 px-1 rounded-full">
+          <span className="bg-white text-black text-lg absolute top-0 right-0 px-2 rounded-full inline-block">
             {cartCount}
           </span>
         </Link>
