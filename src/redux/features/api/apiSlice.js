@@ -27,7 +27,14 @@ export const apiSlice = createApi({
       }),
       providesTags: ["Food"],
     }),
+    getFood: builder.query({
+      query: (foodId) => ({
+        url: `/food/${foodId}`,
+        headers: authHeaders,
+      }),
+    }),
   }),
 });
 
-export const { useAddNewFoodMutation, useGetFoodsQuery } = apiSlice;
+export const { useAddNewFoodMutation, useGetFoodsQuery, useGetFoodQuery } =
+  apiSlice;

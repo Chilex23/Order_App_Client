@@ -1,6 +1,5 @@
 import { useSelector, useDispatch } from "react-redux";
 import { FaTrashAlt } from "react-icons/fa";
-import foodPic from "../assets/images/hamburger.jpg";
 import {
   selectCartItems,
   selectCartItemsCount,
@@ -23,17 +22,17 @@ const Cart = () => {
         Cart
       </h1>
       <div className="flex">
-        <div className="border-2 border-gray-300 rounded-md py-2 px-6 w-8/12">
+        <div className="border-2 border-gray-400 rounded-md py-2 px-6 w-8/12">
           <h2 className="text-lg font-bold ">Cart({cartCount})</h2>
-          <div className="w-full h-1 bg-gray-300 my-2">&nbsp;</div>
+          <div className="w-full h-1 bg-gray-400 my-2">&nbsp;</div>
           {cartItems.map((el) => (
             <div
               key={el.id}
-              className="border-b-[1px] border-gray-300 pb-3 mb-3"
+              className="border-b-[1px] border-gray-400 pb-3 mb-3"
             >
               <div className="flex items-center justify-between text-lg">
-                <figure className="w-32">
-                  <img src={foodPic} alt="food" />
+                <figure>
+                  <img src={el.imageLink} className="w-16 h-16" alt="food" />
                 </figure>
                 <p>{el.name}</p>
                 <p>${formatNumber(el.price)}</p>
@@ -70,8 +69,8 @@ const Cart = () => {
           ))}
         </div>
 
-        <div className="border-2 border-gray-300 w-4/12 ml-8 self-start rounded-md p-2">
-          <p className="uppercase border-b-[1px] border-gray-300">
+        <div className="border-2 border-gray-400 w-4/12 ml-8 self-start rounded-md p-2">
+          <p className="uppercase border-b-[1px] border-gray-400">
             Cart Summary
           </p>
           <p className="flex items-center justify-between">
