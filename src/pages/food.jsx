@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { useParams } from "react-router-dom";
 import Modal from "react-modal";
 import { IoCloseSharp } from "react-icons/io5";
@@ -8,30 +8,34 @@ import { useGetFoodQuery } from "../redux/features/api/apiSlice";
 import { addItemToCart } from "../redux/features/cart";
 import { formatNumber } from "../utils/formatNumber";
 import customStyles from "../utils/customStyles";
-import FormInput from "../components/formInput/formInput";
 import foodPic from "../assets/images/hamburger.jpg";
-import StarRating from "../components/starRating/starRating";
+import StarRating, {
+  ClickableStarRating,
+} from "../components/starRating/starRating";
 import { ButtonSm } from "../components/button/button";
 
 const Food = () => {
   const [modalIsOpen, setIsOpen] = useState(false);
-  const [categoryDetails, setCategoryDetails] = useState({
-    reviewer: "",
-    rating: 0
+  const [selectedStars, setSelectedStars] = useState(0);
+  const [reviewDetails, setReviewDetails] = useState({
+    review: "",
+    rating: 0,
   });
+  const reviewInput = useRef(null);
   const openModal = () => {
     setIsOpen(true);
   };
   const closeModal = () => {
     setIsOpen(false);
   };
-  const handleSubmit = async (event) => {
+  const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(categoryDetails);
-  };
-  const handleChange = (event) => {
-    const { value, name } = event.target;
-    setCategoryDetails({ ...categoryDetails, [name]: value });
+    setReviewDetails((prevstate) => {
+      console.log("prev state", prevstate);
+      prevstate.rating = selectedStars;
+      prevstate.review = reviewInput.current.value;
+      console.log(reviewDetails);
+    });
   };
   window.scrollTo(0, 0);
   const dispatch = useDispatch();
@@ -70,12 +74,10 @@ const Food = () => {
             className="w-full h-[24rem] rounded-md"
           />
         </figure>
-
         <p className="text-3xl font-rubik font-bold uppercase mx-auto">
           Description
         </p>
         <p className="my-5 mx-auto">{data?.data?.description}</p>
-
         <p className="text-3xl font-rubik font-bold uppercase my-5 mx-auto">
           Price
         </p>
@@ -130,31 +132,12 @@ const Food = () => {
             </div>
           </div>
         ))}
-        {/* <div className="my-5 mx-auto">
-          <div className="p-2 border-2 border-gray-400 rounded-md">
-            <div className="flex items-center">
-              <span className="w-16 h-16 bg-gray-400 rounded-full">&nbsp;</span>
-              <span className="ml-5 text-xl font-semibold">Sammy 24</span>
-            </div>
-            <p className="my-2">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit
-              possimus autem eius quos, aut cupiditate hic explicabo quas
-              incidunt sapiente accusamus maiores magnam enim corporis fugit
-              voluptates tempore vitae dignissimos.
-            </p>
-            <div className="flex items-center">
-              <span className="text-lg font-semibold mr-4">Rating:</span>
-              <StarRating rating={4.5} />
-              <span className="ml-2">4.5</span>
-            </div>
-          </div>
-        </div> */}
         <Modal
           isOpen={modalIsOpen}
           onRequestClose={closeModal}
           style={customStyles}
           closeTimeoutMS={200}
-          contentLabel="Add Food Modal"
+          contentLabel="Add Review Modal"
         >
           <div className="flex justify-end">
             <IoCloseSharp
@@ -162,14 +145,19 @@ const Food = () => {
               className="text-3xl cursor-pointer bg-stone-800 text-white rounded-full"
             />
           </div>
-          <h1 className="text-center uppercase font-bold">Add Category</h1>
+          <h1 className="text-center uppercase font-bold">Add review</h1>
           <form method="post" onSubmit={handleSubmit}>
-            <FormInput
-              handleChange={handleChange}
-              name="type"
-              type="text"
-              label="Category Type"
-              value={type}
+            <label>Write a Review</label>
+            <textarea
+              name="review"
+              className="block border-[1px] my-2 border-gray-500 sm2:w-[17rem] h-32 w-[24rem] p-2 rounded-md"
+              placeholder="Write a concise review that is straight to the point, so that it can be helpful to others."
+              ref={reviewInput}
+            ></textarea>
+            <label>Select a Rating</label>
+            <ClickableStarRating
+              selectHandler={setSelectedStars}
+              stars={selectedStars}
             />
             <button className="bg-gradient-to-r from-green-400 to-green-600 mx-auto px-4 py-1 block my-5 text-white uppercase rounded-md text-lg">
               Add
