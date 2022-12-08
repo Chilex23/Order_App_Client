@@ -8,6 +8,7 @@ import AdminDashboard from "./pages/adminDashboad";
 import FoodCategory from "./pages/foodCategory";
 import Food from "./pages/food";
 import Cart from "./pages/cart";
+import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
 
 Modal.setAppElement("#root");

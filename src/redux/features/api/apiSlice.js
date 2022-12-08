@@ -20,6 +20,17 @@ export const apiSlice = createApi({
       }),
       invalidatesTags: ["Food"],
     }),
+    addReview: builder.mutation({
+      query: (review) => ({
+        url: `/food/reviews/add/${review.id}`,
+        method: "POST",
+        headers: authHeaders,
+        body: {
+          rating: review.rating,
+          comment: review.comment
+        },
+      }),
+    }),
     getFoods: builder.query({
       query: () => ({
         url: "/food?page=1",
@@ -36,5 +47,9 @@ export const apiSlice = createApi({
   }),
 });
 
-export const { useAddNewFoodMutation, useGetFoodsQuery, useGetFoodQuery } =
-  apiSlice;
+export const {
+  useAddNewFoodMutation,
+  useAddReviewMutation,
+  useGetFoodsQuery,
+  useGetFoodQuery,
+} = apiSlice;

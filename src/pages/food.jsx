@@ -1,12 +1,17 @@
 import React, { useState, useRef } from "react";
 import { useParams } from "react-router-dom";
 import Modal from "react-modal";
+import { ToastContainer } from "react-toastify";
 import { IoCloseSharp } from "react-icons/io5";
 import { Triangle } from "react-loader-spinner";
 import { useDispatch } from "react-redux";
-import { useGetFoodQuery } from "../redux/features/api/apiSlice";
+import {
+  useGetFoodQuery,
+  useAddReviewMutation,
+} from "../redux/features/api/apiSlice";
 import { addItemToCart } from "../redux/features/cart";
 import { formatNumber } from "../utils/formatNumber";
+import { notify } from "../utils/notify";
 import customStyles from "../utils/customStyles";
 import foodPic from "../assets/images/hamburger.jpg";
 import StarRating, {
@@ -15,12 +20,16 @@ import StarRating, {
 import { ButtonSm } from "../components/button/button";
 
 const Food = () => {
+  const dispatch = useDispatch();
+  const { foodId } = useParams();
+  const { data, isLoading, isSuccess, isError, error } =
+    useGetFoodQuery(foodId);
+  const [addReview, { loading }] = useAddReviewMutation();
   const [modalIsOpen, setIsOpen] = useState(false);
   const [selectedStars, setSelectedStars] = useState(0);
-  const [reviewDetails, setReviewDetails] = useState({
-    review: "",
-    rating: 0,
-  });
+  const [comment, setComment] = useState("");
+
+  window.scrollTo(0, 0);
   const reviewInput = useRef(null);
   const openModal = () => {
     setIsOpen(true);
@@ -28,20 +37,36 @@ const Food = () => {
   const closeModal = () => {
     setIsOpen(false);
   };
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    setReviewDetails((prevstate) => {
-      console.log("prev state", prevstate);
-      prevstate.rating = selectedStars;
-      prevstate.review = reviewInput.current.value;
-      console.log(reviewDetails);
-    });
+
+  const canSave = [comment, selectedStars].every(Boolean) && !loading;
+  const handleSelectStarRating = (i) => {
+    setSelectedStars(i);
   };
-  window.scrollTo(0, 0);
-  const dispatch = useDispatch();
-  const { foodId } = useParams();
-  const { data, isLoading, isSuccess, isError, error } =
-    useGetFoodQuery(foodId);
+  const handleBlur = (event) => {
+    const { value } = event.target;
+    setComment(value);
+  };
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const reviewBody = {
+      rating: selectedStars,
+      comment: comment,
+      id: foodId,
+    };
+    //console.log(reviewBody);
+    if (canSave) {
+      try {
+        const payload = await addReview(reviewBody).unwrap();
+        notify("success", payload.message);
+        setSelectedStars(0);
+        setComment("");
+      } catch (e) {
+        console.log(e);
+      }
+    } else {
+      notify("error", "Please write a comment and select a star rating.");
+    }
+  };
 
   let content;
   if (isLoading) {
@@ -57,7 +82,7 @@ const Food = () => {
     let noOfReviews, reviews;
     if (data?.data?.reviews) {
       noOfReviews = Object.keys(data?.data?.reviews).length;
-      reviews = data?.data?.reviews;
+      reviews = Object.entries(data?.data?.reviews);
     } else {
       noOfReviews = 0;
       reviews = [];
@@ -120,18 +145,19 @@ const Food = () => {
                   &nbsp;
                 </span>
                 <span className="ml-5 text-xl font-semibold">
-                  {el.reviewer}
+                  {el[0]}
                 </span>
               </div>
-              <p className="my-2">{el.review}</p>
+              <p className="my-2">{el[1].comment}</p>
               <div className="flex items-center">
                 <span className="text-lg font-semibold mr-4">Rating:</span>
-                <StarRating rating={el.rating} />
-                <span className="ml-2">4.5</span>
+                <StarRating rating={el[1].rating} />
+                <span className="ml-2">{el[1].rating}</span>
               </div>
             </div>
           </div>
         ))}
+
         <Modal
           isOpen={modalIsOpen}
           onRequestClose={closeModal}
@@ -145,21 +171,25 @@ const Food = () => {
               className="text-3xl cursor-pointer bg-stone-800 text-white rounded-full"
             />
           </div>
-          <h1 className="text-center uppercase font-bold">Add review</h1>
+          <h1 className="text-center uppercase font-bold">Add comment</h1>
           <form method="post" onSubmit={handleSubmit}>
             <label>Write a Review</label>
             <textarea
-              name="review"
+              name="comment"
               className="block border-[1px] my-2 border-gray-500 sm2:w-[17rem] h-32 w-[24rem] p-2 rounded-md"
-              placeholder="Write a concise review that is straight to the point, so that it can be helpful to others."
+              placeholder="Write a concise comment that is straight to the point, so that it can be helpful to others."
               ref={reviewInput}
+              onBlur={handleBlur}
             ></textarea>
             <label>Select a Rating</label>
             <ClickableStarRating
-              selectHandler={setSelectedStars}
+              selectHandler={handleSelectStarRating}
               stars={selectedStars}
             />
-            <button className="bg-gradient-to-r from-green-400 to-green-600 mx-auto px-4 py-1 block my-5 text-white uppercase rounded-md text-lg">
+            <button
+              onClick={closeModal}
+              className="bg-gradient-to-r from-green-400 to-green-600 mx-auto px-4 py-1 block my-5 text-white uppercase rounded-md text-lg"
+            >
               Add
             </button>
           </form>
@@ -174,7 +204,12 @@ const Food = () => {
       </div>
     );
   }
-  return <div className="w-7/12 mr-auto">{content}</div>;
+  return (
+    <div className="w-7/12 mr-auto">
+      {content}
+      <ToastContainer />
+    </div>
+  );
 };
 
 export default Food;

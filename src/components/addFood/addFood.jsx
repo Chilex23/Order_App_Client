@@ -1,13 +1,12 @@
 import React, { useState } from "react";
 import Modal from "react-modal";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer } from "react-toastify";
 import { IoCloseSharp } from "react-icons/io5";
 import FormInput from "../formInput/formInput";
 import { HoverButton } from "../button/button";
+import { notify } from "../../utils/notify";
 import customStyles from "../../utils/customStyles";
 import { useAddNewFoodMutation } from "../../redux/features/api/apiSlice";
-//IoAddOutline
 
 const AddFood = () => {
   const [modalIsOpen, setIsOpen] = useState(false);
@@ -20,19 +19,6 @@ const AddFood = () => {
   });
   const [addNewFood, { isLoading }] = useAddNewFoodMutation();
   const { title, description, category, price, foodImage } = foodDetails;
-
-  const notify = (type, message) => {
-    if (type === "error") {
-      toast.error(message, {
-        position: toast.POSITION.TOP_CENTER,
-      });
-    } else if (type === "success") {
-      toast.success(message, {
-        position: toast.POSITION.TOP_CENTER,
-      });
-    }
-  };
-
   const canSave =
     [title, description, category, price, foodImage].every(Boolean) &&
     !isLoading;
