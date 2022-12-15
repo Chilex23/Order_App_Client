@@ -108,7 +108,7 @@ const FoodDetails = ({ foodDetails: data }, foodId) => {
         <div className="my-5 mx-auto" key={i}>
           <div className="p-2 border-2 border-gray-400 rounded-md bg-white shadow-xl">
             <div className="flex items-center">
-              <span className="w-16 h-16 bg-gray-400 rounded-full">&nbsp;</span>
+              <span className="w-16 h-16 bg-gradient-to-r from-green-400 to-green-600 text-white rounded-full flex justify-center items-center text-3xl font-bold">{el[0][0]}</span>
               <span className="ml-5 text-xl font-semibold">{el[0]}</span>
             </div>
             <p className="my-2">{el[1].comment}</p>
