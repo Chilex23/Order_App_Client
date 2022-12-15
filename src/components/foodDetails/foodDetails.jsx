@@ -1,58 +1,92 @@
+import { useState } from "react";
 import Modal from "react-modal";
 import { useDispatch } from "react-redux";
+import { IoCloseSharp } from "react-icons/io5";
+import { useAddReviewMutation } from "../../redux/features/api/apiSlice";
 import foodPic from "../../assets/images/hotDog.jpg";
+import { notify } from "../../utils/notify";
+import customStyles from "../../utils/customStyles";
 import { addItemToCart } from "../../redux/features/cart";
 import { ButtonSm } from "../button/button";
-import { IoCloseSharp } from "react-icons/io5";
-import StarRating, {
-  ClickableStarRating,
-} from "../components/starRating/starRating";
+import StarRating, { ClickableStarRating } from "../starRating/starRating";
 import { formatNumber } from "../../utils/formatNumber";
 
-const FoodDetails = (data) => {
+const FoodDetails = ({ foodDetails: data }, foodId) => {
+  const { price, reviews, title, imageLink, description, uuid, avgRating } =
+    data?.data;
   const dispatch = useDispatch();
-  let imageSrc = data?.data?.imageLink
-    ? `http://localhost:3000/${data?.data?.imageLink}`
-    : foodPic;
-  let noOfReviews, reviews;
-  if (data?.data?.reviews) {
-    noOfReviews = Object.keys(data?.data?.reviews).length;
-    reviews = Object.entries(data?.data?.reviews);
+  const [modalIsOpen, setIsOpen] = useState(false);
+  const [selectedStars, setSelectedStars] = useState(0);
+  const [comment, setComment] = useState("");
+  const [addReview, { loading }] = useAddReviewMutation();
+
+  const openModal = () => {
+    setIsOpen(true);
+  };
+  const closeModal = () => {
+    setIsOpen(false);
+  };
+
+  const canSave = [comment, selectedStars].every(Boolean) && !loading;
+  const handleSelectStarRating = (i) => {
+    setSelectedStars(i);
+  };
+  const handleBlur = (event) => {
+    const { value } = event.target;
+    setComment(value);
+  };
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const reviewBody = {
+      rating: selectedStars,
+      comment: comment,
+      id: foodId,
+    };
+    if (canSave) {
+      try {
+        const payload = await addReview(reviewBody).unwrap();
+        notify("success", payload.message);
+        setSelectedStars(0);
+        setComment("");
+      } catch (e) {
+        console.log(e);
+      }
+    } else {
+      notify("error", "Please write a comment and select a star rating.");
+    }
+  };
+
+  let imageSrc = imageLink ? `http://localhost:3000/${imageLink}` : foodPic;
+  let noOfReviews, foodReviews;
+  if (reviews) {
+    noOfReviews = Object.keys(reviews).length;
+    foodReviews = Object.entries(reviews);
   } else {
     noOfReviews = 0;
-    reviews = [];
+    foodReviews = [];
   }
-  content = (
+  let content = (
     <>
       <p className="text-3xl font-rubik font-bold uppercase my-5 mx-auto">
-        {data?.data?.title}
+        {title}
       </p>
       <figure className="my-5 mx-auto">
         <img
           src={imageSrc}
-          alt={data?.data?.title}
+          alt={title}
           className="w-full h-[24rem] rounded-md"
         />
       </figure>
       <p className="text-3xl font-rubik font-bold uppercase mx-auto">
         Description
       </p>
-      <p className="my-5 mx-auto">{data?.data?.description}</p>
+      <p className="my-5 mx-auto">{description}</p>
       <p className="text-3xl font-rubik font-bold uppercase my-5 mx-auto">
         Price
       </p>
-      <p className="my-5 mx-auto">${formatNumber(data?.data?.price)}</p>
+      <p className="my-5 mx-auto">${formatNumber(price)}</p>
       <button
-        onClick={() =>
-          dispatch(
-            addItemToCart(
-              data?.data?.title,
-              data?.data?.price,
-              data?.data?.uuid,
-              imageSrc
-            )
-          )
-        }
+        onClick={() => dispatch(addItemToCart(title, price, uuid, imageSrc))}
         className="bg-gradient-to-r from-green-400 to-green-600 block rounded-md px-3 py-2 text-white my-4 hover:shadow-lg hover:scale-105 transition-all"
       >
         Add to Cart
@@ -65,12 +99,12 @@ const FoodDetails = (data) => {
       </p>
       <div className="my-5 mx-auto flex justify-between">
         <div className="text-2xl flex">
-          <StarRating rating={data?.data?.avgRating} />
-          <span className="text-xl ml-5">{data?.data?.avgRating}</span>
+          <StarRating rating={avgRating} />
+          <span className="text-xl ml-5">{avgRating}</span>
         </div>
         <span className="text-xl">{noOfReviews} reviews</span>
       </div>
-      {reviews.map((el, i) => (
+      {foodReviews.map((el, i) => (
         <div className="my-5 mx-auto" key={i}>
           <div className="p-2 border-2 border-gray-400 rounded-md bg-white shadow-xl">
             <div className="flex items-center">
@@ -107,7 +141,6 @@ const FoodDetails = (data) => {
             name="comment"
             className="block border-[1px] my-2 border-gray-500 sm2:w-[17rem] h-32 w-[24rem] p-2 rounded-md"
             placeholder="Write a concise comment that is straight to the point, so that it can be helpful to others."
-            ref={reviewInput}
             onBlur={handleBlur}
           ></textarea>
           <label>Select a Rating</label>
