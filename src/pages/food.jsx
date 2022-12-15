@@ -139,7 +139,7 @@ const Food = () => {
         </div>
         {reviews.map((el, i) => (
           <div className="my-5 mx-auto" key={i}>
-            <div className="p-2 border-2 border-gray-400 rounded-md">
+            <div className="p-2 border-2 border-gray-400 rounded-md bg-white shadow-xl">
               <div className="flex items-center">
                 <span className="w-16 h-16 bg-gray-400 rounded-full">
                   &nbsp;
