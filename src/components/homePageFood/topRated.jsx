@@ -8,6 +8,7 @@ import { formatNumber } from "../../utils/formatNumber";
 import foodPic from "../../assets/images/hamburger.jpg";
 import StarRating from "../starRating/starRating";
 import { ButtonSm } from "../button/button";
+
 export const responsive = {
   0: { items: 1 },
   568: { items: 2 },
@@ -90,9 +91,12 @@ export const TopRatedCarousel = () => {
   }
   return (
     <div className="my-10">
-      <h2 className="text-3xl font-extrabold uppercase my-4 font-rubik text-center">
-        Top Rated Food
-      </h2>
+      <div className="relative my-12">
+        <h2 className="text-3xl font-extrabold uppercase my-4 font-rubik absolute -top-8 left-2/4 -translate-x-2/4 bg-gray-200">
+          Top Rated Food
+        </h2>
+        <span className="w-full h-1 bg-gradient-to-r from-green-400 to-green-600 rounded-md block">&nbsp;</span>
+      </div>
       {content}
     </div>
   );

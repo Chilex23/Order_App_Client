@@ -101,9 +101,14 @@ const items = [
 
 export const TopRatedMealCarousel = () => (
   <div className="my-10">
-    <h2 className="text-3xl font-extrabold uppercase my-4 font-rubik text-center">
-      Top Meals
-    </h2>
+    <div className="relative my-12">
+      <h2 className="text-3xl font-extrabold uppercase my-4 font-rubik absolute -top-8 left-2/4 -translate-x-2/4 bg-gray-200">
+        Top Meals
+      </h2>
+      <span className="w-full h-1 bg-gradient-to-r from-green-400 to-green-600 rounded-md block">
+        &nbsp;
+      </span>
+    </div>
     <AliceCarousel
       mouseTracking
       items={items}

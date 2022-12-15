@@ -32,7 +32,7 @@ const items = [
   <div className="mr-4 p-3 bg-white rounded-md shadow-2xl">
     <img src={foodPic} className="w-full h-[10rem] rounded-md" alt="food" />
     <h3 className="text-xl font-semibold my-2 uppercase font-rubik">
-    Hamburger
+      Hamburger
     </h3>
     <p className="my-2">
       Lorem, ipsum dolor sit amet consectetur adipisicing elit. Expedita et vel
@@ -55,7 +55,7 @@ const items = [
   <div className="mr-4 p-3 bg-white rounded-md shadow-2xl">
     <img src={foodPic} className="w-full h-[10rem] rounded-md" alt="food" />
     <h3 className="text-xl font-semibold my-2 uppercase font-rubik">
-    Hamburger
+      Hamburger
     </h3>
     <p className="my-2">
       Lorem, ipsum dolor sit amet consectetur adipisicing elit. Expedita et vel
@@ -78,7 +78,7 @@ const items = [
   <div className="mr-4 p-3 bg-white rounded-md shadow-2xl">
     <img src={foodPic} className="w-full h-[10rem] rounded-md" alt="food" />
     <h3 className="text-xl font-semibold my-2 uppercase font-rubik">
-    Hamburger
+      Hamburger
     </h3>
     <p className="my-2">
       Lorem, ipsum dolor sit amet consectetur adipisicing elit. Expedita et vel
@@ -101,9 +101,14 @@ const items = [
 
 export const TopRatedSnacksCarousel = () => (
   <div className="my-10">
-    <h2 className="text-3xl font-extrabold uppercase my-4 font-rubik text-center">
-      Snacks Fiesta
-    </h2>
+    <div className="relative my-12">
+      <h2 className="text-3xl font-extrabold uppercase my-4 font-rubik absolute -top-8 left-2/4 -translate-x-2/4 bg-gray-200">
+        Snacks Fiesta
+      </h2>
+      <span className="w-full h-1 bg-gradient-to-r from-green-400 to-green-600 rounded-md block">
+        &nbsp;
+      </span>
+    </div>
     <AliceCarousel
       mouseTracking
       items={items}
