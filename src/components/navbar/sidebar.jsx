@@ -63,20 +63,29 @@ const SideBar = () => {
           dropDownHiddenState ? "hidden" : "flex flex-col"
         }`}
       >
-        <Link to="/category/Pizzas" className="flex items-center justify-between cursor-pointer hover:bg-stone-700 p-1 rounded-md">
+        <Link
+          to="/category/Pizzas"
+          className="flex items-center justify-between cursor-pointer hover:bg-stone-700 p-1 rounded-md"
+        >
           Pizzas <FaPizzaSlice className="ml-2" />{" "}
         </Link>
-        <Link to="/category/Drinks" className="flex items-center justify-between cursor-pointer hover:bg-stone-700 p-1 rounded-md">
+        <Link
+          to="/category/Drinks"
+          className="flex items-center justify-between cursor-pointer hover:bg-stone-700 p-1 rounded-md"
+        >
           Drinks <MdOutlineLocalDrink className="ml-2" />{" "}
         </Link>
-        <Link to="/category/Snacks" className="flex items-center justify-between cursor-pointer hover:bg-stone-700 p-1 rounded-md">
+        <Link
+          to="/category/Snacks"
+          className="flex items-center justify-between cursor-pointer hover:bg-stone-700 p-1 rounded-md"
+        >
           Snacks <GiHamburger className="ml-2" />{" "}
         </Link>
       </div>
 
       <div className="cursor-pointer flex items-center hover:bg-stone-700 p-1 rounded-md">
         <FiLogOut className="mr-2" />
-        <span>Login</span>
+        <Link to="/login">Login</Link>
       </div>
     </div>
   );

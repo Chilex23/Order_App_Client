@@ -17,7 +17,7 @@ const Cart = () => {
   const cartCount = useSelector(selectCartItemsCount);
   const cartTotal = useSelector(selectCartTotal);
   return (
-    <div className="mx-auto w-[95%]">
+    <div className="mx-auto w-[95%] mb-36">
       <h1 className="text-3xl font-bold font-rubik uppercase text-center my-5">
         Cart
       </h1>
