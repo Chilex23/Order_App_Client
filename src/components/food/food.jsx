@@ -159,7 +159,7 @@ const Food = () => {
             </div>
           </div>
           <ButtonSm>
-            <Link to={`/food/${title}`}>View Food</Link>
+            <Link to={`/food/${id}`}>View Food</Link>
           </ButtonSm>
         </div>
       </Modal>

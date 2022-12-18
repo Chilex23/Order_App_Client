@@ -1,14 +1,14 @@
 import { configureStore } from "@reduxjs/toolkit";
-import counterReducer from "./features/counter";
 import screenWidthReducer from "./features/screenWidth";
 import cartReducer from "./features/cart";
+import userReducer from "./features/user";
 import { apiSlice } from "./features/api/apiSlice";
 
 const store = configureStore({
   reducer: {
-    counter: counterReducer,
     screenWidth: screenWidthReducer,
     cart: cartReducer,
+    user: userReducer,
     [apiSlice.reducerPath]: apiSlice.reducer
   },
   middleware: getDefaultMiddleware =>

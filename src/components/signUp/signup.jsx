@@ -1,5 +1,6 @@
 import { useState } from "react";
 import FormInput from "../formInput/formInput";
+import { ButtonMd } from "../button/button";
 
 const SignUp = () => {
   const [userCredentials, setUserCredentials] = useState({
@@ -13,11 +14,18 @@ const SignUp = () => {
     const { value, name } = event.target;
     setUserCredentials({ ...userCredentials, [name]: value });
   };
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    if (password !== confirmPassword) {
+      alert("Passwords don't match");
+      return;
+    }
+  };
   return (
     <div className="">
       <h2 className="text-2xl font-extrabold">I do not have an account</h2>
       <span>Sign up with your email and password</span>
-      <form>
+      <form onSubmit={handleSubmit}>
         <FormInput
           handleChange={handleChange}
           name="name"
@@ -48,9 +56,7 @@ const SignUp = () => {
           type="password"
           label="Confirm Password"
         />
-        <button className="bg-gradient-to-r from-green-400 to-green-600 px-6 py-2 block my-5 text-white uppercase rounded-md text-lg font-semibold">
-          Sign Up
-        </button>
+        <ButtonMd>Sign Up</ButtonMd>
       </form>
     </div>
   );

@@ -17,3 +17,12 @@ export const ButtonSm = ({ children, clickHandler = () => {} }) => (
     {children}
   </button>
 );
+
+export const ButtonMd = ({ children, clickHandler = () => {} }) => (
+  <button
+    onClick={clickHandler}
+    className="bg-gradient-to-r from-green-400 to-green-600 px-6 py-2 block my-5 text-white uppercase rounded-md text-lg font-semibold hover:shadow-lg hover:scale-105 transition-all"
+  >
+    {children}
+  </button>
+);

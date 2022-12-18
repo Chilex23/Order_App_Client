@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { AiFillCaretDown, AiFillCaretUp, AiFillHome } from "react-icons/ai";
@@ -6,11 +7,12 @@ import { FaPizzaSlice } from "react-icons/fa";
 import { MdOutlineLocalDrink, MdDashboardCustomize } from "react-icons/md";
 import { GiHamburger } from "react-icons/gi";
 import { BiCategory } from "react-icons/bi";
-import { FiLogIn, FiLogOut } from "react-icons/fi";
-// BiCategory FiLogIn FiLogOut FiSettings
+import { FiLogIn, FiLogOut, FiUser } from "react-icons/fi";
+import { selectUser } from "../../redux/features/user";
 
 const SideBar = () => {
   const [dropDownHiddenState, setDropDownHiddenState] = useState(true);
+  const currentUser = useSelector(selectUser);
   const { pathname } = useLocation();
   const [currentPage, setCurrentPage] = useState(pathname);
   console.log(pathname);
@@ -84,8 +86,22 @@ const SideBar = () => {
       </div>
 
       <div className="cursor-pointer flex items-center hover:bg-stone-700 p-1 rounded-md">
-        <FiLogOut className="mr-2" />
-        <Link to="/login">Login</Link>
+        {currentUser ? (
+          <>
+            <FiLogOut className="mr-2" />
+            <Link to="/login">Logout</Link>
+          </>
+        ) : (
+          <>
+            <FiLogIn className="mr-2" />
+            <Link to="/login">Login</Link>
+          </>
+        )}
+      </div>
+
+      <div className="cursor-pointer flex items-center hover:bg-stone-700 p-1 rounded-md">
+        <FiUser className="mr-2" />
+        <span>{currentUser}</span>
       </div>
     </div>
   );

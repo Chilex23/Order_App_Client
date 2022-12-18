@@ -1,8 +1,9 @@
 import { useState } from "react";
 import Modal from "react-modal";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { IoCloseSharp } from "react-icons/io5";
 import { useAddReviewMutation } from "../../redux/features/api/apiSlice";
+import { selectUser } from "../../redux/features/user";
 import foodPic from "../../assets/images/hotDog.jpg";
 import { notify } from "../../utils/notify";
 import customStyles from "../../utils/customStyles";
@@ -11,10 +12,11 @@ import { ButtonSm } from "../button/button";
 import StarRating, { ClickableStarRating } from "../starRating/starRating";
 import { formatNumber } from "../../utils/formatNumber";
 
-const FoodDetails = ({ foodDetails: data }, foodId) => {
+const FoodDetails = ({ foodDetails: data }) => {
   const { price, reviews, title, imageLink, description, uuid, avgRating } =
     data?.data;
   const dispatch = useDispatch();
+  const currentUser = useSelector(selectUser);
   const [modalIsOpen, setIsOpen] = useState(false);
   const [selectedStars, setSelectedStars] = useState(0);
   const [comment, setComment] = useState("");
@@ -40,7 +42,7 @@ const FoodDetails = ({ foodDetails: data }, foodId) => {
     const reviewBody = {
       rating: selectedStars,
       comment: comment,
-      id: foodId,
+      id: uuid,
     };
     if (canSave) {
       try {
@@ -95,7 +97,9 @@ const FoodDetails = ({ foodDetails: data }, foodId) => {
 
       <p className="my-5 mx-auto flex items-center">
         <span className="text-3xl font-rubik font-bold uppercase">Reviews</span>
-        <ButtonSm clickHandler={() => openModal()}>Add Review</ButtonSm>
+        {!currentUser || reviews[currentUser] ? null : (
+          <ButtonSm clickHandler={() => openModal()}>Add Review</ButtonSm>
+        )}
       </p>
       <div className="my-5 mx-auto flex justify-between">
         <div className="text-2xl flex">
@@ -108,7 +112,9 @@ const FoodDetails = ({ foodDetails: data }, foodId) => {
         <div className="my-5 mx-auto" key={i}>
           <div className="p-2 border-2 border-gray-400 rounded-md bg-white shadow-xl">
             <div className="flex items-center">
-              <span className="w-16 h-16 bg-gradient-to-r from-green-400 to-green-600 text-white rounded-full flex justify-center items-center text-3xl font-bold">{el[0][0]}</span>
+              <span className="w-16 h-16 bg-gradient-to-r from-green-400 to-green-600 text-white rounded-full flex justify-center items-center text-3xl font-bold">
+                {el[0][0]}
+              </span>
               <span className="ml-5 text-xl font-semibold">{el[0]}</span>
             </div>
             <p className="my-2">{el[1].comment}</p>
