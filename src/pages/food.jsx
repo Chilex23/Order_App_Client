@@ -27,7 +27,7 @@ const Food = () => {
     );
   }
   return (
-    <div className="w-7/12 mr-auto">
+    <div className="w-7/12 mr-auto mb-24">
       {content}
       <ToastContainer />
     </div>

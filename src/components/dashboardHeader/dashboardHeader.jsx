@@ -1,12 +1,29 @@
-import React from "react";
 import { AiOutlineSearch } from "react-icons/ai";
 
 const DashboardHeader = () => {
+  const greeting = (timeString) => {
+    let splittedTimeString = timeString.split(":");
+    let period;
+    if (/AM/i.test(timeString)) {
+      period = "Good Morning";
+    } else if (
+      /PM/i.test(timeString) &&
+      splittedTimeString[0] >= "12" &&
+      splittedTimeString <= "4"
+    ) {
+      period = "Good Afternoon";
+    } else {
+      period = "Good Evening";
+    }
+    return period;
+  };
   return (
     <div className="flex justify-between flex-col lg:flex-row gap-y-5 items-center border-b-2 border-gray-400 pb-5">
-      <span className="text-xl font-semibold">Good Afternoon, Chilex23</span>
+      <span className="text-xl font-semibold">
+        {greeting(new Date().toLocaleTimeString())}, Chilex24
+      </span>
       <span className="relative z-0">
-        <AiOutlineSearch className="absolute top-3 left-1 text-2xl"/>
+        <AiOutlineSearch className="absolute top-3 left-1 text-2xl" />
         <input
           type="search"
           className="border-black border-[1px] sm2:w-[18rem] w-[24rem] h-12 pl-8 rounded-md mr-4 focus:border-green-600 focus-visible:border-green-600"

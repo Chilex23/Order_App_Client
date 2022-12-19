@@ -114,8 +114,12 @@ const FoodDetails = ({ foodDetails: data }) => {
             <div className="flex items-center">
               <span className="w-16 h-16 bg-gradient-to-r from-green-400 to-green-600 text-white rounded-full flex justify-center items-center text-3xl font-bold">
                 {el[0][0]}
+                {/* FirstName Letter*/}
               </span>
-              <span className="ml-5 text-xl font-semibold">{el[0]}</span>
+              <span className="ml-5 text-xl font-semibold">
+                {el[0]}
+                {/* FirstName */}
+              </span>
             </div>
             <p className="my-2">{el[1].comment}</p>
             <div className="flex items-center">
