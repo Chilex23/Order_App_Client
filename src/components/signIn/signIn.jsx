@@ -5,9 +5,7 @@ import { signInUser } from "../../redux/features/user";
 import { useLoginUserMutation } from "../../redux/features/api/authSice";
 import { notify } from "../../utils/notify";
 import { FormInput } from "../formInput";
-//import FormInput from "../formInput/formInput";
 import { ButtonMd } from "../button";
-//import { ButtonMd } from "../button/button";
 
 const SignIn = () => {
   const [userCredentials, setUserCredentials] = useState({

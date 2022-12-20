@@ -1,20 +1,36 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Menu, MenuItem, MenuButton, MenuRadioGroup } from "@szhsin/react-menu";
 import Modal from "react-modal";
+import { useSelector } from "react-redux";
 import { IoCloseSharp } from "react-icons/io5";
 import customStyles from "../../utils/customStyles";
 import { FaFilter } from "react-icons/fa";
 import { Triangle } from "react-loader-spinner";
 import "@szhsin/react-menu/dist/transitions/slide.css";
 import foodPic from "../../assets/images/hamburger.jpg";
-import StarRating from "../starRating/starRating";
-import { ButtonSm } from "../button/button";
-import { useGetFoodsQuery } from "../../redux/features/api/apiSlice";
+import { StarRating } from "../starRating";
+import { ButtonSm } from "../button";
+import {
+  useGetFoodsQuery,
+  selectFoodItemsSortedByPrice,
+  selectFoodItemsSortedByTitle,
+} from "../../redux/features/api/apiSlice";
 
 const Food = () => {
   const { data, isLoading, isSuccess, isError, error } = useGetFoodsQuery();
-  const [filter, setFilter] = useState("price");
+  const foodSortedByPrice = useSelector(selectFoodItemsSortedByPrice);
+  const foodSortedByLatest = useSelector(selectFoodItemsSortedByTitle);
+  const [foodData, setFoodData] = useState(data?.foodItems);
+  const sortFood = (type) => {
+    if (type === "price") {
+      setFoodData(foodSortedByPrice);
+    } else {
+      setFoodData(foodSortedByLatest);
+    }
+    setFilter(type);
+  };
+  const [filter, setFilter] = useState("");
   const [modalIsOpen, setIsOpen] = useState(false);
   const [modalDetails, setModalDetails] = useState({
     title: "",
@@ -25,7 +41,15 @@ const Food = () => {
     price: 0,
     reviews: 0,
   });
-  const openModal = (title, id, imageSrc, description, rating, price, reviews) => {
+  const openModal = (
+    title,
+    id,
+    imageSrc,
+    description,
+    rating,
+    price,
+    reviews
+  ) => {
     setIsOpen(true);
     setModalDetails({
       title,
@@ -50,7 +74,7 @@ const Food = () => {
       </div>
     );
   } else if (isSuccess) {
-    content = data.foodItems.slice(0, 5).map((el) => {
+    content = foodData.slice(0, 5).map((el) => {
       let imageSrc = el?.imageLink
         ? `http://localhost:3000/${el?.imageLink}`
         : foodPic;
@@ -86,7 +110,8 @@ const Food = () => {
     content = <div>{error?.data?.message || error?.data}</div>;
   }
 
-  const { title, id, imageSrc, description, rating, price, reviews } = modalDetails;
+  const { title, id, imageSrc, description, rating, price, reviews } =
+    modalDetails;
 
   return (
     <div className="shadow-2xl p-3 rounded-md bg-white relative">
@@ -104,7 +129,10 @@ const Food = () => {
         >
           <MenuRadioGroup
             value={filter}
-            onRadioChange={(e) => setFilter(e.value)}
+            onRadioChange={(e) => {
+              sortFood(e.value);
+              //setFilter(e.value);
+            }}
           >
             <MenuItem type="radio" value="price">
               Price

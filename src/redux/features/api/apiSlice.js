@@ -1,4 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { createSelector } from "@reduxjs/toolkit";
 
 export const authHeaders = {
   Authorization:
@@ -27,25 +28,49 @@ export const apiSlice = createApi({
         headers: authHeaders,
         body: {
           rating: review.rating,
-          comment: review.comment
+          comment: review.comment,
         },
       }),
     }),
     getFoods: builder.query({
       query: () => ({
         url: "/food?page=1",
-        headers: authHeaders,
       }),
       providesTags: ["Food"],
     }),
     getFood: builder.query({
       query: (foodId) => ({
         url: `/food/${foodId}`,
-        headers: authHeaders,
       }),
     }),
   }),
 });
+
+const emptyFoodItems = [];
+
+export const selectFoodItemsResult = apiSlice.endpoints.getFoods.select();
+
+export const selectFoodItemsData = createSelector(
+  selectFoodItemsResult,
+  (result) => result?.data?.foodItems ?? emptyFoodItems
+);
+
+export const selectFoodItemsSortedByPrice = createSelector(
+  selectFoodItemsData,
+  (result) => {
+    let resultCopy = result.slice();
+    return resultCopy.sort((a, b) => b.price - a.price);
+  }
+);
+
+export const selectFoodItemsSortedByTitle = createSelector(
+  selectFoodItemsData,
+  (result) => {
+    let resultCopy = result.slice();
+    return resultCopy.sort((a, b) => b.dateAdded.localeCompare(a.dateAdded));
+  }
+);
+
 
 export const {
   useAddNewFoodMutation,

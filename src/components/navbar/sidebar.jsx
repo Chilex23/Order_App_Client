@@ -72,6 +72,7 @@ const SideBar = () => {
           <span>{name}</span>
         </Link>
       ))}
+      {/* CATEGORY DROPDOWN */}
       <div
         className="cursor-pointer flex items-center justify-between hover:bg-stone-700 p-1 rounded-md"
         onClick={toggleDropDown}
@@ -84,6 +85,7 @@ const SideBar = () => {
           <AiFillCaretUp className="ml-2" />
         )}
       </div>
+      {/* CATEGORY DROPDOWN LINKS */}
       <div
         className={`gap-y-2 ml-4 ${
           dropDownHiddenState ? "hidden" : "flex flex-col"
@@ -93,13 +95,18 @@ const SideBar = () => {
           <Link
             key={name}
             to={urlPath}
-            className="flex items-center justify-between cursor-pointer hover:bg-stone-700 p-1 rounded-md"
+            className={`cursor-pointer flex items-center justify-between ${
+              currentPage === urlPath
+                ? "bg-white text-black p-1 rounded-md"
+                : "hover:bg-stone-700 p-1 rounded-md"
+            }`}
+            onClick={() => setCurrentPage(urlPath)}
           >
             {name} {icon}{" "}
           </Link>
         ))}
       </div>
-
+      {/* LOGIN AND USER PROFILE */}
       <div className="cursor-pointer flex items-center hover:bg-stone-700 p-1 rounded-md">
         {currentUser ? (
           <div className="flex items-center" onClick={() => logOut()}>
