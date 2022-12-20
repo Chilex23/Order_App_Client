@@ -1,24 +1,29 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useLocation } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 import { AiFillCaretDown, AiFillCaretUp, AiFillHome } from "react-icons/ai";
 import { FaPizzaSlice } from "react-icons/fa";
 import { MdOutlineLocalDrink, MdDashboardCustomize } from "react-icons/md";
 import { GiHamburger } from "react-icons/gi";
 import { BiCategory } from "react-icons/bi";
 import { FiLogIn, FiLogOut, FiUser } from "react-icons/fi";
-import { selectUser } from "../../redux/features/user";
+import { notify } from "../../utils/notify";
+import { selectUser, logOutUser } from "../../redux/features/user";
 
 const SideBar = () => {
   const [dropDownHiddenState, setDropDownHiddenState] = useState(true);
+  const dispatch = useDispatch();
   const currentUser = useSelector(selectUser);
   const { pathname } = useLocation();
   const [currentPage, setCurrentPage] = useState(pathname);
-  console.log(pathname);
   const toggleDropDown = () => {
     setDropDownHiddenState(!dropDownHiddenState);
-    //setCurrentPage("category")
+  };
+  const logOut = () => {
+    notify("successBottom", "Log Out Successfull. See you soon.");
+    dispatch(logOutUser());
   };
   const navLinks = [
     {
@@ -52,9 +57,9 @@ const SideBar = () => {
   ];
   return (
     <div className="bg-stone-900 uppercase text-white w-[12rem] px-6 pt-6 h-screen fixed flex flex-col gap-y-3">
-      {navLinks.map(({ urlPath, name, icon }, i) => (
+      {navLinks.map(({ urlPath, name, icon }) => (
         <Link
-          key={i}
+          key={name}
           to={urlPath}
           className={`cursor-pointer flex items-center ${
             currentPage === urlPath
@@ -84,8 +89,9 @@ const SideBar = () => {
           dropDownHiddenState ? "hidden" : "flex flex-col"
         }`}
       >
-        {categoryLinks.map(({ name, urlPath, icon }, i) => (
+        {categoryLinks.map(({ name, urlPath, icon }) => (
           <Link
+            key={name}
             to={urlPath}
             className="flex items-center justify-between cursor-pointer hover:bg-stone-700 p-1 rounded-md"
           >
@@ -96,10 +102,10 @@ const SideBar = () => {
 
       <div className="cursor-pointer flex items-center hover:bg-stone-700 p-1 rounded-md">
         {currentUser ? (
-          <>
+          <div className="flex items-center" onClick={() => logOut()}>
             <FiLogOut className="mr-2" />
-            <Link to="/login">Logout</Link>
-          </>
+            <span>Logout</span>
+          </div>
         ) : (
           <>
             <FiLogIn className="mr-2" />
@@ -114,6 +120,7 @@ const SideBar = () => {
           <span>{currentUser}</span>
         </div>
       ) : null}
+      <ToastContainer />
     </div>
   );
 };

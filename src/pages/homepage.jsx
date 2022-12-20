@@ -1,5 +1,5 @@
 import React from "react";
-import Hero from "../components/hero/hero";
+import { Hero } from "../components/hero";
 import { TopRatedCarousel } from "../components/homePageFood/topRated";
 import TopRatedPizzaCarousel from "../components/homePageFood/pizzaRated";
 import TopRatedMealCarousel from "../components/homePageFood/topMeal";

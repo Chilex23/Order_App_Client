@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useParams } from "react-router-dom";
 import foodPic from "../assets/images/pizza.jpg";
-import StarRating from "../components/starRating/starRating";
-import { ButtonSm } from "../components/button/button";
+import { StarRating } from "../components/starRating";
+import { ButtonSm } from "../components/button";
 
 const FoodCategory = () => {
   window.scrollTo(0, 0)

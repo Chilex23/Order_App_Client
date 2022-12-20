@@ -1,12 +1,12 @@
 import React from "react";
-import DashboardHeader from "../components/dashboardHeader/dashboardHeader";
-import AddFood from "../components/addFood/addFood";
-import Orders from "../components/orders/orders";
-import Food from "../components/food/food";
-import Category from "../components/category/category";
+import { DashboardHeader } from "../components/dashboardHeader";
+import { AddFood } from "../components/addFood";
+import { Orders } from "../components/orders";
+import { Food } from "../components/food";
+import { Category } from "../components/category";
 
 const AdminDashboard = () => {
-  window.scrollTo(0,0)
+  window.scrollTo(0, 0);
   return (
     <section className="w-[95%] mx-auto mb-16">
       <DashboardHeader />

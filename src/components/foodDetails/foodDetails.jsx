@@ -97,14 +97,15 @@ const FoodDetails = ({ foodDetails: data }) => {
 
       <p className="my-5 mx-auto flex items-center">
         <span className="text-3xl font-rubik font-bold uppercase">Reviews</span>
-        {!currentUser || reviews[currentUser] ? null : (
+        {!currentUser || reviews?.currentUser ? null : (
           <ButtonSm clickHandler={() => openModal()}>Add Review</ButtonSm>
         )}
       </p>
       <div className="my-5 mx-auto flex justify-between">
-        <div className="text-2xl flex">
+        <div className="text-2xl flex items-center">
           <StarRating rating={avgRating} />
           <span className="text-xl ml-5">{avgRating}</span>
+          <span className="ml-2">Stars</span>
         </div>
         <span className="text-xl">{noOfReviews} reviews</span>
       </div>
@@ -150,7 +151,7 @@ const FoodDetails = ({ foodDetails: data }) => {
           <textarea
             name="comment"
             className="block border-[1px] my-2 border-gray-500 sm2:w-[17rem] h-32 w-[24rem] p-2 rounded-md"
-            placeholder="Write a concise comment that is straight to the point, so that it can be helpful to others."
+            placeholder="Write a concise review that is straight to the point, so that it can be helpful to others."
             onBlur={handleBlur}
           ></textarea>
           <label>Select a Rating</label>

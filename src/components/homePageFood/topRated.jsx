@@ -6,8 +6,8 @@ import { addItemToCart } from "../../redux/features/cart";
 import { useGetFoodsQuery } from "../../redux/features/api/apiSlice";
 import { formatNumber } from "../../utils/formatNumber";
 import foodPic from "../../assets/images/hamburger.jpg";
-import StarRating from "../starRating/starRating";
-import { ButtonSm } from "../button/button";
+import { StarRating } from "../starRating";
+import { ButtonSm } from "../button";
 
 export const responsive = {
   0: { items: 1 },
@@ -91,7 +91,7 @@ export const TopRatedCarousel = () => {
   }
   return (
     <div className="my-10">
-      <div className="relative my-12">
+      <div className="relative my-12 -z-10">
         <h2 className="text-xl md:text-3xl px-1 md:px-4 font-extrabold uppercase my-4 font-rubik absolute -top-8 left-2/4 -translate-x-2/4 bg-gray-200">
           Top Rated Food
         </h2>

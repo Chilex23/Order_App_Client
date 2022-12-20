@@ -1,9 +1,9 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Modal from "react-modal";
-import Header from "./components/header/header";
-import Footer from "./components/footer/footer";
-import NavBar from "./components/navbar/navbar";
-import AppLayout from "./components/appLayout/applayout";
+import { Header } from "./components/header";
+import { Footer } from "./components/footer";
+import { NavBar } from "./components/navbar";
+import { AppLayout } from "./components/appLayout";
 import HomePage from "./pages/homepage";
 import AdminDashboard from "./pages/adminDashboad";
 import FoodCategory from "./pages/foodCategory";

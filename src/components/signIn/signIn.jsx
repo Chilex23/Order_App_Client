@@ -4,8 +4,10 @@ import { useNavigate } from "react-router-dom";
 import { signInUser } from "../../redux/features/user";
 import { useLoginUserMutation } from "../../redux/features/api/authSice";
 import { notify } from "../../utils/notify";
-import FormInput from "../formInput/formInput";
-import { ButtonMd } from "../button/button";
+import { FormInput } from "../formInput";
+//import FormInput from "../formInput/formInput";
+import { ButtonMd } from "../button";
+//import { ButtonMd } from "../button/button";
 
 const SignIn = () => {
   const [userCredentials, setUserCredentials] = useState({
@@ -24,10 +26,10 @@ const SignIn = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     if (canSave) {
-      notify("success", `Logging in...`);
+      notify("sucessBottom", `Logging in...`);
       try {
         const payload = await loginUser(userCredentials).unwrap();
-        notify("success", payload.message);
+        notify("sucessBottom", payload.message);
         const user = {
           username: username,
           token: payload.token,
@@ -41,7 +43,7 @@ const SignIn = () => {
     } else {
       notify("error", "Please Fill all fields");
     }
-    console.log(userCredentials);
+    //console.log(userCredentials);
   };
   return (
     <div className="mr-24">

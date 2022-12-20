@@ -13,7 +13,7 @@ import {
 const Orders = () => {
   const { data, isLoading, isSuccess, isError, error } =
     useGetOrdersForAdminQuery();
-  console.log(useSelector(selectOrdersData));
+  // console.log(useSelector(selectOrdersData));
   const [filter, setFilter] = useState("undelivered");
   let content;
   if (isLoading) {

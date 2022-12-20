@@ -1,5 +1,5 @@
 import { ToastContainer } from "react-toastify";
-import SignIn from "../components/signIn/signIn";
+import { SignIn } from "../components/signIn";
 import SignUp from "../components/signUp/signup";
 
 const SignInSignUp = () => {

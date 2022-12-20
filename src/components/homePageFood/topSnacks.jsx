@@ -1,8 +1,8 @@
 import AliceCarousel from "react-alice-carousel";
 import { Link } from "react-router-dom";
 import foodPic from "../../assets/images/hamburger.jpg";
-import StarRating from "../starRating/starRating";
-import { ButtonSm } from "../button/button";
+import { StarRating } from "../starRating";
+import { ButtonSm } from "../button";
 import { responsive } from "./topRated";
 
 const items = [
@@ -101,7 +101,7 @@ const items = [
 
 export const TopRatedSnacksCarousel = () => (
   <div className="my-10">
-    <div className="relative my-12">
+    <div className="relative my-12 -z-10">
       <h2 className="text-3xl px-4 font-extrabold uppercase my-4 font-rubik absolute -top-8 left-2/4 -translate-x-2/4 bg-gray-200">
         Snacks Fiesta
       </h2>

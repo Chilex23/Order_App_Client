@@ -1,5 +1,3 @@
-import React from "react";
-
 export const HoverButton = ({ children, clickHandler = () => {} }) => (
   <button
     onClick={clickHandler}
