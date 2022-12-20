@@ -123,7 +123,7 @@ const Food = () => {
         <Menu
           menuButton={
             <MenuButton className="border-[1px] flex items-center border-gray-400 rounded-md px-2 py-1 font-medium">
-              <FaFilter className="mr-2" /> Filter
+              <FaFilter className="mr-2" /> Sort
             </MenuButton>
           }
         >
