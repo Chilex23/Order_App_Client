@@ -24,10 +24,10 @@ const SignIn = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     if (canSave) {
-      notify("sucessBottom", `Logging in...`);
+      notify("successBottom", `Logging in...`);
       try {
         const payload = await loginUser(userCredentials).unwrap();
-        notify("sucessBottom", payload.message);
+        notify("successBottom", payload.message);
         const user = {
           username: username,
           token: payload.token,

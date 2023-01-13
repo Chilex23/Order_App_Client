@@ -9,6 +9,16 @@ export const orderSlice = apiSlice.injectEndpoints({
         headers: authHeaders,
       }),
     }),
+    createOrder: builder.mutation({
+      query: (items) => ({
+        url: "/orders/create",
+        method: "POST",
+        headers: authHeaders,
+        body: {
+          items,
+        },
+      }),
+    }),
   }),
 });
 
@@ -22,4 +32,4 @@ export const selectOrdersData = createSelector(
   (result) => result?.data ?? emptyOrders
 );
 
-export const { useGetOrdersForAdminQuery } = orderSlice;
+export const { useGetOrdersForAdminQuery, useCreateOrderMutation } = orderSlice;

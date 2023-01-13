@@ -57,6 +57,7 @@ const SideBar = () => {
   ];
   return (
     <div className="bg-stone-900 uppercase text-white w-[12rem] px-6 pt-6 h-screen fixed flex flex-col gap-y-3">
+      <span className="text-gray-300">Menu</span>
       {navLinks.map(({ urlPath, name, icon }) => (
         <Link
           key={name}

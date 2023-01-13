@@ -3,7 +3,7 @@ import { createSelector } from "@reduxjs/toolkit";
 
 export const authHeaders = {
   Authorization:
-    "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjYzNGU5N2Q0OGYyN2I5N2ZhOTA1OGY1YiIsInVzZXJuYW1lIjoiQ2hpbGV4MjQiLCJyb2xlIjoiQWRtaW4ifSwiaWF0IjoxNjY5MjUxOTgxLCJleHAiOjE2NzE4NDM5ODF9.ts8NkN6KDhwGvbjffIWJCp7Dc2TTumd3ql_Uyk0_ANY",
+    "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjYzYzFjMjFhYzZiMTdhNmRjMWNjNTgwMSIsInVzZXJuYW1lIjoiQ2hpbGV4MjQiLCJyb2xlIjoiQWRtaW4ifSwiaWF0IjoxNjczNjQyODYyLCJleHAiOjE2NzYyMzQ4NjJ9.13VQdVq_pc4bMGHx5vjfvCEVFWuFTEU1CIjF4WdyFn4",
 };
 
 export const apiSlice = createApi({

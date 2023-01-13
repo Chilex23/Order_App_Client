@@ -59,7 +59,7 @@ const cartSlice = createSlice({
       prepare(id) {
         return {
           payload: {
-            id
+            id,
           },
         };
       },
@@ -73,15 +73,21 @@ const cartSlice = createSlice({
       prepare(id) {
         return {
           payload: {
-            id
+            id,
           },
         };
+      },
+    },
+    clearCart: {
+      reducer(state) {
+        state.cartItems = [];
       },
     },
   },
 });
 
-export const { addItemToCart, removeItemFromCart, clearItemFromCart } = cartSlice.actions;
+export const { addItemToCart, removeItemFromCart, clearItemFromCart, clearCart } =
+  cartSlice.actions;
 
 const selectCart = (state) => state.cart;
 
