@@ -162,6 +162,7 @@ const Food = () => {
           </MenuRadioGroup>
         </Menu>
       </div>
+      <p className="text-sm">Click on a food item to view more details.</p>
       <div className="flex flex-col gap-y-2 mb-24">{content}</div>
       <div className="absolute bottom-0 w-full">
         <ButtonSm>More Food</ButtonSm>
