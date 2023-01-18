@@ -35,7 +35,6 @@ const Cart = () => {
     if (!user) {
       notify("successBottom", "Please Sign in to place an order.");
       navigate("/login");
-      return;
     }
     if (canSave) {
       notify("successBottom", "Placing Order...");

@@ -4,6 +4,7 @@ import { AddFood } from "../components/addFood";
 import { Orders } from "../components/orders";
 import { Food } from "../components/food";
 import { Category } from "../components/category";
+import { OrdersBarChart } from "../components/ordersBarChart";
 
 const AdminDashboard = () => {
   window.scrollTo(0, 0);
@@ -16,6 +17,7 @@ const AdminDashboard = () => {
         <Food />
         <Category />
       </div>
+      <OrdersBarChart />
     </section>
   );
 };

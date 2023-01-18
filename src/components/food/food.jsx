@@ -8,6 +8,7 @@ import customStyles from "../../utils/customStyles";
 import { FaFilter } from "react-icons/fa";
 import { Triangle } from "react-loader-spinner";
 import "@szhsin/react-menu/dist/transitions/slide.css";
+import { formatNumber } from "../../utils/formatNumber";
 import foodPic from "../../assets/images/hamburger.jpg";
 import { StarRating } from "../starRating";
 import { ButtonSm } from "../button";
@@ -74,38 +75,56 @@ const Food = () => {
       </div>
     );
   } else if (isSuccess) {
-    content = foodData.slice(0, 5).map((el) => {
-      let imageSrc = el?.imageLink
-        ? `http://localhost:3000/${el?.imageLink}`
-        : foodPic;
-      let noOfReviews;
-      if (el.reviews) {
-        noOfReviews = Object.keys(el.reviews).length;
-      } else {
-        noOfReviews = 0;
-      }
-      return (
-        <div
-          className="flex items-center hover:bg-gray-200 p-1 border-b-[1px] border-gray-300 hover:rounded-md cursor-pointer transition"
-          onClick={() =>
-            openModal(
-              el.title,
-              el.uuid,
-              imageSrc,
-              el.description,
-              el.avgRating,
-              el.price,
-              noOfReviews
-            )
+    content = foodData
+      .slice(0, 5)
+      .map(
+        ({
+          title,
+          _id,
+          uuid,
+          description,
+          avgRating,
+          price,
+          imageLink,
+          reviews,
+        }) => {
+          let imageSrc = imageLink
+            ? `http://localhost:3000/${imageLink}`
+            : foodPic;
+          let noOfReviews;
+          if (reviews) {
+            noOfReviews = Object.keys(reviews).length;
+          } else {
+            noOfReviews = 0;
           }
-          key={el._id}
-        >
-          <img src={imageSrc} className="w-12 h-12 rounded-full" alt="food" />
-          <span className="px-3 mr-auto">{el.title}</span>
-          <span>${el.price}</span>
-        </div>
+          // Markup for each initially shown food items.
+          return (
+            <div
+              className="flex items-center hover:bg-gray-200 p-1 border-b-[1px] border-gray-300 hover:rounded-md cursor-pointer transition"
+              onClick={() =>
+                openModal(
+                  title,
+                  uuid,
+                  imageSrc,
+                  description,
+                  avgRating,
+                  price,
+                  noOfReviews
+                )
+              }
+              key={_id}
+            >
+              <img
+                src={imageSrc}
+                className="w-12 h-12 rounded-full"
+                alt="food"
+              />
+              <span className="px-3 mr-auto">{title}</span>
+              <span>${formatNumber(price)}</span>
+            </div>
+          );
+        }
       );
-    });
   } else if (isError) {
     content = <div>{error?.data?.message || error?.data}</div>;
   }
@@ -147,7 +166,7 @@ const Food = () => {
       <div className="absolute bottom-0 w-full">
         <ButtonSm>More Food</ButtonSm>
       </div>
-
+      {/* Markup for the food item modal pop-up. */}
       <Modal
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
@@ -176,7 +195,8 @@ const Food = () => {
           <p className="mb-2 sm2:text-sm">{description}</p>
           <div className="grid grid-cols-2 gap-2 my-4">
             <p className="text-md sm2:text-sm">
-              <span className="font-bold mr-4">Price:</span> ${price}
+              <span className="font-bold mr-4">Price:</span> $
+              {formatNumber(price)}
             </p>
             <p className="text-md sm2:text-sm">
               <span className="font-bold mr-4">Reviews:</span> {reviews}
