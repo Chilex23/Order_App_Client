@@ -1,15 +1,12 @@
 import { useSelector, useDispatch } from "react-redux";
-import { FaTrashAlt } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import {
   selectCartItems,
   selectCartItemsCount,
   selectCartTotal,
-  addItemToCart,
-  removeItemFromCart,
-  clearItemFromCart,
   clearCart,
 } from "../redux/features/cart";
+import { CartItem } from "../components/cartItem";
 import { selectUser } from "../redux/features/user";
 import { useCreateOrderMutation } from "../redux/features/api/orderSlice";
 import { notify } from "../utils/notify";
@@ -61,41 +58,13 @@ const Cart = () => {
           <h2 className="text-lg font-bold ">Cart({cartCount})</h2>
           <div className="w-full h-1 bg-gray-400 my-2">&nbsp;</div>
           {cartItems.map(({ id, name, imageLink, price, quantity }) => (
-            <div key={id} className="border-b-[1px] border-gray-400 pb-3 mb-3">
-              <div className="flex items-center justify-between text-lg">
-                <figure>
-                  <img src={imageLink} className="w-16 h-16" alt="food" />
-                </figure>
-                <p>{name}</p>
-                <p>${formatNumber(price)}</p>
-              </div>
-              <div className="mt-2 flex justify-between items-center">
-                <div
-                  className="flex items-center text-lg text-green-500 cursor-pointer"
-                  onClick={() => dispatch(clearItemFromCart(id))}
-                >
-                  <FaTrashAlt />
-                  <span className="ml-2 uppercase">Remove</span>
-                </div>
-                <div className="text-lg">
-                  <span
-                    onClick={() => dispatch(removeItemFromCart(id))}
-                    className="bg-green-500 px-3 py-1 rounded-md mr-2 cursor-pointer"
-                  >
-                    -
-                  </span>
-                  <span>{quantity}</span>
-                  <span
-                    onClick={() =>
-                      dispatch(addItemToCart(name, price, id, imageLink))
-                    }
-                    className="bg-green-500 px-3 py-1 rounded-md ml-2 cursor-pointer"
-                  >
-                    +
-                  </span>
-                </div>
-              </div>
-            </div>
+            <CartItem
+              id={id}
+              name={name}
+              imageLink={imageLink}
+              price={price}
+              quantity={quantity}
+            />
           ))}
         </div>
         {/* CART SUMMARY */}

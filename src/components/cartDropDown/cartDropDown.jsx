@@ -6,10 +6,14 @@ import { formatNumber } from "../../utils/formatNumber";
 import { ButtonSm } from "../button/button";
 
 const CartDropDown = ({ visibility }) => {
-    console.log(visibility)
+  console.log(visibility);
   const cartItems = useSelector(selectCartItems);
   return (
-    <motion.div animate={{y: visibility ? 0 : 100 }} initial={{y: 100}} className="bg-white p-4 absolute top-16 right-10 text-black rounded-md shadow-2xl">
+    <motion.div
+      animate={{ y: visibility ? 0 : 100 }}
+      initial={{ y: 100 }}
+      className="bg-white p-4 absolute top-16 right-10 text-black rounded-md shadow-2xl"
+    >
       {cartItems.map(({ name, imageLink, price, quantity }) => (
         <div key={name} className="flex items-center justify-between mb-4">
           <img
