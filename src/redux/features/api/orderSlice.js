@@ -1,5 +1,6 @@
 import { createSelector } from "@reduxjs/toolkit";
 import { apiSlice, authHeaders } from "./apiSlice";
+import { formatDate } from "../../../utils/formatDate";
 
 export const orderSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
@@ -29,7 +30,16 @@ export const selectOrdersResult =
 
 export const selectOrdersData = createSelector(
   selectOrdersResult,
-  (result) => result?.data ?? emptyOrders
+  (result) => result?.data?.orders ?? emptyOrders
+);
+
+export const selectOrdersForCharts = createSelector(
+  selectOrdersData,
+  (result) =>
+    result.map(({ order_date, total_price }) => ({
+      name: formatDate(order_date),
+      amt: total_price,
+    }))
 );
 
 export const { useGetOrdersForAdminQuery, useCreateOrderMutation } = orderSlice;

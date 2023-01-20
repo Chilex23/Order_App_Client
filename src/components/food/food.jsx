@@ -119,8 +119,8 @@ const Food = () => {
                 className="w-12 h-12 rounded-full"
                 alt="food"
               />
-              <span className="px-3 mr-auto">{title}</span>
-              <span>${formatNumber(price)}</span>
+              <span className="px-3 mr-auto text-sm">{title}</span>
+              <span className="text-sm">${formatNumber(price)}</span>
             </div>
           );
         }
