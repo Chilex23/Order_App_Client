@@ -35,6 +35,7 @@ const Cart = () => {
     if (!user) {
       notify("successBottom", "Please Sign in to place an order.");
       navigate("/login");
+      return;
     }
     if (canSave) {
       notify("successBottom", "Placing Order...");
@@ -97,7 +98,7 @@ const Cart = () => {
             </div>
           ))}
         </div>
-
+        {/* CART SUMMARY */}
         <div className="border-2 border-gray-400 w-4/12 ml-8 self-start rounded-md p-2">
           <p className="uppercase border-b-[1px] border-gray-400">
             Cart Summary

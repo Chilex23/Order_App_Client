@@ -63,7 +63,7 @@ const SideBar = () => {
           key={name}
           to={urlPath}
           className={`cursor-pointer flex items-center ${
-            currentPage === urlPath
+            currentPage === urlPath && currentPage === pathname
               ? "bg-white text-black p-1 rounded-md"
               : "hover:bg-stone-700 p-1 rounded-md"
           }`}
@@ -97,7 +97,7 @@ const SideBar = () => {
             key={name}
             to={urlPath}
             className={`cursor-pointer flex items-center justify-between ${
-              currentPage === urlPath
+              currentPage === urlPath && currentPage === pathname
                 ? "bg-white text-black p-1 rounded-md"
                 : "hover:bg-stone-700 p-1 rounded-md"
             }`}
