@@ -75,7 +75,7 @@ const Food = () => {
       </div>
     );
   } else if (isSuccess) {
-    content = foodData
+    content = data?.foodItems
       .slice(0, 5)
       .map(
         ({
