@@ -60,6 +60,7 @@ const FoodDetails = ({ foodDetails: data }) => {
 
   let imageSrc = imageLink ? `http://localhost:3000/${imageLink}` : foodPic;
   let noOfReviews, foodReviews;
+  // The review data is in an object the key is the user and the value is the review,
   if (reviews) {
     noOfReviews = Object.keys(reviews).length;
     foodReviews = Object.entries(reviews);
@@ -97,6 +98,7 @@ const FoodDetails = ({ foodDetails: data }) => {
 
       <p className="my-5 mx-auto flex items-center">
         <span className="text-3xl font-rubik font-bold uppercase">Reviews</span>
+        {/* Check if the user is logged in and if he has already added a review */}
         {!currentUser || reviews?.currentUser ? null : (
           <ButtonSm clickHandler={() => openModal()}>Add Review</ButtonSm>
         )}
@@ -105,10 +107,13 @@ const FoodDetails = ({ foodDetails: data }) => {
         <div className="text-2xl flex items-center">
           <StarRating rating={avgRating} />
           <span className="text-xl ml-5">{avgRating}</span>
-          <span className="ml-2">Stars</span>
+          <span className="ml-2">{avgRating > 1 ? "Stars" : "Star"}</span>
         </div>
-        <span className="text-xl">{noOfReviews} reviews</span>
+        <span className="text-xl">
+          {noOfReviews} {noOfReviews > 1 ? "reviews" : "review"}
+        </span>
       </div>
+      {/* Markup For All Reviews */}
       {foodReviews.map((el, i) => (
         <div className="my-5 mx-auto" key={i}>
           <div className="p-2 border-2 border-gray-400 rounded-md bg-white shadow-xl">
@@ -132,6 +137,7 @@ const FoodDetails = ({ foodDetails: data }) => {
         </div>
       ))}
 
+      {/* Modal to add Review */}
       <Modal
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
