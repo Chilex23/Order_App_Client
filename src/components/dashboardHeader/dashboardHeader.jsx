@@ -15,7 +15,6 @@ const DashboardHeader = () => {
     } else {
       period = "Good Evening";
     }
-    console.log(typeof splittedTimeString[0]);
     return period;
   };
   return (

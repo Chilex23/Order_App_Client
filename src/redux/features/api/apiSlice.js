@@ -31,12 +31,23 @@ export const apiSlice = createApi({
           comment: review.comment,
         },
       }),
+      // invalidatesTags: (result, error, arg) => [{ type: "Food", id: arg.id }],
+      invalidatesTags: ["Food"],
     }),
     getFoods: builder.query({
       query: () => ({
         url: "/food?page=1",
       }),
-      providesTags: ["Food"],
+      providesTags: (result, error, arg) =>
+        result.foodItems
+          ? [
+              ...result.foodItems.map(({ uuid }) => ({
+                type: "Food",
+                id: uuid,
+              })),
+              "Food",
+            ]
+          : ["Food"],
     }),
     getFood: builder.query({
       query: (foodId) => ({
@@ -70,7 +81,6 @@ export const selectFoodItemsSortedByTitle = createSelector(
     return resultCopy.sort((a, b) => b.dateAdded.localeCompare(a.dateAdded));
   }
 );
-
 
 export const {
   useAddNewFoodMutation,

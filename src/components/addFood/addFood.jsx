@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import Modal from "react-modal";
-import { ToastContainer } from "react-toastify";
 import { IoCloseSharp } from "react-icons/io5";
 import FormInput from "../formInput/formInput";
 import { HoverButton } from "../button/button";
@@ -147,7 +146,6 @@ const AddFood = () => {
           </form>
         </Modal>
       </div>
-      <ToastContainer />
     </>
   );
 };

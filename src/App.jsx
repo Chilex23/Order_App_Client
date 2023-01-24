@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Modal from "react-modal";
+import { ToastContainer } from "react-toastify";
 import { Header } from "./components/header";
 import { Footer } from "./components/footer";
 import { NavBar } from "./components/navbar";
@@ -32,6 +33,7 @@ function App() {
           </Routes>
         </AppLayout>
         <Footer />
+        <ToastContainer />
       </Router>
     </>
   );

@@ -6,6 +6,7 @@ import { useAddReviewMutation } from "../../redux/features/api/apiSlice";
 import { selectUser } from "../../redux/features/user";
 import foodPic from "../../assets/images/hotDog.jpg";
 import { notify } from "../../utils/notify";
+import { toast } from "react-toastify";
 import customStyles from "../../utils/customStyles";
 import { addItemToCart } from "../../redux/features/cart";
 import { ButtonSm } from "../button/button";
@@ -45,14 +46,19 @@ const FoodDetails = ({ foodDetails: data }) => {
       id: uuid,
     };
     if (canSave) {
-      notify("success", "Adding Review");
       try {
-        const payload = await addReview(reviewBody).unwrap();
-        notify("success", payload.message);
+        // const payload = await addReview(reviewBody).unwrap();
+        // notify("success", payload.message);
+        toast.promise(addReview(reviewBody).unwrap(), {
+          pending: "Adding Review",
+          success: "Review Added Successfully",
+          error: "Error"
+        });
         setSelectedStars(0);
         setComment("");
       } catch (e) {
         console.log(e);
+        notify("error", e.data.message);
       }
     } else {
       notify("error", "Please write a comment and select a star rating.");
@@ -108,7 +114,7 @@ const FoodDetails = ({ foodDetails: data }) => {
         <div className="text-2xl flex items-center">
           <StarRating rating={avgRating} />
           <span className="text-xl ml-5">{avgRating}</span>
-          <span className="ml-2">{avgRating > 1 ? "Stars" : "Star"}</span>
+          <span className="ml-2 text-xl">{avgRating > 1 ? "Stars" : "Star"}</span>
         </div>
         <span className="text-xl">
           {noOfReviews} {noOfReviews > 1 ? "reviews" : "review"}
@@ -128,7 +134,7 @@ const FoodDetails = ({ foodDetails: data }) => {
                 {/* FirstName */}
               </span>
             </div>
-            <p className="my-2">{el[1].comment}</p>
+            <p className="my-2 text-lg">{el[1].comment}</p>
             <div className="flex items-center">
               <span className="text-lg font-semibold mr-4">Rating:</span>
               <StarRating rating={el[1].rating} />

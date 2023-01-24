@@ -1,5 +1,4 @@
 import { useParams } from "react-router-dom";
-import { ToastContainer } from "react-toastify";
 import { Triangle } from "react-loader-spinner";
 import { useGetFoodQuery } from "../redux/features/api/apiSlice";
 import { FoodDetails } from "../components/foodDetails";
@@ -29,7 +28,6 @@ const Food = () => {
   return (
     <div className="w-7/12 mr-auto mb-24">
       {content}
-      <ToastContainer />
     </div>
   );
 };

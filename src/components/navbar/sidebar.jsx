@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useLocation } from "react-router-dom";
 import { Link } from "react-router-dom";
-import { ToastContainer } from "react-toastify";
 import { AiFillCaretDown, AiFillCaretUp, AiFillHome } from "react-icons/ai";
 import { FaPizzaSlice } from "react-icons/fa";
 import { MdOutlineLocalDrink, MdDashboardCustomize } from "react-icons/md";
@@ -128,7 +127,6 @@ const SideBar = () => {
           <span>{currentUser}</span>
         </div>
       ) : null}
-      <ToastContainer />
     </div>
   );
 };
