@@ -38,7 +38,7 @@ export const selectOrdersForCharts = createSelector(
   (result) =>
     result.map(({ order_date, total_price }) => ({
       name: formatDate(order_date),
-      amt: total_price,
+      amount: total_price,
     }))
 );
 

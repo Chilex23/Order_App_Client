@@ -36,7 +36,7 @@ const OrdersBarChart = () => {
         <YAxis />
         <Tooltip />
         <Legend />
-        <Bar dataKey="amt" fill="#16a34a" />
+        <Bar dataKey="amount" fill="#16a34a" />
       </BarChart>
     </>
     // </ResponsiveContainer>

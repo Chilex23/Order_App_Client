@@ -8,13 +8,14 @@ const DashboardHeader = () => {
       period = "Good Morning";
     } else if (
       /PM/i.test(timeString) &&
-      splittedTimeString[0] >= "12" &&
-      splittedTimeString <= "4"
+      Number(splittedTimeString[0]) % 12 >= 0 &&
+      Number(splittedTimeString[0]) % 12 <= 4
     ) {
       period = "Good Afternoon";
     } else {
       period = "Good Evening";
     }
+    console.log(typeof splittedTimeString[0]);
     return period;
   };
   return (

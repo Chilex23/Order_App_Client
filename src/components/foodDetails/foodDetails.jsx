@@ -45,6 +45,7 @@ const FoodDetails = ({ foodDetails: data }) => {
       id: uuid,
     };
     if (canSave) {
+      notify("success", "Adding Review");
       try {
         const payload = await addReview(reviewBody).unwrap();
         notify("success", payload.message);

@@ -16,13 +16,15 @@ import {
   useGetFoodsQuery,
   selectFoodItemsSortedByPrice,
   selectFoodItemsSortedByTitle,
+  selectFoodItemsData
 } from "../../redux/features/api/apiSlice";
 
 const Food = () => {
   const { data, isLoading, isSuccess, isError, error } = useGetFoodsQuery();
   const foodSortedByPrice = useSelector(selectFoodItemsSortedByPrice);
   const foodSortedByLatest = useSelector(selectFoodItemsSortedByTitle);
-  const [foodData, setFoodData] = useState(data?.foodItems);
+  const foodResults = useSelector(selectFoodItemsData);
+  const [foodData, setFoodData] = useState(foodResults);
   const sortFood = (type) => {
     if (type === "price") {
       setFoodData(foodSortedByPrice);
@@ -75,7 +77,8 @@ const Food = () => {
       </div>
     );
   } else if (isSuccess) {
-    content = data?.foodItems
+    let arr = foodData.length <= 0 ?  data?.foodItems : foodData
+    content = arr
       .slice(0, 5)
       .map(
         ({
