@@ -1,9 +1,11 @@
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import { Menu, MenuItem, MenuButton, MenuRadioGroup } from "@szhsin/react-menu";
 import { FaFilter } from "react-icons/fa";
 import { Triangle } from "react-loader-spinner";
 import "@szhsin/react-menu/dist/transitions/slide.css";
 import { ButtonSm } from "../button/button";
+import { selectOrdersData, selectOrdersSortedByAmount, selectOrdersSortedByDate } from "../../redux/features/api/orderSlice";
 import { formatDate } from "../../utils/formatDate";
 import { formatNumber } from "../../utils/formatNumber";
 import { useGetOrdersForAdminQuery } from "../../redux/features/api/orderSlice";
@@ -11,7 +13,19 @@ import { useGetOrdersForAdminQuery } from "../../redux/features/api/orderSlice";
 const Orders = () => {
   const { data, isLoading, isSuccess, isError, error } =
     useGetOrdersForAdminQuery();
-  const [filter, setFilter] = useState("undelivered");
+  const ordersSortedByPrice = useSelector(selectOrdersSortedByAmount);
+  const ordersSortedByDate = useSelector(selectOrdersSortedByDate);
+  const orderResults = useSelector(selectOrdersData);
+  const [orderData, setOrderData] = useState(orderResults);
+  const [filter, setFilter] = useState("price");
+  const sortFood = (type) => {
+    if (type === "price") {
+      setOrderData(ordersSortedByPrice);
+    } else {
+      setOrderData(ordersSortedByDate);
+    }
+    setFilter(type);
+  };
   let content;
   if (isLoading) {
     content = (
@@ -20,9 +34,10 @@ const Orders = () => {
       </div>
     );
   } else if (isSuccess) {
+    let arr = orderData.length <= 0 ?  data?.orders : orderData
     content = (
       <div className="flex flex-col gap-2 mb-16">
-        {data.orders
+        {arr
           .slice(0, 5)
           .map(({ _id, uuid, total_price, order_date }) => (
             <div
@@ -64,13 +79,16 @@ const Orders = () => {
         >
           <MenuRadioGroup
             value={filter}
-            onRadioChange={(e) => setFilter(e.value)}
+            onRadioChange={(e) => {
+              sortFood(e.value);
+              //setFilter(e.value);
+            }}
           >
-            <MenuItem type="radio" value="undelivered">
-              Not Delivered
+            <MenuItem type="radio" value="price">
+              Price
             </MenuItem>
-            <MenuItem type="radio" value="delivered">
-              Delivered
+            <MenuItem type="radio" value="latest">
+              Latest
             </MenuItem>
           </MenuRadioGroup>
         </Menu>

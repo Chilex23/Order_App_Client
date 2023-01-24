@@ -33,6 +33,22 @@ export const selectOrdersData = createSelector(
   (result) => result?.data?.orders ?? emptyOrders
 );
 
+export const selectOrdersSortedByAmount = createSelector(
+  selectOrdersData,
+  (result) => {
+    let resultCopy = result.slice();
+    return resultCopy.sort((a, b) => b.total_price - a.total_price);
+  }
+);
+
+export const selectOrdersSortedByDate = createSelector(
+  selectOrdersData,
+  (result) => {
+    let resultCopy = result.slice();
+    return resultCopy.sort((a, b) => b.order_date - a.order_date);
+  }
+);
+
 export const selectOrdersForCharts = createSelector(
   selectOrdersData,
   (result) =>

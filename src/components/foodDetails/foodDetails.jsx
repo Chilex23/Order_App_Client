@@ -90,11 +90,11 @@ const FoodDetails = ({ foodDetails: data }) => {
       <p className="text-3xl font-rubik font-bold uppercase mx-auto">
         Description
       </p>
-      <p className="my-5 mx-auto">{description}</p>
-      <p className="text-3xl font-rubik font-bold uppercase my-5 mx-auto">
+      <p className="my-2 mx-auto text-lg">{description}</p>
+      <p className="text-3xl font-rubik font-bold uppercase my-2 mx-auto">
         Price
       </p>
-      <p className="my-5 mx-auto">${formatNumber(price)}</p>
+      <p className="my-2 mx-auto text-lg">${formatNumber(price)}</p>
       <button
         onClick={() => dispatch(addItemToCart(title, price, uuid, imageSrc))}
         className="bg-gradient-to-r from-green-400 to-green-600 block rounded-md px-3 py-2 text-white my-4 hover:shadow-lg hover:scale-105 transition-all"
