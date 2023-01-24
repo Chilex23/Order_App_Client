@@ -37,7 +37,7 @@ export const TopRatedCarousel = () => {
         noOfReviews = 0;
       }
       return (
-        <div className="mr-4 p-3 bg-white rounded-md shadow-2xl h-[22rem]">
+        <div className="mr-4 p-3 bg-white rounded-md shadow-2xl h-[22rem] border-green-500 border-2">
           <img
             src={imageSrc}
             className="w-full h-[10rem] rounded-md"
@@ -52,7 +52,9 @@ export const TopRatedCarousel = () => {
             <div className="text-lg">
               <StarRating rating={el.avgRating} />
             </div>
-            <span className="ml-2 font-medium">{noOfReviews} reviews</span>
+            <span className="ml-2 font-medium">
+              {noOfReviews} {noOfReviews > 1 ? "reviews" : "review"}
+            </span>
           </div>
           <div className="flex justify-center">
             <button
@@ -95,7 +97,9 @@ export const TopRatedCarousel = () => {
         <h2 className="text-xl md:text-3xl px-1 md:px-4 font-extrabold uppercase my-4 font-rubik absolute -top-8 left-2/4 -translate-x-2/4 bg-gray-200">
           Top Rated
         </h2>
-        <span className="w-full h-1 bg-gradient-to-r from-green-400 to-green-600 rounded-md block">&nbsp;</span>
+        <span className="w-full h-1 bg-gradient-to-r from-green-400 to-green-600 rounded-md block">
+          &nbsp;
+        </span>
       </div>
       {content}
     </div>

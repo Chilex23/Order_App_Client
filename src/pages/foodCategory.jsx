@@ -18,7 +18,7 @@ const FoodCategory = () => {
       </h1>
       <div className="grid grid-cols-4 grid-row-3 gap-4 mb-10">
         {new Array(10).fill(1).map((el, i) => (
-          <div className="p-3 bg-white rounded-md shadow-2xl" key={i}>
+          <div className="p-3 bg-white rounded-md shadow-2xl border-green-500 border-2" key={i}>
             <img
               src={foodPic}
               className="w-full h-[10rem] rounded-md"

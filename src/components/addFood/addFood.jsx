@@ -74,7 +74,7 @@ const AddFood = () => {
   return (
     <>
       <div className="my-5 flex justify-between items-center">
-        <span className="uppercase font-bold">Admin Dashboard</span>
+        <span className="uppercase font-bold">Dashboard</span>
         <HoverButton clickHandler={openModal}>+ Add Food</HoverButton>
         <Modal
           isOpen={modalIsOpen}

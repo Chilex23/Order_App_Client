@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import { signInUser } from "../../redux/features/user";
 import { useLoginUserMutation } from "../../redux/features/api/authSice";
 import { notify } from "../../utils/notify";
@@ -24,10 +25,15 @@ const SignIn = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     if (canSave) {
-      notify("successBottom", `Logging in...`);
+      // notify("successBottom", `Logging in...`);
       try {
         const payload = await loginUser(userCredentials).unwrap();
-        notify("successBottom", payload.message);
+        // notify("successBottom", payload.message);
+        toast.promise(loginUser(userCredentials).unwrap(), {
+          pending: "Logging in...",
+          success: payload.message,
+          error: "Error"
+        });
         const user = {
           username: username,
           token: payload.token,
