@@ -17,7 +17,7 @@ const Orders = () => {
   const ordersSortedByDate = useSelector(selectOrdersSortedByDate);
   const orderResults = useSelector(selectOrdersData);
   const [orderData, setOrderData] = useState(orderResults);
-  const [filter, setFilter] = useState("price");
+  const [filter, setFilter] = useState("");
   const sortFood = (type) => {
     if (type === "price") {
       setOrderData(ordersSortedByPrice);

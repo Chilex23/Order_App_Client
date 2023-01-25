@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import Modal from "react-modal";
+import { Triangle } from "react-loader-spinner";
 import { IoCloseSharp } from "react-icons/io5";
+import { useGetCategoriesQuery } from "../../redux/features/api/apiSlice";
 import FormInput from "../formInput/formInput";
 import foodPic from "../../assets/images/pizza.jpg";
 import drinkPic from "../../assets/images/drinks.jpg";
@@ -8,6 +10,8 @@ import customStyles from "../../utils/customStyles";
 import { ButtonSm } from "../button/button";
 
 const Category = () => {
+  const { data, isLoading, isSuccess, isError, error } =
+    useGetCategoriesQuery();
   const [modalIsOpen, setIsOpen] = useState(false);
   const [categoryDetails, setCategoryDetails] = useState({
     type: "",
@@ -15,11 +19,9 @@ const Category = () => {
   const openModal = () => {
     setIsOpen(true);
   };
-
   const closeModal = () => {
     setIsOpen(false);
   };
-
   const handleSubmit = async (event) => {
     event.preventDefault();
     console.log(categoryDetails);
@@ -27,13 +29,47 @@ const Category = () => {
       type: "",
     });
   };
-
   const handleChange = (event) => {
     const { value, name } = event.target;
     setCategoryDetails({ ...categoryDetails, [name]: value });
   };
+  const getCategoryPicture = (title) => {
+    let pic;
+    switch (title) {
+      case "Pizzas":
+        pic = foodPic;
+        break;
+      case "Drinks":
+        pic = drinkPic;
+        break;
+      default:
+        pic = foodPic;
+    }
+    return pic;
+  };
 
   const { type } = categoryDetails;
+  let content;
+  if (isLoading) {
+    content = (
+      <div className="flex justify-center my-2">
+        <Triangle color="#22c55e" height={80} width={80} />
+      </div>
+    );
+  } else if (isSuccess) {
+    content = (
+      <div className="mt-4 mb-24">
+        {data?.categories.map(({ type: categoryType, _id }) => (
+          <div className="flex items-center mb-4 bg-gray-200 p-2 rounded-lg" key={_id}>
+            <img src={getCategoryPicture(categoryType)} className="w-12 h-12 rounded-full mr-8" />
+            <span>{categoryType}</span>
+          </div>
+        ))}
+      </div>
+    );
+  } else if (isError) {
+    content = <div>{error?.data?.message || error?.data}</div>;
+  }
   return (
     <div className="shadow-2xl p-3 rounded-md bg-white relative">
       <div className="flex justify-between items-center">
@@ -44,16 +80,7 @@ const Category = () => {
           + New Category
         </button>
       </div>
-      <div className="mt-4 mb-24">
-        <div className="flex items-center mb-4 bg-gray-200 p-2 rounded-lg">
-          <img src={drinkPic} className="w-12 h-12 rounded-full mr-8" />
-          <span>Drinks</span>
-        </div>
-        <div className="flex items-center bg-gray-200 p-2 rounded-lg">
-          <img src={foodPic} className="w-12 h-12 rounded-full mr-8" />
-          <span>Pizzas</span>
-        </div>
-      </div>
+      {content}
       <div className="absolute bottom-0 w-full">
         <ButtonSm>View all</ButtonSm>
       </div>

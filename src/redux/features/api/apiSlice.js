@@ -54,6 +54,11 @@ export const apiSlice = createApi({
         url: `/food/${foodId}`,
       }),
     }),
+    getCategories: builder.query({
+      query: () => ({
+        url: "/food/category/all",
+      }),
+    }),
   }),
 });
 
@@ -87,4 +92,5 @@ export const {
   useAddReviewMutation,
   useGetFoodsQuery,
   useGetFoodQuery,
+  useGetCategoriesQuery
 } = apiSlice;
