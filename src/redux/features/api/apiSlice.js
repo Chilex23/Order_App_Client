@@ -9,7 +9,7 @@ export const authHeaders = {
 export const apiSlice = createApi({
   reducerPath: "api",
   baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:3000/api" }),
-  tagTypes: ["Food"],
+  tagTypes: ["Food", "Orders"],
   endpoints: (builder) => ({
     addNewFood: builder.mutation({
       query: (formData) => ({

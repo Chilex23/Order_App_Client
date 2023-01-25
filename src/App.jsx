@@ -11,6 +11,7 @@ import FoodCategory from "./pages/foodCategory";
 import Food from "./pages/food";
 import Cart from "./pages/cart";
 import SignInSignUp from "./pages/signinSignup";
+import OrderSuccess from "./pages/orderSuccess";
 import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
 
@@ -30,6 +31,7 @@ function App() {
             <Route path="/food/:foodId" element={<Food />} />
             <Route path="/cart" element={<Cart />} />
             <Route path="/login" element={<SignInSignUp />} />
+            <Route path="/orderSuccess" element={<OrderSuccess />} />
           </Routes>
         </AppLayout>
         <Footer />

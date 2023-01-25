@@ -9,6 +9,7 @@ export const orderSlice = apiSlice.injectEndpoints({
         url: "/orders/all?page=1",
         headers: authHeaders,
       }),
+      providesTags: ["Orders"],
     }),
     createOrder: builder.mutation({
       query: (items) => ({
@@ -19,6 +20,7 @@ export const orderSlice = apiSlice.injectEndpoints({
           items,
         },
       }),
+      invalidatesTags: ["Orders"],
     }),
   }),
 });

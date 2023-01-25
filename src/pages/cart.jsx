@@ -1,5 +1,6 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import {
   selectCartItems,
   selectCartItemsCount,
@@ -35,12 +36,17 @@ const Cart = () => {
       return;
     }
     if (canSave) {
-      notify("successBottom", "Placing Order...");
+      //notify("successBottom", "Placing Order...");
       try {
-        const payload = await addOrder(transformedOrderItems).unwrap();
-        notify("successBottom", payload.message);
+        //const payload = await addOrder(transformedOrderItems).unwrap();
+        await toast.promise(addOrder(transformedOrderItems).unwrap(), {
+          pending: "Placing Order...",
+          success: "Order Placed Successfully",
+          error: "Error"
+        });
+        //notify("successBottom", payload.message);
         dispatch(clearCart());
-        navigate("/");
+        navigate("/orderSuccess");
       } catch (err) {
         notify("error", err);
       }
