@@ -49,7 +49,7 @@ const FoodDetails = ({ foodDetails: data }) => {
       try {
         // const payload = await addReview(reviewBody).unwrap();
         // notify("success", payload.message);
-        toast.promise(addReview(reviewBody).unwrap(), {
+        await toast.promise(addReview(reviewBody).unwrap(), {
           pending: "Adding Review",
           success: "Review Added Successfully",
           error: "Error"

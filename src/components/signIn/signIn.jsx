@@ -29,13 +29,14 @@ const SignIn = () => {
       try {
         const payload = await loginUser(userCredentials).unwrap();
         // notify("successBottom", payload.message);
-        toast.promise(loginUser(userCredentials).unwrap(), {
+        await toast.promise(loginUser(userCredentials).unwrap(), {
           pending: "Logging in...",
           success: payload.message,
           error: "Error"
         });
         const user = {
-          username: username,
+          username: payload.username,
+          name: payload.name,
           token: payload.token,
         };
         dispatch(signInUser(user));

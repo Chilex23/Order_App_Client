@@ -1,5 +1,6 @@
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { FaSadTear } from "react-icons/fa";
 import { motion } from "framer-motion";
 import { selectCartItems } from "../../redux/features/cart";
 import { formatNumber } from "../../utils/formatNumber";
@@ -15,6 +16,9 @@ const CartDropDown = ({ visibility }) => {
         initial={{ y: 100 }}
         className="bg-white p-4 absolute top-16 right-10 text-black rounded-md shadow-2xl"
       >
+        <div className="text-2xl text-green-600 flex justify-center mb-2">
+          <FaSadTear />
+        </div>
         <p>No Food Items In the Cart...</p>
       </motion.div>
     );

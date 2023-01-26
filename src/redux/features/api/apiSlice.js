@@ -9,7 +9,7 @@ export const authHeaders = {
 export const apiSlice = createApi({
   reducerPath: "api",
   baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:3000/api" }),
-  tagTypes: ["Food", "Orders"],
+  tagTypes: ["Food", "Orders", "Categories"],
   endpoints: (builder) => ({
     addNewFood: builder.mutation({
       query: (formData) => ({
@@ -58,7 +58,17 @@ export const apiSlice = createApi({
       query: () => ({
         url: "/food/category/all",
       }),
+      providesTags: ["Categories"],
     }),
+    addCategory: builder.mutation({
+      query: (category) => ({
+        url: "/food/category/add",
+        method: "POST",
+        headers: authHeaders,
+        body: category
+      }),
+      invalidatesTags: ["Categories"],
+    })
   }),
 });
 
@@ -92,5 +102,6 @@ export const {
   useAddReviewMutation,
   useGetFoodsQuery,
   useGetFoodQuery,
-  useGetCategoriesQuery
+  useGetCategoriesQuery,
+  useAddCategoryMutation
 } = apiSlice;

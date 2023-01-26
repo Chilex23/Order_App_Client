@@ -2,20 +2,26 @@ import React, { useState } from "react";
 import Modal from "react-modal";
 import { Triangle } from "react-loader-spinner";
 import { IoCloseSharp } from "react-icons/io5";
-import { useGetCategoriesQuery } from "../../redux/features/api/apiSlice";
+import { toast } from "react-toastify";
+import { useGetCategoriesQuery, useAddCategoryMutation } from "../../redux/features/api/apiSlice";
 import FormInput from "../formInput/formInput";
 import foodPic from "../../assets/images/pizza.jpg";
 import drinkPic from "../../assets/images/drinks.jpg";
+import snackPic from "../../assets/images/hamburger.jpg";
+import { notify } from "../../utils/notify";
 import customStyles from "../../utils/customStyles";
 import { ButtonSm } from "../button/button";
 
 const Category = () => {
   const { data, isLoading, isSuccess, isError, error } =
     useGetCategoriesQuery();
+  const [addCategory, { isLoading: loading }] = useAddCategoryMutation()
   const [modalIsOpen, setIsOpen] = useState(false);
   const [categoryDetails, setCategoryDetails] = useState({
     type: "",
   });
+  const { type } = categoryDetails;
+  const canSave =  type && !loading;
   const openModal = () => {
     setIsOpen(true);
   };
@@ -24,10 +30,23 @@ const Category = () => {
   };
   const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log(categoryDetails);
-    setCategoryDetails({
-      type: "",
-    });
+    if (canSave) {
+      try {
+       await toast.promise(addCategory(categoryDetails).unwrap(), {
+          pending: "Adding Category",
+          success: "Category Added Successfully",
+          error: "Error"
+        });
+        setCategoryDetails({
+          type: "",
+        });
+      } catch(e) {
+        notify("error", e.data.message);
+      }
+      closeModal();
+    } else {
+      notify("error", "Please fill all fields");
+    }
   };
   const handleChange = (event) => {
     const { value, name } = event.target;
@@ -42,13 +61,15 @@ const Category = () => {
       case "Drinks":
         pic = drinkPic;
         break;
+      case "Snacks":
+        pic = snackPic;
+        break;
       default:
         pic = foodPic;
     }
     return pic;
   };
 
-  const { type } = categoryDetails;
   let content;
   if (isLoading) {
     content = (

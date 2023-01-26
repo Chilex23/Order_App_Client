@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   username: "",
   userToken: "",
+  userFullName: "",
 };
 
 const userSlice = createSlice({
@@ -10,8 +11,13 @@ const userSlice = createSlice({
   initialState,
   reducers: {
     signInUser(state, action) {
-      (state.username = action.payload.username),
-        (state.userToken = action.payload.token);
+      // (state.username = action.payload.username),
+      //   (state.userFullName = action.payload.name)(
+      //     (state.userToken = action.payload.token)
+      //   );
+      state.username = action.payload.username;
+      state.userFullName = action.payload.name;
+      state.userToken = action.payload.token;
     },
     logOutUser(state) {
       state.username = null;
