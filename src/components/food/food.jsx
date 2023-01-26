@@ -16,7 +16,7 @@ import {
   useGetFoodsQuery,
   selectFoodItemsSortedByPrice,
   selectFoodItemsSortedByTitle,
-  selectFoodItemsData
+  selectFoodItemsData,
 } from "../../redux/features/api/apiSlice";
 
 const Food = () => {
@@ -77,7 +77,7 @@ const Food = () => {
       </div>
     );
   } else if (isSuccess) {
-    let arr = foodData.length <= 0 ?  data?.foodItems : foodData
+    let arr = foodData.length <= 0 ? data?.foodItems : foodData;
     content = arr
       .slice(0, 5)
       .map(
@@ -153,7 +153,6 @@ const Food = () => {
             value={filter}
             onRadioChange={(e) => {
               sortFood(e.value);
-              //setFilter(e.value);
             }}
           >
             <MenuItem type="radio" value="price">
