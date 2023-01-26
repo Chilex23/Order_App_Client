@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Modal from "react-modal";
 import { Triangle } from "react-loader-spinner";
+import { Link } from "react-router-dom";
 import { IoCloseSharp } from "react-icons/io5";
 import { toast } from "react-toastify";
 import { useGetCategoriesQuery, useAddCategoryMutation } from "../../redux/features/api/apiSlice";
@@ -81,10 +82,10 @@ const Category = () => {
     content = (
       <div className="mt-4 mb-24">
         {data?.categories.map(({ type: categoryType, _id }) => (
-          <div className="flex items-center mb-4 bg-gray-200 p-2 rounded-lg" key={_id}>
+          <Link to={`/category/${categoryType}`} className="flex items-center mb-4 bg-gray-200 p-2 rounded-lg" key={_id}>
             <img src={getCategoryPicture(categoryType)} className="w-12 h-12 rounded-full mr-8" />
             <span>{categoryType}</span>
-          </div>
+          </Link>
         ))}
       </div>
     );
@@ -102,9 +103,9 @@ const Category = () => {
         </button>
       </div>
       {content}
-      <div className="absolute bottom-0 w-full">
+      {/* <div className="absolute bottom-0 w-full">
         <ButtonSm>View all</ButtonSm>
-      </div>
+      </div> */}
 
       <Modal
         isOpen={modalIsOpen}

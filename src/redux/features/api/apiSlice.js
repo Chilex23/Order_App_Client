@@ -68,6 +68,11 @@ export const apiSlice = createApi({
         body: category
       }),
       invalidatesTags: ["Categories"],
+    }),
+    getFoodByCategory: builder.query({
+      query: ({category, page}) => ({
+        url: `/food/category/${category}?page=${page}`
+      })
     })
   }),
 });
@@ -103,5 +108,6 @@ export const {
   useGetFoodsQuery,
   useGetFoodQuery,
   useGetCategoriesQuery,
-  useAddCategoryMutation
+  useAddCategoryMutation,
+  useGetFoodByCategoryQuery
 } = apiSlice;

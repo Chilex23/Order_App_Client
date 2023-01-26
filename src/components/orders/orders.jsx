@@ -182,7 +182,7 @@ const Orders = () => {
                 <tr key={name} className="text-center">
                   <td className="border-[1px] border-green-600">{name}</td>
                   <td className="border-[1px] border-green-600">{quantity}</td>
-                  <td className="border-[1px] border-green-600">{price}</td>
+                  <td className="border-[1px] border-green-600">{formatNumber(price)}</td>
                 </tr>
               ))}
             </tbody>

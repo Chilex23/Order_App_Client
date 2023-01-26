@@ -106,7 +106,7 @@ const FoodDetails = ({ foodDetails: data }) => {
       <p className="my-5 mx-auto flex items-center">
         <span className="text-3xl font-rubik font-bold uppercase">Reviews</span>
         {/* Check if the user is logged in and if he has already added a review */}
-        {!currentUser || reviews?.currentUser ? null : (
+        {!currentUser || reviews[currentUser] ? null : (
           <ButtonSm clickHandler={() => openModal()}>Add Review</ButtonSm>
         )}
       </p>

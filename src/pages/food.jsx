@@ -12,7 +12,7 @@ const Food = () => {
   let content;
   if (isLoading) {
     content = (
-      <div className="flex justify-center items-center my-16">
+      <div className="flex justify-center items-center my-28">
         <Triangle color="#22c55e" height={200} width={200} />
       </div>
     );
