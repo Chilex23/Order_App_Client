@@ -18,6 +18,8 @@ const SignIn = () => {
   const [loginUser, { isLoading }] = useLoginUserMutation();
   const { username, password } = userCredentials;
   const canSave = [username, password].every(Boolean) && !isLoading;
+  // console.log("loading", isLoading);
+  // console.log("canSave", canSave)
   const handleChange = (event) => {
     const { value, name } = event.target;
     setUserCredentials({ ...userCredentials, [name]: value });
@@ -67,7 +69,7 @@ const SignIn = () => {
           type="password"
           label="Password"
         />
-        <ButtonMd>Log In</ButtonMd>
+        {!isLoading ? <ButtonMd>Log In</ButtonMd>: null}
       </form>
     </div>
   );
