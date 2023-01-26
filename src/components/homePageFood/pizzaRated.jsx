@@ -1,7 +1,9 @@
 import AliceCarousel from "react-alice-carousel";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import { Triangle } from "react-loader-spinner";
 import { useGetFoodByCategoryQuery } from "../../redux/features/api/apiSlice";
+import { addItemToCart } from "../../redux/features/cart";
 import { formatNumber } from "../../utils/formatNumber";
 import { StarRating } from "../starRating";
 import { ButtonSm } from "../button";
@@ -10,6 +12,7 @@ import { responsive } from "./topRated";
 const TopRatedPizzaCarousel = () => {
   const { data, isLoading, isSuccess, isError, error } =
     useGetFoodByCategoryQuery({ category: "Pizzas", page: 1 });
+  const dispatch = useDispatch();
   let content;
   if (isLoading) {
     content = (
