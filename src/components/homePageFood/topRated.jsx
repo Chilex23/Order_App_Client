@@ -5,6 +5,7 @@ import { Triangle } from "react-loader-spinner";
 import { addItemToCart } from "../../redux/features/cart";
 import { useGetFoodsQuery } from "../../redux/features/api/apiSlice";
 import { formatNumber } from "../../utils/formatNumber";
+import { limitTitle } from "../../utils/limitTitle";
 import foodPic from "../../assets/images/hamburger.jpg";
 import { StarRating } from "../starRating";
 import { ButtonSm } from "../button";
@@ -43,8 +44,8 @@ export const TopRatedCarousel = () => {
             className="w-full h-[10rem] rounded-md"
             alt="food"
           />
-          <h3 className="font-semibold my-2 uppercase font-rubik">
-            {el.title}
+          <h3 className="font-semibold my-2 uppercase font-rubik text-lg sm:text-xl">
+            {limitTitle(el.title)}
           </h3>
           <p className="my-2 font-semibold">Price: ${formatNumber(el.price)}</p>
           <div className="my-2 font-semibold flex items-center">

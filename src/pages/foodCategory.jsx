@@ -5,6 +5,7 @@ import { useGetFoodByCategoryQuery } from "../redux/features/api/apiSlice";
 import foodPic from "../assets/images/pizza.jpg";
 import { StarRating } from "../components/starRating";
 import { ButtonSm } from "../components/button";
+import { limitTitle } from "../utils/limitTitle";
 
 const FoodCategory = () => {
   window.scrollTo(0, 0);
@@ -46,7 +47,7 @@ const FoodCategory = () => {
               alt="food"
             />
             <h3 className="text-xl font-semibold my-2 uppercase font-rubik">
-              {title}
+              {limitTitle(title)}
             </h3>
             <p className="my-2 font-semibold">Price: ${price}</p>
             <div className="my-2 font-semibold flex items-center">
