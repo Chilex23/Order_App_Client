@@ -27,19 +27,15 @@ const SignIn = () => {
     event.preventDefault();
     if (canSave) {
       try {
-        const promiseArray = [
-          loginUser(userCredentials).unwrap(),
-          toast.promise(loginUser(userCredentials).unwrap(), {
-            pending: "Logging in...",
-            success: "Logged in successfully",
-            error: "Error",
-          }),
-        ];
-        let res = await Promise.all(promiseArray)
+        let res = await toast.promise(loginUser(userCredentials).unwrap(), {
+          pending: "Logging in...",
+          success: "Logged in successfully",
+          error: "Error",
+        })
         const user = {
-          username: res[0].username,
-          name: res[0].name,
-          token: res[0].token,
+          username: res.username,
+          name: res.name,
+          token: res.token,
         };
         dispatch(signInUser(user));
         setUserCredentials({ username: "", password: "" });
