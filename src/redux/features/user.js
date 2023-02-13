@@ -11,10 +11,6 @@ const userSlice = createSlice({
   initialState,
   reducers: {
     signInUser(state, action) {
-      // (state.username = action.payload.username),
-      //   (state.userFullName = action.payload.name)(
-      //     (state.userToken = action.payload.token)
-      //   );
       state.username = action.payload.username;
       state.userFullName = action.payload.name;
       state.userToken = action.payload.token;
@@ -22,6 +18,7 @@ const userSlice = createSlice({
     logOutUser(state) {
       state.username = null;
       state.userToken = null;
+      state.userFullName = null;
     },
   },
 });

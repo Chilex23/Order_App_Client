@@ -18,8 +18,7 @@ const SignIn = () => {
   const [loginUser, { isLoading }] = useLoginUserMutation();
   const { username, password } = userCredentials;
   const canSave = [username, password].every(Boolean) && !isLoading;
-  // console.log("loading", isLoading);
-  // console.log("canSave", canSave)
+
   const handleChange = (event) => {
     const { value, name } = event.target;
     setUserCredentials({ ...userCredentials, [name]: value });
@@ -27,19 +26,20 @@ const SignIn = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     if (canSave) {
-      // notify("successBottom", `Logging in...`);
       try {
-        const payload = await loginUser(userCredentials).unwrap();
-        // notify("successBottom", payload.message);
-        await toast.promise(loginUser(userCredentials).unwrap(), {
-          pending: "Logging in...",
-          success: payload.message,
-          error: "Error"
-        });
+        const promiseArray = [
+          loginUser(userCredentials).unwrap(),
+          toast.promise(loginUser(userCredentials).unwrap(), {
+            pending: "Logging in...",
+            success: "Logged in successfully",
+            error: "Error",
+          }),
+        ];
+        let res = await Promise.all(promiseArray)
         const user = {
-          username: payload.username,
-          name: payload.name,
-          token: payload.token,
+          username: res[0].username,
+          name: res[0].name,
+          token: res[0].token,
         };
         dispatch(signInUser(user));
         setUserCredentials({ username: "", password: "" });
@@ -50,7 +50,6 @@ const SignIn = () => {
     } else {
       notify("error", "Please Fill all fields");
     }
-    //console.log(userCredentials);
   };
   return (
     <div className="mr-24">
@@ -69,7 +68,7 @@ const SignIn = () => {
           type="password"
           label="Password"
         />
-        {!isLoading ? <ButtonMd>Log In</ButtonMd>: null}
+        {!isLoading ? <ButtonMd>Log In</ButtonMd> : null}
       </form>
     </div>
   );
