@@ -1,5 +1,6 @@
 import BaseSkeletonCard from "./baseSkeletonCard";
 import BaseSkeletonFood from "./baseSkeletonFood";
+import BaseSkeletonDashboard from "./baseSkeletonDashboard";
 
 const BaseSkeleton = ({ variant = "default" }) => {
   const handleSetContentVariant = () => {
@@ -16,6 +17,9 @@ const BaseSkeleton = ({ variant = "default" }) => {
         break;
       case "food-details":
         content = <BaseSkeletonFood />;
+        break;
+      case "dashboard":
+        content = <BaseSkeletonDashboard />;
         break;
       default:
         content = (

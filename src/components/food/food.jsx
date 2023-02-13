@@ -6,11 +6,11 @@ import { useSelector } from "react-redux";
 import { IoCloseSharp } from "react-icons/io5";
 import customStyles from "../../utils/customStyles";
 import { FaFilter } from "react-icons/fa";
-import { Triangle } from "react-loader-spinner";
 import "@szhsin/react-menu/dist/transitions/slide.css";
 import { formatNumber } from "../../utils/formatNumber";
 import foodPic from "../../assets/images/hamburger.jpg";
 import { StarRating } from "../starRating";
+import { BaseSkeleton } from "../baseSkeleton";
 import { ButtonSm } from "../button";
 import {
   useGetFoodsQuery,
@@ -71,11 +71,7 @@ const Food = () => {
 
   let content;
   if (isLoading) {
-    content = (
-      <div className="self-center my-2">
-        <Triangle color="#22c55e" height={80} width={80} />
-      </div>
-    );
+    content = <BaseSkeleton variant="dashboard" />;
   } else if (isSuccess) {
     let arr = foodData.length <= 0 ? data?.foodItems : foodData;
     content = arr
@@ -103,7 +99,7 @@ const Food = () => {
           // Markup for each initially shown food items.
           return (
             <div
-              className="flex items-center hover:bg-gray-200 p-1 border-b-[1px] border-gray-300 hover:rounded-md cursor-pointer transition"
+              className="flex items-center hover:bg-gray-200 p-1 border-b-[1px] border-gray-300 hover:rounded-md cursor-pointer transition mb-2"
               onClick={() =>
                 openModal(
                   title,
@@ -165,10 +161,12 @@ const Food = () => {
         </Menu>
       </div>
       <p className="text-sm">Click on a food item to view more details.</p>
-      <div className="flex flex-col gap-y-2 mb-24">{content}</div>
-      <div className="absolute bottom-0 w-full">
-        <ButtonSm>More Food</ButtonSm>
-      </div>
+      <div className="flex flex-col mb-24">{content}</div>
+      {!isLoading ? (
+        <div className="absolute bottom-0 w-full">
+          <ButtonSm>More Food</ButtonSm>
+        </div>
+      ) : null}
       {/* Markup for the food item modal pop-up. */}
       <Modal
         isOpen={modalIsOpen}

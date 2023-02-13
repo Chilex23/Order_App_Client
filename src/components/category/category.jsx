@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import Modal from "react-modal";
-import { Triangle } from "react-loader-spinner";
 import { Link } from "react-router-dom";
 import { IoCloseSharp } from "react-icons/io5";
 import { toast } from "react-toastify";
 import { useGetCategoriesQuery, useAddCategoryMutation } from "../../redux/features/api/apiSlice";
 import FormInput from "../formInput/formInput";
+import { BaseSkeleton } from "../baseSkeleton";
 import foodPic from "../../assets/images/pizza.jpg";
 import drinkPic from "../../assets/images/drinks.jpg";
 import snackPic from "../../assets/images/hamburger.jpg";
@@ -73,11 +73,7 @@ const Category = () => {
 
   let content;
   if (isLoading) {
-    content = (
-      <div className="flex justify-center my-2">
-        <Triangle color="#22c55e" height={80} width={80} />
-      </div>
-    );
+    content = <BaseSkeleton variant="dashboard" />
   } else if (isSuccess) {
     content = (
       <div className="mt-4 mb-24">
@@ -94,7 +90,7 @@ const Category = () => {
   }
   return (
     <div className="shadow-2xl p-3 rounded-md bg-white relative">
-      <div className="flex justify-between items-center">
+      <div className="flex justify-between items-center mb-5">
         <p className="text-lg font-bold">
           <span className="w-2 bg-blue-500 mr-2">&nbsp;</span>Categories
         </p>

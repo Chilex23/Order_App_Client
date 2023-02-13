@@ -4,9 +4,9 @@ import { Menu, MenuItem, MenuButton, MenuRadioGroup } from "@szhsin/react-menu";
 import Modal from "react-modal";
 import { IoCloseSharp } from "react-icons/io5";
 import { FaFilter } from "react-icons/fa";
-import { Triangle } from "react-loader-spinner";
 import "@szhsin/react-menu/dist/transitions/slide.css";
 import { ButtonSm } from "../button/button";
+import { BaseSkeleton } from "../baseSkeleton";
 import {
   selectOrdersData,
   selectOrdersSortedByAmount,
@@ -56,11 +56,7 @@ const Orders = () => {
   };
   let content;
   if (isLoading) {
-    content = (
-      <div className="flex justify-center my-2">
-        <Triangle color="#22c55e" height={80} width={80} />
-      </div>
-    );
+    content = <BaseSkeleton variant="dashboard" />;
   } else if (isSuccess) {
     let arr = orderData.length <= 0 ? data?.orders : orderData;
     content = (
@@ -130,9 +126,11 @@ const Orders = () => {
         Click on a table row to see more details
       </span>
       {content}
-      <div className="absolute bottom-0 w-full">
-        <ButtonSm>More Orders</ButtonSm>
-      </div>
+      {!isLoading ? (
+        <div className="absolute bottom-0 w-full">
+          <ButtonSm>More Orders</ButtonSm>
+        </div>
+      ) : null}
 
       {/* Markup for the order details modal pop-up. */}
       <Modal
@@ -182,7 +180,9 @@ const Orders = () => {
                 <tr key={name} className="text-center">
                   <td className="border-[1px] border-green-600">{name}</td>
                   <td className="border-[1px] border-green-600">{quantity}</td>
-                  <td className="border-[1px] border-green-600">{formatNumber(price)}</td>
+                  <td className="border-[1px] border-green-600">
+                    {formatNumber(price)}
+                  </td>
                 </tr>
               ))}
             </tbody>

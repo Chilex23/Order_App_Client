@@ -1,11 +1,11 @@
 import AliceCarousel from "react-alice-carousel";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { Triangle } from "react-loader-spinner";
 import { useGetFoodByCategoryQuery } from "../../redux/features/api/apiSlice";
 import { addItemToCart } from "../../redux/features/cart";
 import { formatNumber } from "../../utils/formatNumber";
 import { limitTitle } from "../../utils/limitTitle";
+import { BaseSkeleton } from "../baseSkeleton";
 import { StarRating } from "../starRating";
 import { ButtonSm } from "../button";
 import { responsive } from "./topRated";
@@ -16,11 +16,7 @@ const TopRatedPizzaCarousel = () => {
   const dispatch = useDispatch();
   let content;
   if (isLoading) {
-    content = (
-      <div className="flex justify-center items-center my-2 h-40">
-        <Triangle color="#22c55e" height={80} width={80} />
-      </div>
-    );
+    content = <BaseSkeleton variant="card-grid" />;
   } else if (isSuccess) {
     let items = data.foodItems.slice(0, 5).map((el) => {
       let imageSrc = el?.imageLink
