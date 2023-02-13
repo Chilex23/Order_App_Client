@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
-import { Triangle } from "react-loader-spinner";
 import { useGetFoodQuery } from "../redux/features/api/apiSlice";
 import { FoodDetails } from "../components/foodDetails";
+import { BaseSkeleton } from "../components/baseSkeleton";
 
 const Food = () => {
   const { foodId } = useParams();
@@ -11,11 +11,7 @@ const Food = () => {
 
   let content;
   if (isLoading) {
-    content = (
-      <div className="flex justify-center items-center my-28">
-        <Triangle color="#22c55e" height={200} width={200} />
-      </div>
-    );
+    content = <BaseSkeleton variant="food-details" />;
   } else if (isSuccess) {
     content = <FoodDetails foodDetails={data} foodId={foodId} />;
   } else if (isError) {
@@ -25,11 +21,7 @@ const Food = () => {
       </div>
     );
   }
-  return (
-    <div className="w-7/12 mr-auto mb-24">
-      {content}
-    </div>
-  );
+  return <div className="w-7/12 mr-auto mb-24">{content}</div>;
 };
 
 export default Food;

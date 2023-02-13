@@ -1,9 +1,9 @@
 import AliceCarousel from "react-alice-carousel";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { Triangle } from "react-loader-spinner";
 import { addItemToCart } from "../../redux/features/cart";
 import { useGetFoodsQuery } from "../../redux/features/api/apiSlice";
+import { BaseSkeleton } from "../baseSkeleton";
 import { formatNumber } from "../../utils/formatNumber";
 import { limitTitle } from "../../utils/limitTitle";
 import foodPic from "../../assets/images/hamburger.jpg";
@@ -21,11 +21,7 @@ export const TopRatedCarousel = () => {
   const { data, isLoading, isSuccess, isError, error } = useGetFoodsQuery();
   let content;
   if (isLoading) {
-    content = (
-      <div className="flex justify-center items-center my-2 h-40">
-        <Triangle color="#22c55e" height={80} width={80} />
-      </div>
-    );
+    content = <BaseSkeleton variant="card-grid" />;
   } else if (isSuccess) {
     let items = data.foodItems.slice(0, 5).map((el) => {
       let imageSrc = el?.imageLink
