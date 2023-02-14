@@ -1,6 +1,6 @@
 const BaseSkeletonCard = () => {
   return (
-    <div className="w-[22rem] h-[18rem] bg-white rounded-md p-3">
+    <div className="min-w-24 h-[18rem] bg-white rounded-md p-3">
       <div className="w-full h-[7rem] bg">&nbsp;</div>
       <div className="w-full h-3 bg mt-2">&nbsp;</div>
       <div className="w-2/4 h-3 bg mt-2">&nbsp;</div>

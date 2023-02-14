@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { useParams } from "react-router-dom";
-import { Triangle } from "react-loader-spinner";
 import { useGetFoodByCategoryQuery } from "../redux/features/api/apiSlice";
 import foodPic from "../assets/images/pizza.jpg";
 import { StarRating } from "../components/starRating";
+import {BaseSkeleton }from "../components/baseSkeleton";
 import { ButtonSm } from "../components/button";
 import { limitTitle } from "../utils/limitTitle";
 
@@ -18,11 +18,7 @@ const FoodCategory = () => {
   };
   let content;
   if (isLoading) {
-    content = (
-      <div className="flex justify-center items-center my-2 h-40">
-        <Triangle color="#22c55e" height={200} width={200} />
-      </div>
-    );
+    content = <BaseSkeleton variant="category-grid" />
   } else if (isSuccess) {
     let foodItemsArr = data.foodItems.map(
       ({ title, uuid, avgRating, price, imageLink, reviews }) => {

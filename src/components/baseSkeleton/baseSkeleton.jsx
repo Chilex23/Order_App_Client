@@ -15,6 +15,20 @@ const BaseSkeleton = ({ variant = "default" }) => {
           </div>
         );
         break;
+      case "category-grid":
+        content = (
+          <div className="grid grid-cols-4 gap-5">
+            <BaseSkeletonCard />
+            <BaseSkeletonCard />
+            <BaseSkeletonCard />
+            <BaseSkeletonCard />
+            <BaseSkeletonCard />
+            <BaseSkeletonCard />
+            <BaseSkeletonCard />
+            <BaseSkeletonCard />
+          </div>
+        );
+        break;
       case "food-details":
         content = <BaseSkeletonFood />;
         break;
