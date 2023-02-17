@@ -51,7 +51,7 @@ const FoodCategory = () => {
               <div className="text-lg">
                 <StarRating rating={avgRating} />
               </div>
-              <span className="ml-2 font-medium">{noOfReviews} reviews</span>
+              <span className="ml-2 font-medium">{noOfReviews} {noOfReviews > 1 ? "reviews" : "review"}</span>
             </div>
             <div className="flex">
               <ButtonSm>Add to Cart</ButtonSm>
