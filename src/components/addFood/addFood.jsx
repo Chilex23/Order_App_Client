@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Modal from "react-modal";
 import { IoCloseSharp } from "react-icons/io5";
+import { toast } from "react-toastify";
 import FormInput from "../formInput/formInput";
 import { HoverButton } from "../button/button";
 import { notify } from "../../utils/notify";
@@ -21,7 +22,12 @@ const AddFood = () => {
   const canSave =
     [title, description, category, price, foodImage].every(Boolean) &&
     !isLoading;
-  
+  const openModal = () => {
+    setIsOpen(true);
+  };
+  const closeModal = () => {
+    setIsOpen(false);
+  };
   const handleSubmit = async (event) => {
     event.preventDefault();
     if (canSave) {
@@ -31,10 +37,20 @@ const AddFood = () => {
       formData.append("category", category);
       formData.append("price", price);
       formData.append("foodImage", foodImage);
-      notify("success", `Adding ${title}`)
       try {
-        const payload = await addNewFood(formData).unwrap();
-        notify("success", payload.message);
+        await toast.promise(addNewFood(formData).unwrap(), {
+          pending: `Adding ${title}`,
+          success: {
+            render({ data }) {
+              return data.message;
+            },
+          },
+          error: {
+            render({ data }) {
+              return data.data.message;
+            },
+          },
+        });
         setFoodDetails({
           title: "",
           description: "",
@@ -42,7 +58,9 @@ const AddFood = () => {
           price: "",
           foodImage: "",
         });
+        closeModal();
       } catch (err) {
+        console.log(err);
         notify("error", "Failed to add food");
       }
     } else {
@@ -61,14 +79,6 @@ const AddFood = () => {
       return;
     }
     setFoodDetails({ ...foodDetails, foodImage: event.target.files[0] });
-  };
-
-  const openModal = () => {
-    setIsOpen(true);
-  };
-
-  const closeModal = () => {
-    setIsOpen(false);
   };
 
   return (
@@ -137,12 +147,11 @@ const AddFood = () => {
               label="Food Image"
               required={true}
             />
-            <button
-              onClick={closeModal}
-              className="bg-gradient-to-r from-green-400 to-green-600 mx-auto px-4 py-1 block my-5 text-white uppercase rounded-md text-lg"
-            >
-              Add
-            </button>
+            {!isLoading ? (
+              <button className="bg-gradient-to-r from-green-400 to-green-600 mx-auto px-4 py-1 block my-5 text-white uppercase rounded-md text-lg">
+                Add
+              </button>
+            ) : null}
           </form>
         </Modal>
       </div>

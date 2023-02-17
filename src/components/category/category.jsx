@@ -3,7 +3,10 @@ import Modal from "react-modal";
 import { Link } from "react-router-dom";
 import { IoCloseSharp } from "react-icons/io5";
 import { toast } from "react-toastify";
-import { useGetCategoriesQuery, useAddCategoryMutation } from "../../redux/features/api/apiSlice";
+import {
+  useGetCategoriesQuery,
+  useAddCategoryMutation,
+} from "../../redux/features/api/apiSlice";
 import FormInput from "../formInput/formInput";
 import { BaseSkeleton } from "../baseSkeleton";
 import foodPic from "../../assets/images/pizza.jpg";
@@ -16,13 +19,13 @@ import { ButtonSm } from "../button/button";
 const Category = () => {
   const { data, isLoading, isSuccess, isError, error } =
     useGetCategoriesQuery();
-  const [addCategory, { isLoading: loading }] = useAddCategoryMutation()
+  const [addCategory, { isLoading: loading }] = useAddCategoryMutation();
   const [modalIsOpen, setIsOpen] = useState(false);
   const [categoryDetails, setCategoryDetails] = useState({
     type: "",
   });
   const { type } = categoryDetails;
-  const canSave =  type && !loading;
+  const canSave = type && !loading;
   const openModal = () => {
     setIsOpen(true);
   };
@@ -33,15 +36,19 @@ const Category = () => {
     event.preventDefault();
     if (canSave) {
       try {
-       await toast.promise(addCategory(categoryDetails).unwrap(), {
+        await toast.promise(addCategory(categoryDetails).unwrap(), {
           pending: "Adding Category",
           success: "Category Added Successfully",
-          error: "Error"
+          error: {
+            render({ data }) {
+              return data.data.message;
+            },
+          },
         });
         setCategoryDetails({
           type: "",
         });
-      } catch(e) {
+      } catch (e) {
         notify("error", e.data.message);
       }
       closeModal();
@@ -73,13 +80,20 @@ const Category = () => {
 
   let content;
   if (isLoading) {
-    content = <BaseSkeleton variant="dashboard" />
+    content = <BaseSkeleton variant="dashboard" />;
   } else if (isSuccess) {
     content = (
       <div className="mt-4 mb-24">
         {data?.categories.map(({ type: categoryType, _id }) => (
-          <Link to={`/category/${categoryType}`} className="flex items-center mb-4 bg-gray-200 p-2 rounded-lg" key={_id}>
-            <img src={getCategoryPicture(categoryType)} className="w-12 h-12 rounded-full mr-8" />
+          <Link
+            to={`/category/${categoryType}`}
+            className="flex items-center mb-4 bg-gray-200 p-2 rounded-lg"
+            key={_id}
+          >
+            <img
+              src={getCategoryPicture(categoryType)}
+              className="w-12 h-12 rounded-full mr-8"
+            />
             <span>{categoryType}</span>
           </Link>
         ))}
