@@ -43,7 +43,7 @@ const AddFood = () => {
           foodImage: "",
         });
       } catch (err) {
-        console.log("Failed to add food", err);
+        notify("error", "Failed to add food");
       }
     } else {
       notify("error", "Please Fill all fields");

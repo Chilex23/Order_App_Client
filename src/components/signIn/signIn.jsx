@@ -30,7 +30,11 @@ const SignIn = () => {
         let res = await toast.promise(loginUser(userCredentials).unwrap(), {
           pending: "Logging in...",
           success: "Logged in successfully",
-          error: "Error",
+          error: {
+            render({ data }) {
+              return data.data.message;
+            },
+          },
         })
         const user = {
           username: res.username,
