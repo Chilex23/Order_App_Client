@@ -21,7 +21,7 @@ const OrdersBarChart = () => {
         Past Orders made
       </h2>
       <BarChart
-        width={850}
+        width={1000}
         height={350}
         data={data}
         margin={{

@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { useGetFoodByCategoryQuery } from "../redux/features/api/apiSlice";
 import foodPic from "../assets/images/pizza.jpg";
 import { StarRating } from "../components/starRating";
-import {BaseSkeleton }from "../components/baseSkeleton";
+import { BaseSkeleton } from "../components/baseSkeleton";
 import { ButtonSm } from "../components/button";
 import { limitTitle } from "../utils/limitTitle";
 
@@ -18,7 +18,7 @@ const FoodCategory = () => {
   };
   let content;
   if (isLoading) {
-    content = <BaseSkeleton variant="category-grid" />
+    content = <BaseSkeleton variant="category-grid" />;
   } else if (isSuccess) {
     let foodItemsArr = data.foodItems.map(
       ({ title, uuid, avgRating, price, imageLink, reviews }) => {
@@ -51,7 +51,9 @@ const FoodCategory = () => {
               <div className="text-lg">
                 <StarRating rating={avgRating} />
               </div>
-              <span className="ml-2 font-medium">{noOfReviews} {noOfReviews > 1 ? "reviews" : "review"}</span>
+              <span className="ml-2 font-medium">
+                {noOfReviews} {noOfReviews > 1 ? "reviews" : "review"}
+              </span>
             </div>
             <div className="flex">
               <ButtonSm>Add to Cart</ButtonSm>

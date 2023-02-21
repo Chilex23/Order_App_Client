@@ -65,15 +65,15 @@ export const apiSlice = createApi({
         url: "/food/category/add",
         method: "POST",
         headers: authHeaders,
-        body: category
+        body: category,
       }),
       invalidatesTags: ["Categories"],
     }),
     getFoodByCategory: builder.query({
-      query: ({category, page}) => ({
-        url: `/food/category/${category}?page=${page}`
-      })
-    })
+      query: ({ category, page }) => ({
+        url: `/food/category/${category}?page=${page}`,
+      }),
+    }),
   }),
 });
 
@@ -109,5 +109,5 @@ export const {
   useGetFoodQuery,
   useGetCategoriesQuery,
   useAddCategoryMutation,
-  useGetFoodByCategoryQuery
+  useGetFoodByCategoryQuery,
 } = apiSlice;

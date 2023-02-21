@@ -36,15 +36,16 @@ const Cart = () => {
       return;
     }
     if (canSave) {
-      //notify("successBottom", "Placing Order...");
       try {
-        //const payload = await addOrder(transformedOrderItems).unwrap();
         await toast.promise(addOrder(transformedOrderItems).unwrap(), {
           pending: "Placing Order...",
           success: "Order Placed Successfully",
-          error: "Error"
+          error: {
+            render({ data }) {
+              return data.data.message;
+            },
+          },
         });
-        //notify("successBottom", payload.message);
         dispatch(clearCart());
         navigate("/orderSuccess");
       } catch (err) {
