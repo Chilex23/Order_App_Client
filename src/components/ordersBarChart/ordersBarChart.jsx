@@ -14,6 +14,7 @@ import { selectOrdersForCharts } from "../../redux/features/api/orderSlice";
 
 const OrdersBarChart = () => {
   const data = useSelector(selectOrdersForCharts);
+  console.log(data);
   return (
     // <ResponsiveContainer width="100%" height="100%">
     <>

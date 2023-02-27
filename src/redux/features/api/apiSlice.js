@@ -1,6 +1,8 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { createSelector } from "@reduxjs/toolkit";
 
+console.log(JSON.parse(JSON.stringify(localStorage.getItem("root"))))
+
 export const authHeaders = {
   Authorization:
     "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjYzYzFjMjFhYzZiMTdhNmRjMWNjNTgwMSIsInVzZXJuYW1lIjoiQ2hpbGV4MjQiLCJuYW1lIjoiT251bWFlZ2J1IENoaW1hIiwicm9sZSI6IkFkbWluIn0sImlhdCI6MTY3NjMxNTY0OCwiZXhwIjoxNjc4OTA3NjQ4fQ.g6R-cpU6DhBGOA9EwfXcKIXl3ATHI9nXjo8n5CRLzV0",

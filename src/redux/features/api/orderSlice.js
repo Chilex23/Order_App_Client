@@ -5,9 +5,11 @@ import { formatDate } from "../../../utils/formatDate";
 export const orderSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     getOrdersForAdmin: builder.query({
-      query: () => ({
+      query: (authToken) => ({
         url: "/orders/all?page=1",
-        headers: authHeaders,
+        headers: {
+          Authorization: `Bearer ${authToken}`,
+        },
       }),
       providesTags: ["Orders"],
     }),

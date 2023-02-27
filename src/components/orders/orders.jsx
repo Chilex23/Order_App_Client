@@ -12,14 +12,16 @@ import {
   selectOrdersSortedByAmount,
   selectOrdersSortedByDate,
 } from "../../redux/features/api/orderSlice";
+import { selectToken } from "../../redux/features/user";
 import customStyles from "../../utils/customStyles";
 import { formatDate } from "../../utils/formatDate";
 import { formatNumber } from "../../utils/formatNumber";
 import { useGetOrdersForAdminQuery } from "../../redux/features/api/orderSlice";
 
 const Orders = () => {
+  const authToken = useSelector(selectToken);
   const { data, isLoading, isSuccess, isError, error } =
-    useGetOrdersForAdminQuery();
+    useGetOrdersForAdminQuery(authToken);
   const ordersSortedByPrice = useSelector(selectOrdersSortedByAmount);
   const ordersSortedByDate = useSelector(selectOrdersSortedByDate);
   const orderResults = useSelector(selectOrdersData);
