@@ -24,18 +24,29 @@ const SideBar = () => {
     notify("successBottom", "Log Out Successfull. See you soon.");
     dispatch(logOutUser());
   };
-  const navLinks = [
-    {
-      name: "Home",
-      urlPath: "/",
-      icon: <AiFillHome className="mr-2" />,
-    },
-    {
-      name: "Dashboard",
-      urlPath: "/dashboard",
-      icon: <MdDashboardCustomize className="mr-2" />,
-    },
-  ];
+  let navLinks;
+  if (currentUser) {
+    navLinks = [
+      {
+        name: "Home",
+        urlPath: "/",
+        icon: <AiFillHome className="mr-2" />,
+      },
+      {
+        name: "Dashboard",
+        urlPath: "/dashboard",
+        icon: <MdDashboardCustomize className="mr-2" />,
+      },
+    ];
+  } else {
+    navLinks = [
+      {
+        name: "Home",
+        urlPath: "/",
+        icon: <AiFillHome className="mr-2" />,
+      },
+    ];
+  }
 
   const categoryLinks = [
     {
