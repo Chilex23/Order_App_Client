@@ -40,6 +40,7 @@ const SignIn = () => {
           username: res.username,
           name: res.name,
           token: res.token,
+          role: res.role
         };
         dispatch(signInUser(user));
         setUserCredentials({ username: "", password: "" });

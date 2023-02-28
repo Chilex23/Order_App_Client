@@ -4,6 +4,7 @@ const initialState = {
   username: "",
   userToken: "",
   userFullName: "",
+  userRole: "",
 };
 
 const userSlice = createSlice({
@@ -14,11 +15,13 @@ const userSlice = createSlice({
       state.username = action.payload.username;
       state.userFullName = action.payload.name;
       state.userToken = action.payload.token;
+      state.userRole = action.payload.role;
     },
     logOutUser(state) {
       state.username = null;
       state.userToken = null;
       state.userFullName = null;
+      state.userRole = null;
     },
   },
 });
@@ -26,6 +29,7 @@ const userSlice = createSlice({
 export const selectToken = (state) => state.user.userToken;
 export const selectUser = (state) => state.user.username;
 export const selectUserFullName = (state) => state.user.userFullName;
+export const selectUserRole = (state) => state.user.userRole;
 
 export const { signInUser, logOutUser } = userSlice.actions;
 

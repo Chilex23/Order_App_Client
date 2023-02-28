@@ -61,7 +61,7 @@ const Cart = () => {
     }
   };
   return (
-    <div className="mx-auto w-[95%] mb-36">
+    <div className="mx-auto w-[95%] mb-[12rem]">
       <h1 className="text-3xl font-bold font-rubik uppercase text-center my-5">
         Cart
       </h1>
