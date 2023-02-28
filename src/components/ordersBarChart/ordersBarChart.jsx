@@ -9,6 +9,7 @@ import {
   Legend,
   ResponsiveContainer,
 } from "recharts";
+import { Triangle } from "react-loader-spinner";
 import { useSelector } from "react-redux";
 import { useGetOrdersForAdminQuery } from "../../redux/features/api/orderSlice";
 import { selectToken } from "../../redux/features/user";
@@ -25,14 +26,15 @@ const OrdersBarChart = () => {
     }));
   let content;
   if (isLoading) {
-    content = <p>Loading</p>;
+    content = (
+      <div className="flex justify-center">
+        <Triangle width={200} height={200} color={"#22c55e"} />
+      </div>
+    );
   } else if (isSuccess) {
     content = (
       // <ResponsiveContainer width="100%" height="100%">
       <>
-        <h2 className="font-rubik text-4xl font-semibold uppercase text-center mb-6">
-          Past Orders made
-        </h2>
         <BarChart
           width={1000}
           height={350}
@@ -58,7 +60,14 @@ const OrdersBarChart = () => {
     content = <div>{error?.data?.message || error?.data}</div>;
   }
 
-  return content;
+  return (
+    <>
+      <h2 className="font-rubik text-4xl font-semibold uppercase text-center mb-6">
+        Past Orders made
+      </h2>
+      {content}
+    </>
+  );
 };
 
 export default OrdersBarChart;

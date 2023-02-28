@@ -8,7 +8,7 @@ import {
   clearCart,
 } from "../redux/features/cart";
 import { CartItem } from "../components/cartItem";
-import { selectUser } from "../redux/features/user";
+import { selectUser, selectToken } from "../redux/features/user";
 import { useCreateOrderMutation } from "../redux/features/api/orderSlice";
 import { notify } from "../utils/notify";
 import { formatNumber } from "../utils/formatNumber";
@@ -22,6 +22,7 @@ const Cart = () => {
   const cartCount = useSelector(selectCartItemsCount);
   const cartTotal = useSelector(selectCartTotal);
   const user = useSelector(selectUser);
+  const authToken = useSelector(selectToken);
   const canSave = cartItems.length > 0 && !isLoading;
 
   const placeOrder = async () => {
@@ -37,7 +38,11 @@ const Cart = () => {
     }
     if (canSave) {
       try {
-        await toast.promise(addOrder(transformedOrderItems).unwrap(), {
+        const orderBody = {
+          items: transformedOrderItems,
+          token: authToken
+        }
+        await toast.promise(addOrder(orderBody).unwrap(), {
           pending: "Placing Order...",
           success: "Order Placed Successfully",
           error: {
@@ -67,6 +72,7 @@ const Cart = () => {
           {cartItems.map(({ id, name, imageLink, price, quantity }) => (
             <CartItem
               id={id}
+              key={id}
               name={name}
               imageLink={imageLink}
               price={price}

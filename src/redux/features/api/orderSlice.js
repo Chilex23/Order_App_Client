@@ -1,5 +1,5 @@
 import { createSelector } from "@reduxjs/toolkit";
-import { apiSlice, authHeaders } from "./apiSlice";
+import { apiSlice } from "./apiSlice";
 import { formatDate } from "../../../utils/formatDate";
 
 export const orderSlice = apiSlice.injectEndpoints({
@@ -14,13 +14,13 @@ export const orderSlice = apiSlice.injectEndpoints({
       providesTags: ["Orders"],
     }),
     createOrder: builder.mutation({
-      query: (items) => ({
+      query: (orderBody) => ({
         url: "/orders/create",
         method: "POST",
-        headers: authHeaders,
-        body: {
-          items,
+        headers: {
+          Authorization: `Bearer ${orderBody.token}`,
         },
+        body: { items: orderBody.items },
       }),
       invalidatesTags: ["Orders"],
     }),
