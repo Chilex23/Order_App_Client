@@ -7,11 +7,7 @@ import { FaFilter } from "react-icons/fa";
 import "@szhsin/react-menu/dist/transitions/slide.css";
 import { ButtonSm } from "../button/button";
 import { BaseSkeleton } from "../baseSkeleton";
-import {
-  selectOrdersData,
-  selectOrdersSortedByAmount,
-  selectOrdersSortedByDate,
-} from "../../redux/features/api/orderSlice";
+import { selectOrdersData } from "../../redux/features/api/orderSlice";
 import { selectToken } from "../../redux/features/user";
 import customStyles from "../../utils/customStyles";
 import { formatDate } from "../../utils/formatDate";
@@ -22,8 +18,14 @@ const Orders = () => {
   const authToken = useSelector(selectToken);
   const { data, isLoading, isSuccess, isError, error } =
     useGetOrdersForAdminQuery(authToken);
-  const ordersSortedByPrice = useSelector(selectOrdersSortedByAmount);
-  const ordersSortedByDate = useSelector(selectOrdersSortedByDate);
+  const ordersSortedByPrice = (result) => {
+    let resultCopy = result.slice();
+    return resultCopy.sort((a, b) => b.total_price - a.total_price);
+  };
+  const ordersSortedByDate = (result) => {
+    let resultCopy = result.slice();
+    return resultCopy.sort((a, b) => b.order_date - a.order_date);
+  };
   const orderResults = useSelector(selectOrdersData);
   const [orderData, setOrderData] = useState(orderResults);
   const [modalIsOpen, setIsOpen] = useState(false);
@@ -50,9 +52,9 @@ const Orders = () => {
   };
   const sortFood = (type) => {
     if (type === "price") {
-      setOrderData(ordersSortedByPrice);
+      setOrderData(ordersSortedByPrice(data?.orders));
     } else {
-      setOrderData(ordersSortedByDate);
+      setOrderData(ordersSortedByDate(data?.orders));
     }
     setFilter(type);
   };
