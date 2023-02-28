@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import Modal from "react-modal";
+import { useSelector } from "react-redux";
 import { IoCloseSharp } from "react-icons/io5";
 import { toast } from "react-toastify";
+import { selectToken } from "../../redux/features/user";
 import FormInput from "../formInput/formInput";
 import { HoverButton } from "../button/button";
 import { notify } from "../../utils/notify";
@@ -10,6 +12,7 @@ import { useAddNewFoodMutation } from "../../redux/features/api/apiSlice";
 
 const AddFood = () => {
   const [modalIsOpen, setIsOpen] = useState(false);
+  const authToken = useSelector(selectToken);
   const [foodDetails, setFoodDetails] = useState({
     title: "",
     description: "",
@@ -37,8 +40,12 @@ const AddFood = () => {
       formData.append("category", category);
       formData.append("price", price);
       formData.append("foodImage", foodImage);
+      const foodBody = {
+        formData,
+        token: authToken
+      }
       try {
-        await toast.promise(addNewFood(formData).unwrap(), {
+        await toast.promise(addNewFood(foodBody).unwrap(), {
           pending: `Adding ${title}`,
           success: {
             render({ data }) {
@@ -60,7 +67,6 @@ const AddFood = () => {
         });
         closeModal();
       } catch (err) {
-        console.log(err);
         notify("error", "Failed to add food");
       }
     } else {

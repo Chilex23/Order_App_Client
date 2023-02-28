@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import Modal from "react-modal";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { IoCloseSharp } from "react-icons/io5";
 import { toast } from "react-toastify";
@@ -9,6 +10,7 @@ import {
 } from "../../redux/features/api/apiSlice";
 import FormInput from "../formInput/formInput";
 import { BaseSkeleton } from "../baseSkeleton";
+import { selectToken } from "../../redux/features/user";
 import foodPic from "../../assets/images/pizza.jpg";
 import drinkPic from "../../assets/images/drinks.jpg";
 import snackPic from "../../assets/images/hamburger.jpg";
@@ -19,10 +21,12 @@ import { ButtonSm } from "../button/button";
 const Category = () => {
   const { data, isLoading, isSuccess, isError, error } =
     useGetCategoriesQuery();
+  const authToken = useSelector(selectToken);
   const [addCategory, { isLoading: loading }] = useAddCategoryMutation();
   const [modalIsOpen, setIsOpen] = useState(false);
   const [categoryDetails, setCategoryDetails] = useState({
     type: "",
+    token: authToken,
   });
   const { type } = categoryDetails;
   const canSave = type && !loading;

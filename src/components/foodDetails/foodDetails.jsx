@@ -3,7 +3,7 @@ import Modal from "react-modal";
 import { useDispatch, useSelector } from "react-redux";
 import { IoCloseSharp } from "react-icons/io5";
 import { useAddReviewMutation } from "../../redux/features/api/apiSlice";
-import { selectUser } from "../../redux/features/user";
+import { selectUser, selectToken } from "../../redux/features/user";
 import foodPic from "../../assets/images/hotDog.jpg";
 import { notify } from "../../utils/notify";
 import { toast } from "react-toastify";
@@ -18,6 +18,7 @@ const FoodDetails = ({ foodDetails: data }) => {
     data?.data;
   const dispatch = useDispatch();
   const currentUser = useSelector(selectUser);
+  const authToken = useSelector(selectToken);
   const [modalIsOpen, setIsOpen] = useState(false);
   const [selectedStars, setSelectedStars] = useState(0);
   const [comment, setComment] = useState("");
@@ -44,11 +45,10 @@ const FoodDetails = ({ foodDetails: data }) => {
       rating: selectedStars,
       comment: comment,
       id: uuid,
+      token: authToken
     };
     if (canSave) {
       try {
-        // const payload = await addReview(reviewBody).unwrap();
-        // notify("success", payload.message);
         await toast.promise(addReview(reviewBody).unwrap(), {
           pending: "Adding Review",
           success: "Review Added Successfully",
@@ -106,7 +106,7 @@ const FoodDetails = ({ foodDetails: data }) => {
       <p className="my-5 mx-auto flex items-center">
         <span className="text-3xl font-rubik font-bold uppercase">Reviews</span>
         {/* Check if the user is logged in and if he has already added a review */}
-        {!currentUser || reviews[currentUser] ? null : (
+        {!currentUser || reviews?.currentUser ? null : (
           <ButtonSm clickHandler={() => openModal()}>Add Review</ButtonSm>
         )}
       </p>
