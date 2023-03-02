@@ -66,7 +66,7 @@ const Cart = () => {
         Cart
       </h1>
       <div className="flex">
-        <div className="border-2 border-gray-400 rounded-md py-2 px-6 w-8/12">
+        <div className="border-2 border-gray-400 rounded-md py-2 px-6 w-8/12 bg-white">
           <h2 className="text-lg font-bold ">Cart({cartCount})</h2>
           <div className="w-full h-1 bg-gray-400 my-2">&nbsp;</div>
           {cartItems.map(({ id, name, imageLink, price, quantity }) => (
@@ -81,7 +81,7 @@ const Cart = () => {
           ))}
         </div>
         {/* CART SUMMARY */}
-        <div className="border-2 border-gray-400 w-4/12 ml-8 self-start rounded-md p-2">
+        <div className="border-2 border-gray-400 w-4/12 ml-8 self-start rounded-md p-2 bg-white">
           <p className="uppercase border-b-[1px] border-gray-400">
             Cart Summary
           </p>
