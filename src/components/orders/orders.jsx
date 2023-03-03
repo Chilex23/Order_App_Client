@@ -69,7 +69,7 @@ const Orders = () => {
           .slice(0, 5)
           .map(({ _id, uuid, total_price, order_date, items, state }) => (
             <div
-              className="flex flex-col border-gray-300 border-2 p-1 rounded-md cursor-pointer"
+              className="flex flex-col border-gray-300 border-2 p-1 rounded-md cursor-pointer hover:bg-gradient-to-r from-green-400 to-green-600 hover:text-white transition"
               key={_id}
               onClick={() =>
                 openModal(uuid, total_price, order_date, items, state)

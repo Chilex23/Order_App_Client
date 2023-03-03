@@ -99,7 +99,7 @@ const Food = () => {
           // Markup for each initially shown food items.
           return (
             <div
-              className="flex items-center hover:bg-gray-200 p-1 border-b-[1px] border-gray-300 hover:rounded-md cursor-pointer transition mb-2"
+              className="flex items-center hover:bg-gradient-to-r from-green-400 to-green-600 hover:text-white p-1 border-b-[1px] border-gray-300 hover:rounded-md cursor-pointer transition mb-2"
               onClick={() =>
                 openModal(
                   title,
