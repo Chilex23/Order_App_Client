@@ -110,7 +110,7 @@ const Category = () => {
     <div className="shadow-2xl p-3 rounded-md bg-white relative">
       <div className="flex justify-between items-center mb-5">
         <p className="text-lg font-bold">
-          <span className="w-2 bg-blue-500 mr-2">&nbsp;</span>Categories
+          <span className="w-2 bg-blue-500 mr-2 rounded-md">&nbsp;</span>Categories
         </p>
         <button onClick={openModal} className="text-gray-500">
           + New Category

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { IoCloseSharp } from "react-icons/io5";
 import Modal from "react-modal";
@@ -11,10 +11,13 @@ import { formatNumber } from "../utils/formatNumber";
 import { useGetOrdersForAdminQuery } from "../redux/features/api/orderSlice";
 
 const OrdersPage = () => {
+  useEffect(() => {
+    window.scroll(0, 0);
+  }, []);
+  const [currentPage, setCurrentPage] = useState(1);
   const authToken = useSelector(selectToken);
   const { data, isLoading, isSuccess, isError, error } =
-    useGetOrdersForAdminQuery(authToken);
-  const [currentPage, setCurrentPage] = useState(1);
+    useGetOrdersForAdminQuery({ authToken, currentPage });
   const [modalIsOpen, setIsOpen] = useState(false);
   const [modalDetails, setModalDetails] = useState({
     uuid: "",
@@ -42,7 +45,12 @@ const OrdersPage = () => {
   const { uuid, total_price, order_date, items, state } = modalDetails;
   let content;
   if (isLoading) {
-    content = <BaseSkeleton variant="dashboard" />;
+    content = (
+      <div className="mb-8 bg-white w-[95%] mx-auto p-3">
+        {" "}
+        <BaseSkeleton variant="dashboard" />
+      </div>
+    );
   } else if (isSuccess) {
     content = (
       <>
@@ -60,7 +68,7 @@ const OrdersPage = () => {
               ({ _id, uuid, total_price, order_date, items, state }) => (
                 <tr
                   key={_id}
-                  className="cursor-pointer"
+                  className="cursor-pointer hover:bg-gradient-to-r from-green-400 to-green-600 hover:text-white transition"
                   onClick={() =>
                     openModal(uuid, total_price, order_date, items, state)
                   }
@@ -101,7 +109,7 @@ const OrdersPage = () => {
     content = <div>{error?.data?.message || error?.data}</div>;
   }
   return (
-    <div>
+    <div className="mb-[9rem]">
       <h1 className="text-5xl text-center font-bold font-rubik uppercase my-5">
         Orders
       </h1>

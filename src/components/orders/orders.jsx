@@ -18,7 +18,7 @@ import { useGetOrdersForAdminQuery } from "../../redux/features/api/orderSlice";
 const Orders = () => {
   const authToken = useSelector(selectToken);
   const { data, isLoading, isSuccess, isError, error } =
-    useGetOrdersForAdminQuery(authToken);
+    useGetOrdersForAdminQuery({ authToken, currentPage: 1 });
   const ordersSortedByPrice = (result) => {
     let resultCopy = result.slice();
     return resultCopy.sort((a, b) => b.total_price - a.total_price);
@@ -100,7 +100,7 @@ const Orders = () => {
   return (
     <div className="shadow-2xl p-3 rounded-md bg-white relative">
       <div className="text-lg font-bold">
-        <span className="w-2 bg-red-500 mr-2">&nbsp;</span>
+        <span className="w-2 bg-red-500 mr-2 rounded-md">&nbsp;</span>
         <span>Orders</span>
       </div>
       <div className="flex justify-between items-center my-2">

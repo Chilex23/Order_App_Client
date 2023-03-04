@@ -18,7 +18,7 @@ import { formatDate } from "../../utils/formatDate";
 const OrdersBarChart = () => {
   const authToken = useSelector(selectToken);
   const { data, isLoading, isSuccess, isError, error } =
-    useGetOrdersForAdminQuery(authToken);
+    useGetOrdersForAdminQuery({ authToken, currentPage: 1 });
   const getData = (result) =>
     result.map(({ order_date, total_price }) => ({
       name: formatDate(order_date),

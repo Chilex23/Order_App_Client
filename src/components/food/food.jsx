@@ -134,7 +134,7 @@ const Food = () => {
   return (
     <div className="shadow-2xl p-3 rounded-md bg-white relative">
       <p className="text-lg font-bold">
-        <span className="w-2 bg-green-500 mr-2">&nbsp;</span>
+        <span className="w-2 bg-green-500 mr-2 rounded-md">&nbsp;</span>
         <span>Food</span>
       </p>
       <div className="flex justify-between mt-2 mb-4">

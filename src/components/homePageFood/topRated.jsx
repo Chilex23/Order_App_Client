@@ -57,7 +57,15 @@ export const TopRatedCarousel = () => {
             <button
               className="bg-gradient-to-r from-green-400 to-green-600 mx-auto block rounded-md px-3 py-2 text-white my-4 hover:shadow-lg hover:scale-105 transition-all"
               onClick={() =>
-                dispatch(addItemToCart(el.title, el.price, el.uuid, imageSrc))
+                dispatch(
+                  addItemToCart(
+                    el.title,
+                    el.price,
+                    el.uuid,
+                    imageSrc,
+                    el.category
+                  )
+                )
               }
             >
               Add to Cart
