@@ -27,34 +27,34 @@ const OrdersBarChart = () => {
   let content;
   if (isLoading) {
     content = (
-      <div className="flex justify-center">
+      <div className="flex justify-center bg-white py-7">
         <Triangle width={200} height={200} color={"#22c55e"} />
       </div>
     );
   } else if (isSuccess) {
     content = (
-      // <ResponsiveContainer width="100%" height="100%">
       <div className="bg-white rounded-md shadow-xl">
-        <BarChart
-          width={1000}
-          height={350}
-          data={getData(data.orders)}
-          margin={{
-            top: 5,
-            right: 30,
-            left: 20,
-            bottom: 5,
-          }}
-        >
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="name" />
-          <YAxis />
-          <Tooltip />
-          <Legend />
-          <Bar dataKey="amount" fill="#16a34a" />
-        </BarChart>
+        <ResponsiveContainer width="100%" height={350}>
+          <BarChart
+            width={1000}
+            height={350}
+            data={getData(data.orders)}
+            margin={{
+              top: 5,
+              right: 30,
+              left: 20,
+              bottom: 5,
+            }}
+          >
+            <CartesianGrid strokeDasharray="3 3" />
+            <XAxis dataKey="name" />
+            <YAxis />
+            <Tooltip />
+            <Legend />
+            <Bar dataKey="amount" fill="#16a34a" />
+          </BarChart>
+        </ResponsiveContainer>
       </div>
-      // </ResponsiveContainer>
     );
   } else if (isError) {
     content = <div>{error?.data?.message || error?.data}</div>;

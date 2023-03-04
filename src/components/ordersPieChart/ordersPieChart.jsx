@@ -104,7 +104,7 @@ const OrdersPieChart = () => {
         }
       }
     }
-    console.log(arr)
+    console.log(arr);
     return arr;
   };
   const onPieEnter = (_, index) => {
@@ -113,29 +113,29 @@ const OrdersPieChart = () => {
   let content;
   if (isLoading) {
     content = (
-      <div className="flex justify-center">
+      <div className="flex justify-center my-7">
         <Triangle width={200} height={200} color={"#22c55e"} />
       </div>
     );
   } else if (isSuccess) {
     content = (
       <>
-        {/* <ResponsiveContainer width="100%" height="100%"> */}
-        <PieChart width={500} height={300}>
-          <Pie
-            activeIndex={activeIndex}
-            activeShape={renderActiveShape}
-            data={getData(data.orders)}
-            cx="50%"
-            cy="50%"
-            innerRadius={60}
-            outerRadius={80}
-            fill="#16a34a"
-            dataKey="value"
-            onMouseEnter={onPieEnter}
-          />
-        </PieChart>
-        {/* <ResponsiveContainer/>  */}
+        <ResponsiveContainer width="100%" height={300}>
+          <PieChart width={500} height={300}>
+            <Pie
+              activeIndex={activeIndex}
+              activeShape={renderActiveShape}
+              data={getData(data.orders)}
+              cx="50%"
+              cy="50%"
+              innerRadius={60}
+              outerRadius={80}
+              fill="#16a34a"
+              dataKey="value"
+              onMouseEnter={onPieEnter}
+            />
+          </PieChart>
+        </ResponsiveContainer>
       </>
     );
   } else if (isError) {
