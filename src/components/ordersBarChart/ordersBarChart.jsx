@@ -34,7 +34,7 @@ const OrdersBarChart = () => {
   } else if (isSuccess) {
     content = (
       // <ResponsiveContainer width="100%" height="100%">
-      <>
+      <div className="bg-white rounded-md shadow-xl">
         <BarChart
           width={1000}
           height={350}
@@ -53,7 +53,7 @@ const OrdersBarChart = () => {
           <Legend />
           <Bar dataKey="amount" fill="#16a34a" />
         </BarChart>
-      </>
+      </div>
       // </ResponsiveContainer>
     );
   } else if (isError) {
@@ -62,9 +62,10 @@ const OrdersBarChart = () => {
 
   return (
     <>
-      <h2 className="font-rubik text-4xl font-semibold uppercase text-center mb-6">
+      <h2 className="font-rubik text-4xl font-semibold uppercase text-center mb-2">
         Past Orders made
       </h2>
+      <p className="mb-4">This shows your past 10 placed orders.</p>
       {content}
     </>
   );

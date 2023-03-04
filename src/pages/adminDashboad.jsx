@@ -5,6 +5,7 @@ import { Orders } from "../components/orders";
 import { Food } from "../components/food";
 import { Category } from "../components/category";
 import { OrdersBarChart } from "../components/ordersBarChart";
+import OrdersPieChart from "../components/ordersPieChart/ordersPieChart";
 
 const AdminDashboard = () => {
   window.scrollTo(0, 0);
@@ -18,6 +19,7 @@ const AdminDashboard = () => {
         <Category />
       </div>
       <OrdersBarChart />
+      <OrdersPieChart />
     </section>
   );
 };
