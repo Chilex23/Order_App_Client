@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import { Menu, MenuItem, MenuButton, MenuRadioGroup } from "@szhsin/react-menu";
 import Modal from "react-modal";
 import { IoCloseSharp } from "react-icons/io5";
@@ -131,9 +132,9 @@ const Orders = () => {
       </span>
       {content}
       {!isLoading ? (
-        <div className="absolute bottom-0 w-full">
+        <Link to="/orders" className="absolute bottom-0 w-full">
           <ButtonSm>More Orders</ButtonSm>
-        </div>
+        </Link>
       ) : null}
 
       {/* Markup for the order details modal pop-up. */}
@@ -164,9 +165,14 @@ const Orders = () => {
             {formatNumber(total_price)}
           </p>
           <p className="mb-2">
-            <span className="font-bold mr-2">Delivery State:</span>
-            {state == 0 ? "Undelivered" : "Delivered"}
+            <span className="font-bold mr-2">Order Date:</span>
+            {formatDate(order_date)}
           </p>
+          <p className="mb-2">
+            <span className="font-bold mr-2">Delivery State:</span>
+            {state == 0 ? "Pending" : "Delivered"}
+          </p>
+          {state === 0 ? <ButtonSm>Mark as Delivered</ButtonSm> : null}
           <h2 className="text-center uppercase font-bold text-xl sm2:text-xl font-rubik mb-3">
             Food Items
           </h2>

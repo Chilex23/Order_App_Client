@@ -17,6 +17,7 @@ import AdminDashboard from "./pages/adminDashboad";
 import FoodCategory from "./pages/foodCategory";
 import Food from "./pages/food";
 import Cart from "./pages/cart";
+import OrdersPage from "./pages/ordersPage";
 import SignInSignUp from "./pages/signinSignup";
 import OrderSuccess from "./pages/orderSuccess";
 import { selectUser } from "./redux/features/user";
@@ -49,6 +50,7 @@ function App() {
             <Route path="/category/:foodCategory" element={<FoodCategory />} />
             <Route path="/food/:foodId" element={<Food />} />
             <Route path="/cart" element={<Cart />} />
+            <Route path="/orders" element={<OrdersPage />} />
             <Route path="/login" element={<SignInSignUp />} />
             <Route path="/orderSuccess" element={<OrderSuccess />} />
           </Routes>
