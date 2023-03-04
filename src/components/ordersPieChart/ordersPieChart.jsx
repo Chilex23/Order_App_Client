@@ -104,7 +104,6 @@ const OrdersPieChart = () => {
         }
       }
     }
-    console.log(arr);
     return arr;
   };
   const onPieEnter = (_, index) => {

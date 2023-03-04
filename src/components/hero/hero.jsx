@@ -1,5 +1,6 @@
 import React from "react";
 import foodPic from "../../assets/images/foodBanner.jpg";
+import gif from "../../assets/images/Hamburger.gif";
 import { useSelector } from "react-redux";
 import { selectWidth } from "../../redux/features/screenWidth";
 
@@ -7,7 +8,7 @@ const Hero = () => {
   const width = useSelector(selectWidth);
   return (
     <div
-      className="min-h-[25rem] py-10 pl-5 rounded-md"
+      className="min-h-[25rem] py-10 pl-5 rounded-md flex"
       style={{
         backgroundImage: `linear-gradient(${
           width > 600 ? "to right" : "to bottom"
@@ -25,6 +26,7 @@ const Hero = () => {
           odio! Quod, eveniet.
         </p>
       </div>
+      <img src={gif} alt="Hamburger" className="w-[20rem] h-[20rem] ml-auto mr-5 rounded-md" />
     </div>
   );
 };
