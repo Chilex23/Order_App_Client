@@ -5,13 +5,6 @@ import { Triangle } from "react-loader-spinner";
 import { selectToken } from "../../redux/features/user";
 import { useGetOrdersForAdminQuery } from "../../redux/features/api/orderSlice";
 
-const pieData = [
-  { name: "Pizzas", value: 4 },
-  { name: "Drinks", value: 3 },
-  { name: "Meal", value: 3 },
-  { name: "Snacks", value: 2 },
-];
-
 const renderActiveShape = (props) => {
   const RADIAN = Math.PI / 180;
   const {
@@ -71,7 +64,7 @@ const renderActiveShape = (props) => {
         y={ey}
         textAnchor={textAnchor}
         fill="#333"
-      >{`Quantity ${value}`}</text>
+      >{`${value} Items`}</text>
       <text
         x={ex + (cos >= 0 ? 1 : -1) * 12}
         y={ey}

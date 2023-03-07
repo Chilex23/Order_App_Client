@@ -59,7 +59,7 @@ const OrdersPage = () => {
             <tr className="bg-black text-white uppercase">
               <th className="border-[1px] border-gray-400 p-1">ID</th>
               <th className="border-[1px] border-gray-400">Amount Spent</th>
-              <th className="border-[1px] border-gray-400">Order Data</th>
+              <th className="border-[1px] border-gray-400">Order Date</th>
               <th className="border-[1px] border-gray-400">Delivery State</th>
             </tr>
           </thead>
@@ -155,20 +155,20 @@ const OrdersPage = () => {
             Food Items
           </h2>
 
-          <table className="w-full border-[1px] border-green-600">
+          <table className="w-full">
             <thead>
               <tr className="bg-black text-white">
-                <th className="border-[1px] border-green-600">Name</th>
-                <th className="border-[1px] border-green-600">Quantity</th>
-                <th className="border-[1px] border-green-600">Price</th>
+                <th className="border-[1px] border-gray-400">Name</th>
+                <th className="border-[1px] border-gray-400">Quantity</th>
+                <th className="border-[1px] border-gray-400">Price</th>
               </tr>
             </thead>
             <tbody>
               {items.map(({ name, price, quantity }) => (
                 <tr key={name} className="text-center">
-                  <td className="border-[1px] border-green-600">{name}</td>
-                  <td className="border-[1px] border-green-600">{quantity}</td>
-                  <td className="border-[1px] border-green-600">
+                  <td className="border-[1px] border-gray-400">{name}</td>
+                  <td className="border-[1px] border-gray-400">{quantity}</td>
+                  <td className="border-[1px] border-gray-400">
                     {formatNumber(price)}
                   </td>
                 </tr>

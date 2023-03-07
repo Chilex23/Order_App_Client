@@ -6,7 +6,7 @@ export const orderSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     getOrdersForAdmin: builder.query({
       query: (orderBody) => ({
-        url: `/orders/all?page=${orderBody.currentPage}`,
+        url: `/orders?page=${orderBody.currentPage}`,
         headers: {
           Authorization: `Bearer ${orderBody.authToken}`,
         },
