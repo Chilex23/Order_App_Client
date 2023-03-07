@@ -3,7 +3,7 @@ import Modal from "react-modal";
 import { useSelector } from "react-redux";
 import { IoCloseSharp } from "react-icons/io5";
 import { toast } from "react-toastify";
-import { selectToken } from "../../redux/features/user";
+import { selectToken, selectUserRole } from "../../redux/features/user";
 import FormInput from "../formInput/formInput";
 import { HoverButton } from "../button/button";
 import { notify } from "../../utils/notify";
@@ -13,6 +13,7 @@ import { useAddNewFoodMutation } from "../../redux/features/api/apiSlice";
 const AddFood = () => {
   const [modalIsOpen, setIsOpen] = useState(false);
   const authToken = useSelector(selectToken);
+  const userRole = useSelector(selectUserRole);
   const [foodDetails, setFoodDetails] = useState({
     title: "",
     description: "",
@@ -42,8 +43,8 @@ const AddFood = () => {
       formData.append("foodImage", foodImage);
       const foodBody = {
         formData,
-        token: authToken
-      }
+        token: authToken,
+      };
       try {
         await toast.promise(addNewFood(foodBody).unwrap(), {
           pending: `Adding ${title}`,
@@ -91,7 +92,9 @@ const AddFood = () => {
     <>
       <div className="my-5 flex justify-between items-center">
         <span className="uppercase font-bold">Dashboard</span>
-        <HoverButton clickHandler={openModal}>+ Add Food</HoverButton>
+        {userRole === "Admin" ? (
+          <HoverButton clickHandler={openModal}>+ Add Food</HoverButton>
+        ) : null}
         <Modal
           isOpen={modalIsOpen}
           onRequestClose={closeModal}

@@ -10,7 +10,7 @@ import {
 } from "../../redux/features/api/apiSlice";
 import FormInput from "../formInput/formInput";
 import { BaseSkeleton } from "../baseSkeleton";
-import { selectToken } from "../../redux/features/user";
+import { selectToken, selectUserRole } from "../../redux/features/user";
 import foodPic from "../../assets/images/pizza.jpg";
 import drinkPic from "../../assets/images/drinks.jpg";
 import snackPic from "../../assets/images/hamburger.jpg";
@@ -22,6 +22,7 @@ const Category = () => {
   const { data, isLoading, isSuccess, isError, error } =
     useGetCategoriesQuery();
   const authToken = useSelector(selectToken);
+  const userRole = useSelector(selectUserRole);
   const [addCategory, { isLoading: loading }] = useAddCategoryMutation();
   const [modalIsOpen, setIsOpen] = useState(false);
   const [categoryDetails, setCategoryDetails] = useState({
@@ -110,11 +111,14 @@ const Category = () => {
     <div className="shadow-2xl p-3 rounded-md bg-white relative">
       <div className="flex justify-between items-center mb-5">
         <p className="text-lg font-bold">
-          <span className="w-2 bg-blue-500 mr-2 rounded-md">&nbsp;</span>Categories
+          <span className="w-2 bg-blue-500 mr-2 rounded-md">&nbsp;</span>
+          Categories
         </p>
-        <button onClick={openModal} className="text-gray-500">
-          + New Category
-        </button>
+        {userRole === "Admin" ? (
+          <button onClick={openModal} className="text-gray-500">
+            + New Category
+          </button>
+        ) : null}
       </div>
       {content}
       {/* <div className="absolute bottom-0 w-full">

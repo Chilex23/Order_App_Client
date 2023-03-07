@@ -131,7 +131,7 @@ const OrdersPieChart = () => {
       </>
     );
   } else if (isError) {
-    content = <div>{error?.data?.message || error?.data}</div>;
+    content = <div className="p-2">{error?.data?.message || error?.data}</div>;
   }
   return (
     <div className="mt-10">

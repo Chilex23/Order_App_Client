@@ -43,7 +43,7 @@ const FoodCategory = () => {
               alt="food"
             />
             <h3 className="text-xl font-semibold my-2 uppercase font-rubik">
-              {limitTitle(title)}
+              {limitTitle(title, 11)}
             </h3>
             <p className="my-2 font-semibold">Price: ${price}</p>
             <div className="my-2 font-semibold flex items-center">

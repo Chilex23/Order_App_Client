@@ -103,35 +103,37 @@ const Orders = () => {
         <span className="w-2 bg-red-500 mr-2 rounded-md">&nbsp;</span>
         <span>Orders</span>
       </div>
-      <div className="flex justify-between items-center my-2">
-        <Menu
-          menuButton={
-            <MenuButton className="border-[1px] flex items-center border-gray-400 rounded-md px-2 py-1 font-medium">
-              <FaFilter className="mr-2" /> Sort
-            </MenuButton>
-          }
-        >
-          <MenuRadioGroup
-            value={filter}
-            onRadioChange={(e) => {
-              sortFood(e.value);
-              //setFilter(e.value);
-            }}
+      {!isError ? (
+        <div className="flex justify-between items-center my-2">
+          <Menu
+            menuButton={
+              <MenuButton className="border-[1px] flex items-center border-gray-400 rounded-md px-2 py-1 font-medium">
+                <FaFilter className="mr-2" /> Sort
+              </MenuButton>
+            }
           >
-            <MenuItem type="radio" value="price">
-              Price
-            </MenuItem>
-            <MenuItem type="radio" value="latest">
-              Latest
-            </MenuItem>
-          </MenuRadioGroup>
-        </Menu>
-      </div>
+            <MenuRadioGroup
+              value={filter}
+              onRadioChange={(e) => {
+                sortFood(e.value);
+                //setFilter(e.value);
+              }}
+            >
+              <MenuItem type="radio" value="price">
+                Price
+              </MenuItem>
+              <MenuItem type="radio" value="latest">
+                Latest
+              </MenuItem>
+            </MenuRadioGroup>
+          </Menu>
+        </div>
+      ) : null}
       <span className="my-2 text-sm">
         Click on a table row to see more details
       </span>
       {content}
-      {!isLoading ? (
+      {!isLoading && !isError ? (
         <Link to="/orders" className="absolute bottom-0 w-full">
           <ButtonSm>More Orders</ButtonSm>
         </Link>

@@ -27,7 +27,7 @@ const OrdersBarChart = () => {
   let content;
   if (isLoading) {
     content = (
-      <div className="flex justify-center bg-white py-7">
+      <div className="flex justify-center bg-white py-7 rounded-md shadow-lg">
         <Triangle width={200} height={200} color={"#22c55e"} />
       </div>
     );
@@ -57,7 +57,7 @@ const OrdersBarChart = () => {
       </div>
     );
   } else if (isError) {
-    content = <div>{error?.data?.message || error?.data}</div>;
+    content = <div className="bg-white rounded-md shadow-lg text-center p-2">{error?.data?.message || error?.data}</div>;
   }
 
   return (
