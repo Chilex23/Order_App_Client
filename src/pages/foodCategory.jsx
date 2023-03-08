@@ -1,7 +1,9 @@
 import { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { useParams, Link } from "react-router-dom";
 import { useGetFoodByCategoryQuery } from "../redux/features/api/apiSlice";
 import foodPic from "../assets/images/pizza.jpg";
+import { addItemToCart } from "../redux/features/cart";
 import { StarRating } from "../components/starRating";
 import { BaseSkeleton } from "../components/baseSkeleton";
 import { ButtonSm } from "../components/button";
@@ -10,6 +12,7 @@ import { limitTitle } from "../utils/limitTitle";
 const FoodCategory = () => {
   window.scrollTo(0, 0);
   const { foodCategory } = useParams();
+  const dispatch = useDispatch();
   const [currentPage, setCurrentPage] = useState(1);
   const { data, isLoading, isSuccess, isError, error } =
     useGetFoodByCategoryQuery({ category: foodCategory, page: currentPage });
@@ -21,7 +24,7 @@ const FoodCategory = () => {
     content = <BaseSkeleton variant="category-grid" />;
   } else if (isSuccess) {
     let foodItemsArr = data.foodItems.map(
-      ({ title, uuid, avgRating, price, imageLink, reviews }) => {
+      ({ title, uuid, avgRating, price, imageLink, reviews, category }) => {
         let imageSrc = imageLink
           ? `http://localhost:3000/${imageLink}`
           : foodPic;
@@ -56,8 +59,18 @@ const FoodCategory = () => {
               </span>
             </div>
             <div className="flex">
-              <ButtonSm>Add to Cart</ButtonSm>
-              <ButtonSm>View Food</ButtonSm>
+              <ButtonSm
+                clickHandler={() =>
+                  dispatch(
+                    addItemToCart(title, price, uuid, imageSrc, category)
+                  )
+                }
+              >
+                Add to Cart
+              </ButtonSm>
+              <ButtonSm>
+                <Link to={`/food/${uuid}`}>View Food</Link>
+              </ButtonSm>
             </div>
           </div>
         );
