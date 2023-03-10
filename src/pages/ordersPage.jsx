@@ -1,14 +1,19 @@
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { IoCloseSharp } from "react-icons/io5";
+import { toast } from "react-toastify";
 import Modal from "react-modal";
-import { selectToken } from "../redux/features/user";
+import { selectToken, selectUserRole } from "../redux/features/user";
+import { notify } from "../utils/notify";
 import { BaseSkeleton } from "../components/baseSkeleton";
 import { ButtonSm } from "../components/button";
 import customStyles from "../utils/customStyles";
 import { formatDate } from "../utils/formatDate";
 import { formatNumber } from "../utils/formatNumber";
-import { useGetOrdersForAdminQuery } from "../redux/features/api/orderSlice";
+import {
+  useGetOrdersForAdminQuery,
+  useDeliverOrderMutation,
+} from "../redux/features/api/orderSlice";
 
 const OrdersPage = () => {
   useEffect(() => {
@@ -16,8 +21,11 @@ const OrdersPage = () => {
   }, []);
   const [currentPage, setCurrentPage] = useState(1);
   const authToken = useSelector(selectToken);
+  const userRole = useSelector(selectUserRole);
   const { data, isLoading, isSuccess, isError, error } =
     useGetOrdersForAdminQuery({ authToken, currentPage });
+  const [deliverOrder, { isLoading: loading }] = useDeliverOrderMutation();
+  const canSave = !loading;
   const [modalIsOpen, setIsOpen] = useState(false);
   const [modalDetails, setModalDetails] = useState({
     uuid: "",
@@ -41,6 +49,29 @@ const OrdersPage = () => {
   };
   const closeModal = () => {
     setIsOpen(false);
+  };
+  const orderDelivered = async (id) => {
+    if (canSave) {
+      try {
+        await toast.promise(
+          deliverOrder({ id, state: 1, token: authToken }).unwrap(),
+          {
+            pending: "Delivering Order #" + id,
+            success: "The order has been marked as delivered",
+            error: {
+              render({ data }) {
+                return data.data.message;
+              },
+            },
+          }
+        );
+        closeModal();
+      } catch (e) {
+        notify("error", e.data.message);
+      }
+    } else {
+      notify("error", "Please try again later.");
+    }
   };
   const { uuid, total_price, order_date, items, state } = modalDetails;
   let content;
@@ -150,7 +181,11 @@ const OrdersPage = () => {
             <span className="font-bold mr-2">Delivery State:</span>
             {state == 0 ? "Pending" : "Delivered"}
           </p>
-          {state === 0 ? <ButtonSm>Mark as Delivered</ButtonSm> : null}
+          {state === 0 && userRole === "Admin" ? (
+            <ButtonSm clickHandler={() => orderDelivered(uuid)}>
+              Mark as Delivered
+            </ButtonSm>
+          ) : null}
           <h2 className="text-center uppercase font-bold text-xl sm2:text-xl font-rubik mb-3">
             Food Items
           </h2>

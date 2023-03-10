@@ -24,6 +24,17 @@ export const orderSlice = apiSlice.injectEndpoints({
       }),
       invalidatesTags: ["Orders"],
     }),
+    deliverOrder: builder.mutation({
+      query: (orderBody) => ({
+        url: `/orders/deliver/${orderBody.id}`,
+        method: "PATCH",
+        headers: {
+          Authorization: `Bearer ${orderBody.token}`,
+        },
+        body: { state: orderBody.state },
+      }),
+      invalidatesTags: ["Orders"],
+    }),
   }),
 });
 
@@ -62,4 +73,8 @@ export const selectOrdersForCharts = createSelector(
     }))
 );
 
-export const { useGetOrdersForAdminQuery, useCreateOrderMutation } = orderSlice;
+export const {
+  useGetOrdersForAdminQuery,
+  useCreateOrderMutation,
+  useDeliverOrderMutation,
+} = orderSlice;

@@ -31,7 +31,7 @@ function InappPrivateRoute() {
   return user ? (
     <Outlet />
   ) : (
-    <Navigate to="/login" replace={true} state={"Please login to view your dashboard"} />
+    <Navigate to="/login" replace={true} state={"Please login with your details to continue."} />
   );
 }
 
@@ -46,11 +46,11 @@ function App() {
             <Route path="/" element={<HomePage />} />
             <Route element={<InappPrivateRoute />}>
               <Route path="/dashboard" element={<AdminDashboard />} />
+              <Route path="/orders" element={<OrdersPage />} />
             </Route>
             <Route path="/category/:foodCategory" element={<FoodCategory />} />
             <Route path="/food/:foodId" element={<Food />} />
             <Route path="/cart" element={<Cart />} />
-            <Route path="/orders" element={<OrdersPage />} />
             <Route path="/login" element={<SignInSignUp />} />
             <Route path="/orderSuccess" element={<OrderSuccess />} />
           </Routes>

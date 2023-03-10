@@ -1,24 +1,32 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 import { Menu, MenuItem, MenuButton, MenuRadioGroup } from "@szhsin/react-menu";
 import Modal from "react-modal";
 import { IoCloseSharp } from "react-icons/io5";
 import { FaFilter } from "react-icons/fa";
 import "@szhsin/react-menu/dist/transitions/slide.css";
 import { ButtonSm } from "../button/button";
+import { notify } from "../../utils/notify";
 import { BaseSkeleton } from "../baseSkeleton";
 import { selectOrdersData } from "../../redux/features/api/orderSlice";
-import { selectToken } from "../../redux/features/user";
+import { selectToken, selectUserRole } from "../../redux/features/user";
 import customStyles from "../../utils/customStyles";
 import { formatDate } from "../../utils/formatDate";
 import { formatNumber } from "../../utils/formatNumber";
-import { useGetOrdersForAdminQuery } from "../../redux/features/api/orderSlice";
+import {
+  useGetOrdersForAdminQuery,
+  useDeliverOrderMutation,
+} from "../../redux/features/api/orderSlice";
 
 const Orders = () => {
   const authToken = useSelector(selectToken);
+  const userRole = useSelector(selectUserRole);
   const { data, isLoading, isSuccess, isError, error } =
     useGetOrdersForAdminQuery({ authToken, currentPage: 1 });
+  const [deliverOrder, { isLoading: loading }] = useDeliverOrderMutation();
+  const canSave = !loading;
   const ordersSortedByPrice = (result) => {
     let resultCopy = result.slice();
     return resultCopy.sort((a, b) => b.total_price - a.total_price);
@@ -58,6 +66,30 @@ const Orders = () => {
       setOrderData(ordersSortedByDate(data?.orders));
     }
     setFilter(type);
+  };
+
+  const orderDelivered = async (id) => {
+    if (canSave) {
+      try {
+        await toast.promise(
+          deliverOrder({ id, state: 1, token: authToken }).unwrap(),
+          {
+            pending: "Delivering Order #" + id,
+            success: "The order has been marked as delivered",
+            error: {
+              render({ data }) {
+                return data.data.message;
+              },
+            },
+          }
+        );
+        closeModal();
+      } catch (e) {
+        notify("error", e.data.message);
+      }
+    } else {
+      notify("error", "Please try again later.");
+    }
   };
   let content;
   if (isLoading) {
@@ -174,7 +206,11 @@ const Orders = () => {
             <span className="font-bold mr-2">Delivery State:</span>
             {state == 0 ? "Pending" : "Delivered"}
           </p>
-          {state === 0 ? <ButtonSm>Mark as Delivered</ButtonSm> : null}
+          {state === 0 && userRole === "Admin" ? (
+            <ButtonSm clickHandler={() => orderDelivered(uuid)}>
+              Mark as Delivered
+            </ButtonSm>
+          ) : null}
           <h2 className="text-center uppercase font-bold text-xl sm2:text-xl font-rubik mb-3">
             Food Items
           </h2>
