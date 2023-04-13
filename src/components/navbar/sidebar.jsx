@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { AiFillCaretDown, AiFillCaretUp, AiFillHome } from "react-icons/ai";
 import { FaPizzaSlice } from "react-icons/fa";
 import { MdOutlineLocalDrink, MdDashboardCustomize } from "react-icons/md";
-import { GiHamburger } from "react-icons/gi";
+import { GiHamburger, GiMeal } from "react-icons/gi";
 import { BiCategory } from "react-icons/bi";
 import { FiLogIn, FiLogOut, FiUser } from "react-icons/fi";
 import { notify } from "../../utils/notify";
@@ -63,6 +63,11 @@ const SideBar = () => {
       name: "Snacks",
       urlPath: "/category/Snacks",
       icon: <GiHamburger className="ml-2" />,
+    },
+    {
+      name: "Meals",
+      urlPath: "/category/Meals",
+      icon: <GiMeal className="ml-2" />,
     },
   ];
   return (

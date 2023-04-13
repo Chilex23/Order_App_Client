@@ -139,6 +139,8 @@ const AddFood = () => {
               >
                 <option value="Snacks">Snacks</option>
                 <option value="Pizzas">Pizzas</option>
+                <option value="Meals">Meals</option>
+                <option value="Drinks">Drinks</option>
               </select>
             </div>
             <FormInput
