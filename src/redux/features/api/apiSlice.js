@@ -42,6 +42,7 @@ export const apiSlice = createApi({
       query: (foodId) => ({
         url: `/food/${foodId}`,
       }),
+      providesTags: ["Food"],
     }),
     getCategories: builder.query({
       query: () => ({
