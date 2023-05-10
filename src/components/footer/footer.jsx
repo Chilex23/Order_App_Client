@@ -4,10 +4,30 @@ import { selectWidth } from "../../redux/features/screenWidth";
 const Footer = () => {
   const width = useSelector(selectWidth);
   return (
-    <div className={`py-10 bg-stone-900 text-white flex justify-center ${width > 700 ? "ml-48" : "" }`}>
+    <div
+      className={`py-10 bg-stone-900 text-white flex justify-center gap-x-20 ${
+        width > 700 ? "ml-48" : ""
+      }`}
+    >
+      <ul>
+        <li>Home</li>
+        <li>About Us</li>
+        <li>Contact Us</li>
+        <li>Become a Partner</li>
+      </ul>
+
+      <ul>
+        <span className="block mb-2 font-semibold">Cities</span>
+        <li>Lagos</li>
+        <li>Abuja</li>
+        <li>Ibadan</li>
+        <li>Port Harcourt</li>
+        <li>Lekki Phase 1</li>
+        <li>Victoria Island</li>
+      </ul>
       <div>
         <p className="text-center font-rubik text-3xl">Foodie App</p>
-        <p>&copy; Onumaegbu Chima 2022</p>
+        <p>&copy; Onumaegbu Chima {new Date().getFullYear()}</p>
       </div>
     </div>
   );
