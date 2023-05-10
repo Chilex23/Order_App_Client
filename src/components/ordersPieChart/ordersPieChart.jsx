@@ -135,11 +135,11 @@ const OrdersPieChart = () => {
   }
   return (
     <div className="mt-10">
-      <h2 className="font-rubik text-4xl font-semibold uppercase text-center mb-2">
+      <h2 className="font-rubik text-xl tablet:text-4xl font-semibold uppercase text-center mb-2">
         Orders Breakdown
       </h2>
       <p className="mb-4">This shows the breakdown of your past 10 orders.</p>
-      <div className="flex justify-center bg-white rounded-md shadow-xl">
+      <div className="flex justify-center bg-white rounded-md shadow-xl sm2:text-sm">
         {content}
       </div>
     </div>

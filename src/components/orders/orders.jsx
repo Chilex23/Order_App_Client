@@ -7,6 +7,7 @@ import Modal from "react-modal";
 import { IoCloseSharp } from "react-icons/io5";
 import { FaFilter } from "react-icons/fa";
 import "@szhsin/react-menu/dist/transitions/slide.css";
+
 import { ButtonSm } from "../button/button";
 import { notify } from "../../utils/notify";
 import { BaseSkeleton } from "../baseSkeleton";

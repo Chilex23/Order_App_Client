@@ -14,8 +14,8 @@ const Header = () => {
       onMouseLeave={() => setDropDownState(false)}
     >
       <div className="flex items-center font-bold">
-        <IoFastFoodOutline className="text-5xl" />
-        <span className="uppercase text-3xl font-rubik">Foodie</span>
+        <IoFastFoodOutline className="text-2xl tablet:text-5xl" />
+        <span className="uppercase text-2xl tablet:text-3xl font-rubik">Foodie</span>
       </div>
 
       {dropDownState ? <CartDropDown visibility={dropDownState} /> : null}
@@ -24,8 +24,8 @@ const Header = () => {
         onMouseOver={() => setDropDownState(true)}
       >
         <Link to="/cart">
-          <IoCart className="text-5xl" />
-          <span className="bg-white text-black text-lg absolute top-0 right-0 px-2 rounded-full inline-block">
+          <IoCart className="text-3xl tablet:text-5xl" />
+          <span className="bg-white text-black text-xs tablet:text-lg absolute -top-1 -right-1 tablet:top-0 tablet:right-0 px-2 rounded-full inline-block">
             {cartCount}
           </span>
         </Link>

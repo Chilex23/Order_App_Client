@@ -35,7 +35,7 @@ export const TopRatedMealCarousel = () => {
             className="w-full h-[10rem] rounded-md"
             alt="food"
           />
-          <h3 className="font-semibold my-2 uppercase font-rubik text-lg sm:text-xl">
+          <h3 className="font-medium tablet:font-semibold my-2 uppercase font-rubik myXl:text-xl">
             {limitTitle(el.title)}
           </h3>
           <p className="my-2 font-semibold">Price: ${formatNumber(el.price)}</p>
@@ -44,7 +44,7 @@ export const TopRatedMealCarousel = () => {
             <div className="text-lg">
               <StarRating rating={el.avgRating} />
             </div>
-            <span className="ml-2 font-medium">
+            <span className="ml-2 font-medium hidden tablet:inline-block">
               {noOfReviews} {noOfReviews > 1 ? "reviews" : "review"}
             </span>
           </div>
@@ -93,7 +93,7 @@ export const TopRatedMealCarousel = () => {
   return (
     <div className="my-10">
       <div className="relative my-12 -z-10">
-        <h2 className="text-3xl px-4 font-extrabold uppercase my-4 font-rubik absolute -top-8 left-2/4 -translate-x-2/4 bg-gray-200">
+        <h2 className="text-2xl tablet:text-3xl text-center px-4 font-extrabold uppercase my-4 font-rubik absolute -top-8 left-2/4 -translate-x-2/4 bg-gray-200">
           Top Meals
         </h2>
         <span className="w-full h-1 bg-gradient-to-r from-green-400 to-green-600 rounded-md block">
@@ -101,7 +101,7 @@ export const TopRatedMealCarousel = () => {
         </span>
       </div>
       {content}
-      <Link to="/food/Meals">
+      <Link to="/category/Meals">
         <ButtonSm>View All</ButtonSm>
       </Link>
     </div>

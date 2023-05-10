@@ -13,7 +13,7 @@ import { ButtonSm } from "../button";
 export const responsive = {
   0: { items: 1 },
   568: { items: 2 },
-  1024: { items: 3 },
+  1100: { items: 3 },
 };
 
 export const TopRatedCarousel = () => {
@@ -40,7 +40,7 @@ export const TopRatedCarousel = () => {
             className="w-full h-[10rem] rounded-md"
             alt="food"
           />
-          <h3 className="font-semibold my-2 uppercase font-rubik text-lg sm:text-xl">
+          <h3 className="font-medium tablet:font-semibold my-2 uppercase font-rubik myXl:text-xl">
             {limitTitle(el.title)}
           </h3>
           <p className="my-2 font-semibold">Price: ${formatNumber(el.price)}</p>
@@ -49,7 +49,7 @@ export const TopRatedCarousel = () => {
             <div className="text-lg">
               <StarRating rating={el.avgRating} />
             </div>
-            <span className="ml-2 font-medium">
+            <span className="ml-2 font-medium hidden tablet:inline-block">
               {noOfReviews} {noOfReviews > 1 ? "reviews" : "review"}
             </span>
           </div>
@@ -99,7 +99,7 @@ export const TopRatedCarousel = () => {
   return (
     <div className="my-10">
       <div className="relative my-12 -z-10">
-        <h2 className="text-xl md:text-3xl px-1 md:px-4 font-extrabold uppercase my-4 font-rubik absolute -top-8 left-2/4 -translate-x-2/4 bg-gray-200">
+        <h2 className="text-2xl tablet:text-3xl text-center px-1 md:px-4 font-extrabold uppercase my-4 font-rubik absolute -top-8 left-2/4 -translate-x-2/4 bg-gray-200">
           Top Rated
         </h2>
         <span className="w-full h-1 bg-gradient-to-r from-green-400 to-green-600 rounded-md block">

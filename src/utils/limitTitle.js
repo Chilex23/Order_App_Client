@@ -1,12 +1,7 @@
-export const limitTitle = (str, no = 15) => {
-  let limitedTitle = "";
-  for (let word of str.split(" ")) {
-    if (limitedTitle.length < no) {
-      limitedTitle += `${word} `;
-    } else {
-      limitedTitle += "...";
-      break;
-    }
+export const limitTitle = (text, no = 15) => {
+  if (text.length <= 15) {
+    return text;
+  } else {
+    return text.substring(0, 15) + "...";
   }
-  return limitedTitle;
 };

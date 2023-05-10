@@ -5,7 +5,7 @@ const Footer = () => {
   const width = useSelector(selectWidth);
   return (
     <div
-      className={`py-10 bg-stone-900 text-white flex justify-center gap-x-20 ${
+      className={`py-10 bg-stone-900 text-white flex flex-col tablet:flex-row sm2:items-center gap-y-4 justify-center gap-x-20 ${
         width > 700 ? "ml-48" : ""
       }`}
     >

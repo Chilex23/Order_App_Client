@@ -8,7 +8,7 @@ const Hero = () => {
   const width = useSelector(selectWidth);
   return (
     <div
-      className="min-h-[25rem] py-10 pl-5 rounded-md flex"
+      className="min-h-[25rem] py-10 px-5 tablet:pl-5 rounded-md flex flex-col tablet:flex-row"
       style={{
         backgroundImage: `linear-gradient(${
           width > 600 ? "to right" : "to bottom"
@@ -17,7 +17,7 @@ const Hero = () => {
         backgroundPosition: "center",
       }}
     >
-      <div className="sm:w-[50%] text-white">
+      <div className="tablet:w-[50%] text-white">
         <h1 className="text-3xl font-extrabold mb-7 font-rubik">Home Of Great Food!!!</h1>
         <p className="text-lg">
           Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ad porro
@@ -26,7 +26,7 @@ const Hero = () => {
           odio! Quod, eveniet.
         </p>
       </div>
-      <img src={gif} alt="Hamburger" className="w-[20rem] h-[20rem] ml-auto mr-5 rounded-md" />
+      <img src={gif} alt="Hamburger" className="w-[15rem] h-[15rem] tablet:w-[20rem] tablet:h-[20rem] mx-auto tablet:ml-auto mt-6 tablet:mt-0 rounded-md" />
     </div>
   );
 };

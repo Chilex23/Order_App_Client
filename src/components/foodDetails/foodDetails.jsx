@@ -77,24 +77,24 @@ const FoodDetails = ({ foodDetails: data }) => {
   }
   let content = (
     <>
-      <p className="text-3xl font-rubik font-bold uppercase my-5 mx-auto">
+      <p className="text-2xl tablet:text-3xl font-rubik font-bold uppercase my-5 mx-auto">
         {title}
       </p>
       <figure className="my-5 mx-auto">
         <img
           src={imageSrc}
           alt={title}
-          className="w-full h-[24rem] rounded-md"
+          className="w-full h-[18rem] tablet:h-[24rem] rounded-md"
         />
       </figure>
-      <p className="text-3xl font-rubik font-bold uppercase mx-auto">
+      <p className="text-2xl tablet:text-3xl font-rubik font-bold uppercase mx-auto">
         Description
       </p>
-      <p className="my-2 mx-auto text-lg">{description}</p>
-      <p className="text-3xl font-rubik font-bold uppercase my-2 mx-auto">
+      <p className="my-2 mx-auto tablet:text-lg">{description}</p>
+      <p className="text-2xl tablet:text-3xl font-rubik font-bold uppercase my-2 mx-auto">
         Price
       </p>
-      <p className="my-2 mx-auto text-lg">${formatNumber(price)}</p>
+      <p className="my-2 mx-auto tablet:text-lg">${formatNumber(price)}</p>
       <button
         onClick={() => dispatch(addItemToCart(title, price, uuid, imageSrc))}
         className="bg-gradient-to-r from-green-400 to-green-600 block rounded-md px-3 py-2 text-white my-4 hover:shadow-lg hover:scale-105 transition-all"
@@ -104,19 +104,19 @@ const FoodDetails = ({ foodDetails: data }) => {
       <div className="w-full h-1 bg-gray-400">&nbsp;</div>
 
       <p className="my-5 mx-auto flex items-center">
-        <span className="text-3xl font-rubik font-bold uppercase">Reviews</span>
+        <span className="text-2xl tablet:text-3xl font-rubik font-bold uppercase">Reviews</span>
         {/* Check if the user is logged in and if he has already added a review */}
         {!currentUser || (reviews && reviews[currentUser]) ? null : (
           <ButtonSm clickHandler={() => openModal()}>Add Review</ButtonSm>
         )}
       </p>
       <div className="my-5 mx-auto flex justify-between">
-        <div className="text-2xl flex items-center">
+        <div className="text-lg tablet:text-2xl flex items-center">
           <StarRating rating={avgRating} />
-          <span className="text-xl ml-5">{avgRating}</span>
-          <span className="ml-2 text-xl">{avgRating > 1 ? "Stars" : "Star"}</span>
+          <span className="tablet:text-xl ml-5">{avgRating}</span>
+          <span className="ml-2 tablet:text-xl">{avgRating > 1 ? "Stars" : "Star"}</span>
         </div>
-        <span className="text-xl">
+        <span className="tablet:text-xl">
           {noOfReviews} {noOfReviews > 1 ? "reviews" : "review"}
         </span>
       </div>
@@ -125,18 +125,18 @@ const FoodDetails = ({ foodDetails: data }) => {
         <div className="my-5 mx-auto" key={i}>
           <div className="p-2 border-2 border-gray-400 rounded-md bg-white shadow-xl">
             <div className="flex items-center">
-              <span className="w-16 h-16 bg-gradient-to-r from-green-400 to-green-600 text-white rounded-full flex justify-center items-center text-3xl font-bold">
+              <span className="w-10 h-10 tablet:w-16 tablet:h-16 bg-gradient-to-r from-green-400 to-green-600 text-white rounded-full flex justify-center items-center text-xl tablet:text-3xl font-bold">
                 {el[0][0]}
                 {/* FirstName Letter*/}
               </span>
-              <span className="ml-5 text-xl font-semibold">
+              <span className="ml-5 text-lg tablet:text-xl font-semibold">
                 {el[0]}
                 {/* FirstName */}
               </span>
             </div>
-            <p className="my-2 text-lg">{el[1].comment}</p>
+            <p className="my-2 tablet:text-lg">{el[1].comment}</p>
             <div className="flex items-center">
-              <span className="text-lg font-semibold mr-4">Rating:</span>
+              <span className="tablet:text-lg font-semibold mr-4">Rating:</span>
               <StarRating rating={el[1].rating} />
               <span className="ml-2">{el[1].rating}</span>
             </div>

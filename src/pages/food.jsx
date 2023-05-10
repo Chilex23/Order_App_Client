@@ -21,7 +21,7 @@ const Food = () => {
       </div>
     );
   }
-  return <div className="w-7/12 mr-auto mb-24">{content}</div>;
+  return <div className="sm2:w-[95%] sm2:mx-auto w-7/12 tablet:mr-auto mb-24">{content}</div>;
 };
 
 export default Food;
