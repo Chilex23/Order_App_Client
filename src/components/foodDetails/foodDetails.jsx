@@ -84,7 +84,7 @@ const FoodDetails = ({ foodDetails: data }) => {
         <img
           src={imageSrc}
           alt={title}
-          className="w-full h-[18rem] tablet:h-[24rem] rounded-md"
+          className="w-full sm2:h-[12rem] h-[18rem] tablet:h-[24rem] rounded-md"
         />
       </figure>
       <p className="text-2xl tablet:text-3xl font-rubik font-bold uppercase mx-auto">

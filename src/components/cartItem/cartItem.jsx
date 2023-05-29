@@ -15,18 +15,18 @@ const CartItem = ({ id, name, imageLink, price, quantity }) => {
         <figure>
           <img src={imageLink} className="w-16 h-16 rounded-full" alt="food" />
         </figure>
-        <p>{name}</p>
-        <p>${formatNumber(price)}</p>
+        <p className="text-sm md:text-base">{name}</p>
+        <p className="text-sm md:text-base">${formatNumber(price)}</p>
       </div>
       <div className="mt-2 flex justify-between items-center">
         <div
-          className="flex items-center text-lg text-green-500 cursor-pointer"
+          className="flex items-center md:text-lg text-green-500 cursor-pointer"
           onClick={() => dispatch(clearItemFromCart(id))}
         >
           <FaTrashAlt />
           <span className="ml-2 uppercase">Remove</span>
         </div>
-        <div className="text-lg">
+        <div className="md:text-lg">
           <span
             onClick={() => dispatch(removeItemFromCart(id))}
             className="bg-green-500 px-3 py-1 rounded-md mr-2 cursor-pointer"

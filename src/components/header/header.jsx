@@ -13,8 +13,8 @@ const Header = () => {
       className="bg-gradient-to-b from-green-400 to-green-600 text-white border-b-2 border-white py-4 px-10 sticky top-0 flex justify-center items-center z-10"
       onMouseLeave={() => setDropDownState(false)}
     >
-      <div className="flex items-center font-bold">
-        <IoFastFoodOutline className="text-2xl tablet:text-5xl" />
+      <div className="flex items-center font-bold mr-4">
+        <IoFastFoodOutline className="text-3xl tablet:text-5xl" />
         <span className="uppercase text-2xl tablet:text-3xl font-rubik">Foodie</span>
       </div>
 

@@ -62,13 +62,13 @@ const Cart = () => {
     }
   };
   return (
-    <div className="mx-auto w-[95%] mb-[12rem]">
+    <div className="mx-auto w-[95%] mb-[6rem] md:mb-[12rem]">
       <h1 className="text-3xl font-bold font-rubik uppercase text-center my-5">
         Cart
       </h1>
-      <div className="flex">
-        <div className="border-2 border-gray-400 rounded-md py-2 px-6 w-8/12 bg-white shadow-xl">
-          <h2 className="text-lg font-bold ">Cart({cartCount})</h2>
+      <div className="flex flex-col md:flex-row gap-y-8">
+        <div className="border-2 border-gray-400 rounded-md py-2 px-6 md:w-8/12 bg-white shadow-xl">
+          <h2 className="md:text-lg font-bold ">Cart({cartCount})</h2>
           <div className="w-full h-1 bg-gray-400 my-2">&nbsp;</div>
           {cartItems.map(({ id, name, imageLink, price, quantity }) => (
             <CartItem
@@ -82,7 +82,7 @@ const Cart = () => {
           ))}
         </div>
         {/* CART SUMMARY */}
-        <div className="border-2 border-gray-400 w-4/12 ml-8 self-start rounded-md p-2 bg-white shadow-xl">
+        <div className="border-2 border-gray-400 w-10/12 md:w-4/12 md:ml-8 self-start rounded-md p-2 bg-white shadow-xl">
           <p className="uppercase border-b-[1px] border-gray-400">
             Cart Summary
           </p>
