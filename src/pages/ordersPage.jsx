@@ -87,7 +87,7 @@ const OrdersPage = () => {
       <>
         <table className="w-[90%] mx-auto border-[1px] border-black bg-white shadow-lg">
           <thead>
-            <tr className="bg-black text-white uppercase">
+            <tr className="bg-black text-white uppercase text-xs sm:text-sm md:text-base">
               <th className="border-[1px] border-gray-400 p-1">ID</th>
               <th className="border-[1px] border-gray-400">Amount Spent</th>
               <th className="border-[1px] border-gray-400">Order Date</th>
@@ -99,7 +99,7 @@ const OrdersPage = () => {
               ({ _id, uuid, total_price, order_date, items, state }) => (
                 <tr
                   key={_id}
-                  className="cursor-pointer hover:bg-gradient-to-r from-green-400 to-green-600 hover:text-white transition"
+                  className="cursor-pointer hover:bg-gradient-to-r from-green-400 to-green-600 hover:text-white transition text-sm md:text-base"
                   onClick={() =>
                     openModal(uuid, total_price, order_date, items, state)
                   }
@@ -141,7 +141,7 @@ const OrdersPage = () => {
   }
   return (
     <div className="mb-[9rem]">
-      <h1 className="text-5xl text-center font-bold font-rubik uppercase my-5">
+      <h1 className="text-3xl md:text-5xl text-center font-bold font-rubik uppercase my-5">
         Orders
       </h1>
       <p className="text-center mb-2">Click on a row to view more details.</p>
