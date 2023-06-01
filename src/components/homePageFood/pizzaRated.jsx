@@ -21,7 +21,7 @@ const TopRatedPizzaCarousel = () => {
     console.log(import.meta.env.VITE_API_URL)
     let items = data.foodItems.slice(0, 5).map((el) => {
       let imageSrc = el?.imageLink
-        ? `https://order-app-service.onrender.com/${el?.imageLink}`
+        ? `${import.meta.env.VITE_API_URL}/${el?.imageLink}`
         : foodPic;
       let noOfReviews;
       if (el.reviews) {

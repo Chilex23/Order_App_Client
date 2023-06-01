@@ -65,7 +65,7 @@ const FoodDetails = ({ foodDetails: data }) => {
     }
   };
 
-  let imageSrc = imageLink ? `https://order-app-service.onrender.com/${imageLink}` : foodPic;
+  let imageSrc = imageLink ? `${import.meta.env.VITE_API_URL}/${imageLink}` : foodPic;
   let noOfReviews, foodReviews;
   // The review data is in an object the key is the user and the value is the review,
   if (reviews) {

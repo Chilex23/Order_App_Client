@@ -88,7 +88,7 @@ const Food = () => {
           reviews,
         }) => {
           let imageSrc = imageLink
-            ? `https://order-app-service.onrender.com/${imageLink}`
+            ? `${import.meta.env.VITE_API_URL}/${imageLink}`
             : foodPic;
           let noOfReviews;
           if (reviews) {

@@ -3,7 +3,7 @@ import { createSelector } from "@reduxjs/toolkit";
 
 export const apiSlice = createApi({
   reducerPath: "api",
-  baseQuery: fetchBaseQuery({ baseUrl: "https://order-app-service.onrender.com/api" }),
+  baseQuery: fetchBaseQuery({ baseUrl: `${import.meta.env.VITE_API_URL}/api` }),
   tagTypes: ["Food", "Orders", "Categories"],
   endpoints: (builder) => ({
     addNewFood: builder.mutation({
