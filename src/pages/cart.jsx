@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -14,7 +15,9 @@ import { notify } from "../utils/notify";
 import { formatNumber } from "../utils/formatNumber";
 
 const Cart = () => {
-  window.scrollTo(0, 0);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [addOrder, { isLoading }] = useCreateOrderMutation();
@@ -26,12 +29,14 @@ const Cart = () => {
   const canSave = cartItems.length > 0 && !isLoading;
 
   const placeOrder = async () => {
-    let transformedOrderItems = cartItems.map(({ name, price, quantity, category }) => ({
-      name,
-      price,
-      quantity,
-      category,
-    }));
+    let transformedOrderItems = cartItems.map(
+      ({ name, price, quantity, category }) => ({
+        name,
+        price,
+        quantity,
+        category,
+      })
+    );
     if (!user) {
       notify("successBottom", "Please Sign in to place an order.");
       navigate("/login");
@@ -41,8 +46,8 @@ const Cart = () => {
       try {
         const orderBody = {
           items: transformedOrderItems,
-          token: authToken
-        }
+          token: authToken,
+        };
         await toast.promise(addOrder(orderBody).unwrap(), {
           pending: "Placing Order...",
           success: "Order Placed Successfully",
