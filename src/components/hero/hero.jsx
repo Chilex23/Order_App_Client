@@ -18,8 +18,8 @@ const Hero = () => {
       }}
     >
       <div className="tablet:w-[50%] text-white">
-        <h1 className="text-2xl sm:text-3xl font-extrabold mb-4 sm:mb-7 font-rubik">Home Of Great Food!!!</h1>
-        <p className="sm:text-lg">
+        <h1 className="text-xl sm:text-3xl font-extrabold mb-4 sm:mb-7 font-rubik">Home Of Great Food!!!</h1>
+        <p className="text-sm sm:text-lg">
           Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ad porro
           quis excepturi ipsum quia rerum dolorem, ea quas maxime consequuntur
           recusandae, voluptatem cumque perspiciatis accusantium commodi, in

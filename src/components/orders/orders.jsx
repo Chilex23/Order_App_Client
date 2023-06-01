@@ -109,15 +109,15 @@ const Orders = () => {
                 openModal(uuid, total_price, order_date, items, state)
               }
             >
-              <p className="text-sm">
+              <p className="text-xs sm:text-sm">
                 <span className="font-bold mr-2">ID:</span>
                 <span>{uuid}</span>
               </p>
-              <p className="text-sm">
+              <p className="text-xs sm:text-sm">
                 <span className="font-bold">Price:</span>{" "}
                 <span>${formatNumber(total_price)}</span>
               </p>
-              <p className="text-sm">
+              <p className="text-xs sm:text-sm">
                 <span className="font-bold">Date:</span>{" "}
                 <span>{formatDate(order_date)}</span>
               </p>
@@ -140,7 +140,7 @@ const Orders = () => {
         <div className="flex justify-between items-center my-2">
           <Menu
             menuButton={
-              <MenuButton className="border-[1px] flex items-center border-gray-400 rounded-md px-2 py-1 font-medium">
+              <MenuButton className="border-[1px] flex items-center border-gray-400 rounded-md px-2 py-1 font-medium text-sm sm:text-base">
                 <FaFilter className="mr-2" /> Sort
               </MenuButton>
             }
@@ -191,19 +191,19 @@ const Orders = () => {
           <h1 className="text-center uppercase font-bold text-xl sm2:text-xl font-rubik mb-3">
             Order Details
           </h1>
-          <p className="mb-2">
+          <p className="mb-2 sm2:text-sm">
             <span className="font-bold mr-2">ID:</span>
             {uuid}
           </p>
-          <p className="mb-2">
+          <p className="mb-2 sm2:text-sm">
             <span className="font-bold mr-2">Total Amount Spent:</span>$
             {formatNumber(total_price)}
           </p>
-          <p className="mb-2">
+          <p className="mb-2 sm2:text-sm">
             <span className="font-bold mr-2">Order Date:</span>
             {formatDate(order_date)}
           </p>
-          <p className="mb-2">
+          <p className="mb-2 sm2:text-sm">
             <span className="font-bold mr-2">Delivery State:</span>
             {state == 0 ? "Pending" : "Delivered"}
           </p>
@@ -212,11 +212,11 @@ const Orders = () => {
               Mark as Delivered
             </ButtonSm>
           ) : null}
-          <h2 className="text-center uppercase font-bold text-xl sm2:text-xl font-rubik mb-3">
+          <h2 className="text-center uppercase font-bold text-xl sm2:text-lg font-rubik mb-3">
             Food Items
           </h2>
 
-          <table className="w-full border-[1px] border-gray-400">
+          <table className="w-full border-[1px] border-gray-400 sm2:text-sm">
             <thead>
               <tr className="bg-black text-white">
                 <th className="border-[1px] border-gray-400">Name</th>

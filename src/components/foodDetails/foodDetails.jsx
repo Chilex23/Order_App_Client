@@ -77,7 +77,7 @@ const FoodDetails = ({ foodDetails: data }) => {
   }
   let content = (
     <>
-      <p className="text-2xl tablet:text-3xl font-rubik font-bold uppercase my-5 mx-auto">
+      <p className="text-xl sm:text-2xl tablet:text-3xl font-rubik font-bold uppercase my-5 mx-auto">
         {title}
       </p>
       <figure className="my-5 mx-auto">
@@ -87,30 +87,30 @@ const FoodDetails = ({ foodDetails: data }) => {
           className="w-full sm2:h-[12rem] h-[18rem] tablet:h-[24rem] rounded-md"
         />
       </figure>
-      <p className="text-2xl tablet:text-3xl font-rubik font-bold uppercase mx-auto">
+      <p className="text-xl sm:text-2xl tablet:text-3xl font-rubik font-bold uppercase mx-auto">
         Description
       </p>
-      <p className="my-2 mx-auto tablet:text-lg">{description}</p>
-      <p className="text-2xl tablet:text-3xl font-rubik font-bold uppercase my-2 mx-auto">
+      <p className="my-2 mx-auto text-sm sm:text-base tablet:text-lg">{description}</p>
+      <p className="text-xl sm:text-2xl tablet:text-3xl font-rubik font-bold uppercase my-2 mx-auto">
         Price
       </p>
-      <p className="my-2 mx-auto tablet:text-lg">${formatNumber(price)}</p>
+      <p className="my-2 mx-auto text-sm sm:text-base tablet:text-lg">${formatNumber(price)}</p>
       <button
         onClick={() => dispatch(addItemToCart(title, price, uuid, imageSrc))}
-        className="bg-gradient-to-r from-green-400 to-green-600 block rounded-md px-3 py-2 text-white my-4 hover:shadow-lg hover:scale-105 transition-all"
+        className="text-sm sm:text-base bg-gradient-to-r from-green-400 to-green-600 block rounded-md px-3 py-2 text-white my-4 hover:shadow-lg hover:scale-105 transition-all"
       >
         Add to Cart
       </button>
       <div className="w-full h-1 bg-gray-400">&nbsp;</div>
 
-      <p className="my-5 mx-auto flex items-center">
-        <span className="text-2xl tablet:text-3xl font-rubik font-bold uppercase">Reviews</span>
+      <p className="my-3 sm:my-5 mx-auto flex items-center">
+        <span className="text-xl sm:text-2xl tablet:text-3xl font-rubik font-bold uppercase">Reviews</span>
         {/* Check if the user is logged in and if he has already added a review */}
         {!currentUser || (reviews && reviews[currentUser]) ? null : (
           <ButtonSm clickHandler={() => openModal()}>Add Review</ButtonSm>
         )}
       </p>
-      <div className="my-5 mx-auto flex justify-between">
+      <div className="my-3 sm:my-5 mx-auto flex justify-between">
         <div className="text-lg tablet:text-2xl flex items-center">
           <StarRating rating={avgRating} />
           <span className="tablet:text-xl ml-5">{avgRating}</span>

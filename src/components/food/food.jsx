@@ -118,8 +118,8 @@ const Food = () => {
                 className="w-12 h-12 rounded-full"
                 alt="food"
               />
-              <span className="px-3 mr-auto text-sm">{title}</span>
-              <span className="text-sm">${formatNumber(price)}</span>
+              <span className="px-3 mr-auto text-xs sm:text-sm">{title}</span>
+              <span className="text-xs sm:text-sm">${formatNumber(price)}</span>
             </div>
           );
         }
@@ -140,7 +140,7 @@ const Food = () => {
       <div className="flex justify-between mt-2 mb-4">
         <Menu
           menuButton={
-            <MenuButton className="border-[1px] flex items-center border-gray-400 rounded-md px-2 py-1 font-medium">
+            <MenuButton className="text-sm sm:text-base border-[1px] flex items-center border-gray-400 rounded-md px-2 py-1 font-medium">
               <FaFilter className="mr-2" /> Sort
             </MenuButton>
           }

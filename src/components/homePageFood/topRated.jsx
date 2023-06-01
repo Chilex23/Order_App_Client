@@ -43,8 +43,8 @@ export const TopRatedCarousel = () => {
           <h3 className="font-medium tablet:font-semibold my-2 uppercase font-rubik myXl:text-xl">
             {limitTitle(el.title)}
           </h3>
-          <p className="my-2 font-semibold">Price: ${formatNumber(el.price)}</p>
-          <div className="my-2 font-semibold flex items-center">
+          <p className="text-sm sm:text-base y-2 font-semibold">Price: ${formatNumber(el.price)}</p>
+          <div className="my-2 font-semibold flex items-center text-sm sm:text-base">
             <span className="mr-2">Rating:</span>{" "}
             <div className="text-lg">
               <StarRating rating={el.avgRating} />
@@ -55,7 +55,7 @@ export const TopRatedCarousel = () => {
           </div>
           <div className="flex justify-center">
             <button
-              className="bg-gradient-to-r from-green-400 to-green-600 mx-auto block rounded-md px-3 py-2 text-white my-4 hover:shadow-lg hover:scale-105 transition-all"
+              className="text-sm sm:text-base bg-gradient-to-r from-green-400 to-green-600 mx-auto block rounded-md px-3 py-2 text-white my-4 hover:shadow-lg hover:scale-105 transition-all"
               onClick={() =>
                 dispatch(
                   addItemToCart(

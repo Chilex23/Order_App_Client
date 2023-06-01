@@ -92,7 +92,7 @@ const Category = () => {
         {data?.categories.map(({ type: categoryType, _id }) => (
           <Link
             to={`/category/${categoryType}`}
-            className="flex items-center mb-4 bg-gray-200 p-2 rounded-lg"
+            className="flex items-center mb-4 bg-gray-200 p-2 rounded-lg sm2:text-sm"
             key={_id}
           >
             <img
@@ -121,10 +121,6 @@ const Category = () => {
         ) : null}
       </div>
       {content}
-      {/* <div className="absolute bottom-0 w-full">
-        <ButtonSm>View all</ButtonSm>
-      </div> */}
-
       <Modal
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
