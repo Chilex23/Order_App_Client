@@ -88,7 +88,7 @@ const Food = () => {
           reviews,
         }) => {
           let imageSrc = imageLink
-            ? `http://localhost:3000/${imageLink}`
+            ? `https://order-app-service.onrender.com/${imageLink}`
             : foodPic;
           let noOfReviews;
           if (reviews) {

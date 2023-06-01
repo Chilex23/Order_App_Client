@@ -20,7 +20,7 @@ export const TopRatedSnacksCarousel = () => {
   } else if (isSuccess) {
     let items = data.foodItems.slice(0, 5).map((el) => {
       let imageSrc = el?.imageLink
-        ? `http://localhost:3000/${el?.imageLink}`
+        ? `https://order-app-service.onrender.com/${el?.imageLink}`
         : foodPic;
       let noOfReviews;
       if (el.reviews) {
