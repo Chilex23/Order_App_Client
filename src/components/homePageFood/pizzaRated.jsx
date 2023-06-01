@@ -18,7 +18,6 @@ const TopRatedPizzaCarousel = () => {
   if (isLoading) {
     content = <BaseSkeleton variant="card-grid" />;
   } else if (isSuccess) {
-    console.log(import.meta.env.VITE_API_URL)
     let items = data.foodItems.slice(0, 5).map((el) => {
       let imageSrc = el?.imageLink
         ? `${import.meta.env.VITE_API_URL}/${el?.imageLink}`

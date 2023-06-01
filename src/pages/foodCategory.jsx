@@ -51,10 +51,10 @@ const FoodCategory = () => {
             <p className="my-2 font-semibold">Price: ${price}</p>
             <div className="my-2 font-semibold flex items-center">
               <span className="mr-2">Rating:</span>{" "}
-              <div className="text-lg">
+              <div className="tablet:text-lg">
                 <StarRating rating={avgRating} />
               </div>
-              <span className="ml-2 font-medium">
+              <span className="ml-2 font-medium text-sm myXl:text-base">
                 {noOfReviews} {noOfReviews > 1 ? "reviews" : "review"}
               </span>
             </div>
@@ -78,7 +78,7 @@ const FoodCategory = () => {
     );
     content = (
       <>
-        <div className="grid grid-cols-4 grid-row-3 gap-4 mb-10">
+        <div className="grid xs:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 grid-row-3 gap-4 mb-10">
           {foodItemsArr}
         </div>
         <div className="my-10 mx-auto border-2 border-black w-fit px-2 flex justify-between gap-x-2 text-lg rounded-md">
@@ -104,8 +104,8 @@ const FoodCategory = () => {
     );
   }
   return (
-    <div className="mr-4 mb-[11rem]">
-      <h1 className="text-3xl font-bold font-rubik uppercase my-5">
+    <div className="mx-4 sm:mr-4 mb-[11rem]">
+      <h1 className="text-2xl sm:text-3xl font-bold font-rubik uppercase my-5">
         {foodCategory}
       </h1>
       {content}
