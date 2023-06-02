@@ -48,7 +48,7 @@ const BottomNav = () => {
   }
   return (
     <div className="flex justify-center">
-      <div className="bg-gradient-to-r from-green-400 to-green-600 text-white fixed bottom-0 w-full z-10 p-3 mx-auto flex justify-between shadow-lg sm2:text-sm">
+      <div className="bg-gradient-to-r from-green-400 to-green-600 text-white fixed bottom-0 w-full z-10 px-5 py-3 mx-auto flex justify-between shadow-lg sm2:text-sm">
         {/* Category popup */}
         <motion.div
           animate={{ y: dropDwn ? 280 : 0 }}
