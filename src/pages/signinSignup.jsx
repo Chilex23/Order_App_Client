@@ -14,7 +14,7 @@ const SignInSignUp = () => {
   }, []);
 
   return (
-    <div className="mb-32 flex justify-between w-fit mx-auto">
+    <div className="mb-32 flex flex-col myXl:flex-row justify-between w-fit mx-auto">
       <SignIn />
       <SignUp />
     </div>

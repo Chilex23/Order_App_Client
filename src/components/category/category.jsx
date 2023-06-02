@@ -18,6 +18,24 @@ import { notify } from "../../utils/notify";
 import customStyles from "../../utils/customStyles";
 import { ButtonSm } from "../button/button";
 
+export const getCategoryPicture = (title) => {
+  let pic;
+  switch (title) {
+    case "Pizzas":
+      pic = foodPic;
+      break;
+    case "Drinks":
+      pic = drinkPic;
+      break;
+    case "Snacks":
+      pic = snackPic;
+      break;
+    default:
+      pic = foodPic;
+  }
+  return pic;
+};
+
 const Category = () => {
   const { data, isLoading, isSuccess, isError, error } =
     useGetCategoriesQuery();
@@ -64,23 +82,6 @@ const Category = () => {
   const handleChange = (event) => {
     const { value, name } = event.target;
     setCategoryDetails({ ...categoryDetails, [name]: value });
-  };
-  const getCategoryPicture = (title) => {
-    let pic;
-    switch (title) {
-      case "Pizzas":
-        pic = foodPic;
-        break;
-      case "Drinks":
-        pic = drinkPic;
-        break;
-      case "Snacks":
-        pic = snackPic;
-        break;
-      default:
-        pic = foodPic;
-    }
-    return pic;
   };
 
   let content;

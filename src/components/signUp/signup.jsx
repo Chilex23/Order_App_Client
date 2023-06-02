@@ -66,7 +66,7 @@ const SignUp = () => {
   };
   return (
     <div className="">
-      <h2 className="text-2xl font-extrabold">I do not have an account</h2>
+      <h2 className="text-xl sm:text-2xl font-extrabold">I do not have an account</h2>
       <span>Sign up with your email and password</span>
       <form onSubmit={handleSubmit}>
         <FormInput

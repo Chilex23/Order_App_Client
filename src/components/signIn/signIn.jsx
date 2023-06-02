@@ -53,8 +53,8 @@ const SignIn = () => {
     }
   };
   return (
-    <div className="mr-24">
-      <h2 className="text-2xl font-extrabold">I already have an account</h2>
+    <div className="sm:mr-24 mb-6 myXl:mb-0">
+      <h2 className="text-xl sm:text-2xl font-extrabold">I already have an account</h2>
       <span>Sign in with your username and password</span>
       <form onSubmit={handleSubmit}>
         <FormInput

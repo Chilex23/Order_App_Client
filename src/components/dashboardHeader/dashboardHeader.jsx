@@ -42,7 +42,7 @@ const DashboardHeader = () => {
           </span>
           <span className="font-bold">{userFullName|| "User"}</span>
         </div>
-        <span>yahoo@gmail.com</span>
+        <span className="text-sm sm:text-base">yahoo@gmail.com</span>
       </div>
     </div>
   );

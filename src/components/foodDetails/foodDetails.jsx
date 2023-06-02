@@ -111,10 +111,10 @@ const FoodDetails = ({ foodDetails: data }) => {
         )}
       </p>
       <div className="my-3 sm:my-5 mx-auto flex justify-between">
-        <div className="text-lg tablet:text-2xl flex items-center">
+        <div className="sm:text-lg tablet:text-2xl flex items-center">
           <StarRating rating={avgRating} />
-          <span className="tablet:text-xl ml-5">{avgRating}</span>
-          <span className="ml-2 tablet:text-xl">{avgRating > 1 ? "Stars" : "Star"}</span>
+          <span className="ml-5">{avgRating}</span>
+          <span className="ml-2">{avgRating > 1 ? "Stars" : "Star"}</span>
         </div>
         <span className="tablet:text-xl">
           {noOfReviews} {noOfReviews > 1 ? "reviews" : "review"}
@@ -129,14 +129,14 @@ const FoodDetails = ({ foodDetails: data }) => {
                 {el[0][0]}
                 {/* FirstName Letter*/}
               </span>
-              <span className="ml-5 text-lg tablet:text-xl font-semibold">
+              <span className="ml-5 sm:text-lg tablet:text-xl font-semibold">
                 {el[0]}
                 {/* FirstName */}
               </span>
             </div>
-            <p className="my-2 tablet:text-lg">{el[1].comment}</p>
+            <p className="my-2 text-sm tablet:text-lg">{el[1].comment}</p>
             <div className="flex items-center">
-              <span className="tablet:text-lg font-semibold mr-4">Rating:</span>
+              <span className="text-sm tablet:text-lg font-semibold mr-4">Rating:</span>
               <StarRating rating={el[1].rating} />
               <span className="ml-2">{el[1].rating}</span>
             </div>
