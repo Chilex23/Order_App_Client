@@ -26,7 +26,7 @@ const FoodCategory = () => {
     let foodItemsArr = data.foodItems.map(
       ({ title, uuid, avgRating, price, imageLink, reviews, category }) => {
         let imageSrc = imageLink
-          ? `http://localhost:3000/${imageLink}`
+          ? `${import.meta.env.VITE_API_URL}/${imageLink}`
           : foodPic;
         let noOfReviews;
         if (reviews) {
